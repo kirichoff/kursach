@@ -2,33 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bd.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqlGenerator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mutations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mainShema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mssqlRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA/schema/new_schema.IHWLKw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/newsServer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GraphQl/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/model.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/sqlInserts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/authors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/posts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/users.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/postgresRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/postgresRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shema.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphQl/mutations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainShema.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/mainShema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mssqlRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/mssqlRequest.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +70,12 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kirill\Desktop\bd\src\GraphQl" />
+      <recent name="C:\Users\kirill\Desktop\bd\src\Model" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -149,6 +135,14 @@
       <workItem from="1574194024295" duration="458000" />
       <workItem from="1574194702046" duration="1310000" />
     </task>
+    <task id="LOCAL-00001" summary="dd">
+      <created>1574279744119</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574279744120</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,5 +160,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="dd" />
+    <option name="LAST_COMMIT_MESSAGE" value="dd" />
   </component>
 </project>
