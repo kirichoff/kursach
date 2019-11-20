@@ -1,4 +1,4 @@
-const model = require('./Model/mssqlRequest');
+const model = require('../Model/mssqlRequest');
 const {
     GraphQLInt,
     GraphQLBoolean,
@@ -105,6 +105,7 @@ module.exports = {
     ChartItem: ChartItem,
     Request: Request,
     User: User,
+    ShopItem,
     CharacteristicItem: CharacteristicItem,
     OrderShop: OrderShop,
     ItemContent: ItemContent,

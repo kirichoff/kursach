@@ -1,6 +1,4 @@
 const _ = require('lodash');
-// Authors и Posts получают данные в виде
-// JSON массивов с соответствующих файлов
 const model = require('./Model/mssqlRequest');
 const mutations = require('./GraphQl/mutations');
 const {
@@ -12,6 +10,8 @@ const {
      User,
      Request,
      OrderShop} =  require('./GraphQl/types');
+console.log(User);
+
 const {
     GraphQLInt,
     GraphQLBoolean,
@@ -27,23 +27,27 @@ const ItemPage = new GraphQLObjectType({
     name: 'ItemPage',
     description: 'ItemPage',
     fields: ()=> ({
-        Characteristics: {type: new GraphQLList(CharacteristicItem),
+        Characteristics: {
+            type: new GraphQLList(CharacteristicItem),
             resolve: async (root,params)=> model.GetChar(root.item.userId)
         },
-        ItemContents: {type: new GraphQLList(ItemContent),
+        ItemContents: {
+            type: new GraphQLList(ItemContent),
             resolve: async (root,params)=>model.GetContent(root.item.userId)
         },
-        ItemComments: {type: new GraphQLList(ItemComment),
+        ItemComments: {
+            type: new GraphQLList(ItemComment),
             resolve: async (root,params)=> console.log(root)
         },
-        item: {type: ShopItem,
-            description: 'item',
+        item: {
+            type: ShopItem,
             resolve: async (root,params)=> await model.GetShopItem(root.itemId)
 
         },
     })
 });
 
+console.log('SHOPITEM',ShopItem);
 
 const BlogQueryRootType = new GraphQLObjectType({
     name: "BlogAppSchema",
@@ -85,7 +89,8 @@ const BlogQueryRootType = new GraphQLObjectType({
             resolve: async (root,params) => await model.GetUserCart(params.userId)
         },
         Items: {
-            type: ShopItem,
+            type: new GraphQLList(ShopItem),
+            description: "ALL users",
             resolve: async (root,params) => await model.GetAllShopItems(),
         },
         authorisation: {
