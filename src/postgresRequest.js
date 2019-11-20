@@ -1,8 +1,6 @@
 const pgp = require("pg-promise")();
 const db = pgp("postgres://postgres:12345@localhost:5432/db1");
-
-let Reducers = {};
-
+const Reducers = {};
 Reducers.getAllUsers = function(){
     // language=PostgreSQL
     return db.query(`SELECT user_login FROM new_schema.users`)

@@ -7,46 +7,79 @@ schema {
 
 "Blog Application Schema Query Root"
 type BlogAppSchema {
+    Cart(userId: Int!): [ChartItem]
+    Item(itemId: Int!): ShopItem
+    ItemPage(itemId: Int!): ItemPage
+    Items: ShopItem
     "authorisation user"
     authorisation(name: String!, password: String!): Request
-    "Post"
-    post(id: Int): Post
-    "List of all Posts"
-    posts: [Post]
-    "All available Tags"
-    tags: [Tag]
     "ALL users"
     users: [user]
 }
 
-type Mutation {
-    addPost(content: String, date: String, header: String, image: String, tag: [String]): Request
-    addUser(password: String!, user_login: String!): user
+type CharacteristicItem {
+    CharName: String
+    charContent: String
+    charId: Int
+    itemId: Int
 }
 
-type Post {
-    "content"
+type ChartItem {
+    chartId: Int
+    count: String
+    "item"
+    item: ShopItem
+    itemId: Int
+    userId: Int
+}
+
+"ItemComment"
+type ItemComment {
+    commentId: Int
     content: String
-    content_id: Int!
-    date: String!
-    header: String
-    image: String
-    post_id: Int!
-    "tags for post"
-    tags: [Tag]
+    itemId: Int
+    user: user
+}
+
+"ItemContent r"
+type ItemContent {
+    content: String
+    contentId: Int
+    itemId: Int
+}
+
+"ItemPage"
+type ItemPage {
+    Characteristics: [CharacteristicItem]
+    ItemComments: [ItemComment]
+    ItemContents: [ItemContent]
+    "item"
+    item: ShopItem
+}
+
+type Mutation {
+    addUser(email: String!, login: String!, password: String!, phoneNumber: Int!, rights: Int!): user
 }
 
 type Request {
     request: String
 }
 
-"tag of post"
-type Tag {
-    tag_id: Int!
-    tag_name: String!
+"item"
+type ShopItem {
+    ShopItemId: Int
+    description: String
+    header: String
+    previewImage: String
+    price: Float
 }
 
 "user name"
 type user {
-    user_login: String!
+    email: String
+    login: String!
+    password: String!
+    phoneNumber: Int
+    rights: Int
+    userId: Int
 }

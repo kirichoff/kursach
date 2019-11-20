@@ -1,18 +1,16 @@
 const express = require('express');
 const path = require('path');
 const graphqlHTTP = require('express-graphql');
-const schema = require('./src/shema.js');
-var bodyParser = require('body-parser');
-
+const mainShema = require('./src/mainShema.js');
+const bodyParser = require('body-parser');
 
 
 const app = express();
 
 app.use(bodyParser({limit: '50mb'}));
 app.use('/api/graphQL', graphqlHTTP({
-    schema: schema
+    schema: mainShema
 }));
-
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 // Handles any requests that don't match the ones above

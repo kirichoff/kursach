@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94c4127a-38b6-452b-b0aa-dcafa707e19f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/news_operator/public/icon-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/Editor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/FloraComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/Test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/ex.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/icon-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/style/teststyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/ImgBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/ImgBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/News.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/News.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/NewsTempl.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/NewsTempl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/You.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/You.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/index.js" afterDir="false" />
+    <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/bd.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqlGenerator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Mutations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mainShema.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mssqlRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA/schema/new_schema.IHWLKw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/32183832-c1b3-4f2c-b34d-69a00a4778d4/storage_v2/_src_/database/db1.c4MBAA/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/newsServer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/authors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/posts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/postgresRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/postgresRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shema.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,88 +50,45 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="MazShop: database" type="ccb7ac2a:MsImplModel$Database" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="db1: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="db1: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="db1: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="new_schema: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db1@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="db1: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="new_schema: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="MazShop: database" type="ccb7ac2a:MsImplModel$Database" />
+        <item name="dbo: schema" type="2865ee2e:MsImplModel$Schema" />
       </path>
     </expand>
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="newsServer" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/news_operator" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
-  <component name="ProjectId" id="1Pxs7fhj2xfeC0VpAIbNgUKma4c" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1TlOJNWXgr57g77Ena80fL8p2ph" />
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DatabaseDriversLRU" value="sqlserver" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="10.16.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/news_operator/public" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\kirill\Desktop\newsServer\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\kirill\Desktop\newsServer\news_operator\public" />
-      <recent name="C:\Users\kirill\Desktop\newsServer\news_operator\src" />
-      <recent name="C:\Users\kirill\Desktop\newsServer\news_operator\src\forEditor" />
-      <recent name="C:\Users\kirill\Desktop\newsServer" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -141,6 +102,23 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
@@ -148,12 +126,7 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8f7060bd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@8f7060bd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@68d815b7" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@7231d579" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -166,31 +139,15 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="94c4127a-38b6-452b-b0aa-dcafa707e19f" name="Default Changelist" comment="" />
-      <created>1566826915530</created>
+      <changelist id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="" />
+      <created>1574031142712</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1566826915530</updated>
-      <workItem from="1566826916852" duration="1634000" />
-      <workItem from="1566828607528" duration="234000" />
-      <workItem from="1566828880006" duration="5576000" />
-      <workItem from="1566978468500" duration="9499000" />
-      <workItem from="1567001389604" duration="3245000" />
-      <workItem from="1567026441428" duration="2767000" />
-      <workItem from="1567032421058" duration="4679000" />
-      <workItem from="1567080367057" duration="12387000" />
-      <workItem from="1567168176567" duration="7875000" />
-      <workItem from="1567210787268" duration="7970000" />
-      <workItem from="1567252406146" duration="5083000" />
-      <workItem from="1567270569280" duration="15072000" />
-      <workItem from="1567343256574" duration="1110000" />
-      <workItem from="1567536768308" duration="4876000" />
-      <workItem from="1567610036644" duration="10563000" />
-      <workItem from="1567700832257" duration="1138000" />
-      <workItem from="1567773408882" duration="15619000" />
-      <workItem from="1567799268036" duration="4033000" />
-      <workItem from="1567851293083" duration="5987000" />
-      <workItem from="1567936119298" duration="2828000" />
+      <updated>1574031142712</updated>
+      <workItem from="1574031146721" duration="526000" />
+      <workItem from="1574031693485" duration="3399000" />
+      <workItem from="1574194024295" duration="458000" />
+      <workItem from="1574194702046" duration="1310000" />
     </task>
     <servers />
   </component>
