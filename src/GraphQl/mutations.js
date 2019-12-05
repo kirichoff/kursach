@@ -32,7 +32,7 @@ function definer(object,req,exclude,add){
     return obj;
 }
 
-AddShopItem = definer(ShopItem,model.AddShopItem,['ShopItemId']);
+AddShopItem = definer(ShopItem,model.AddShopItem,['ShopItemId','previewImageRaw']);
 
 AddOrder = definer(OrderShop,model.AddOrder,['orderId','item']);
 

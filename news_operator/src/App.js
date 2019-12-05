@@ -1,37 +1,23 @@
-import React, { Component } from 'react';
-import News from "./components/News";
-import "./shadowlll.jpg"
-import './night.jpg'
-import './Style.css'
-import {connect} from 'react-redux'
-import {Link}from 'react-router'
-import ImgRender from "./components/ImgRender";
-import Bar from "./components/Bar";
-import Tagsbar from "./components/Tagsbar";
+import React from 'react';
+import Switch from "react-router-dom/Switch";
+import Route from "react-router/lib/Route";
+import Home from "./pages/Home";
+import Test from "./components/Test";
+import You from "./components/You";
+import About from "./components/About";
+import Layout from "./components/Layout";
+import PostPage from "./components/PostPage";
+import FloraComponent from "./components/FloraComponent";
+import ImageUpload from "./components/Editor";
+import NewsTempl from "./components/NewsTempl";
 
-class App extends Component {
-    constructor(){
-        super()
-    }
-
-
-    render() {
+function App(props) {
+    console.log('render')
     return (
-        <div>
-            <Bar/>
-            <Tagsbar/>
+      <div>
 
-        <div className={"Img"}>
-            <ImgRender/>
-            </div>
-            <footer>hear foter</footer>
-        </div>
+      </div>
     );
-  }
 }
-function mapStateToProps(state) {
-    return {
-        base: state
-    }
-}
-export default connect(mapStateToProps)(App);
+
+export default App;

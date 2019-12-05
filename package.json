@@ -13,15 +13,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.3",
+    "history": "^4.10.1",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "msnodesqlv8": "^0.8.5",
     "mssql": "^6.0.1",
+    "node-rsa": "^1.0.7",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
-    "pg-promise": "^9.1.0"
+    "pg-promise": "^9.1.0",
+    "react-easy-swipe": "0.0.18",
+    "react-responsive-carousel": "^3.1.51"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

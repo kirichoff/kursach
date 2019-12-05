@@ -1,6 +1,6 @@
 request = require('./model.config');
-const model = {};
-model.GetUser = (login,password)=> {
+const model = {security:{}};
+model.security.GetUser = ({login,password})=> {
     let query = `
         select
             * 
@@ -11,25 +11,7 @@ model.GetUser = (login,password)=> {
             and password = '${ password }'`;
         return request(query);
 };
-model.GetAllUsers = ()=> {
-        // noinspection SqlDialectInspection
-    let query = `
-        select
-            * 
-        from
-            MazShop.dbo.UserShop`;
-    return request(query);
-};
-model.GetChar = (id)=>{
-    let query = `
-        select
-            * 
-        from
-              MazShop.dbo.Characteristic
-        where itemId = ${id}
-              `;
-    return request(query);
-};
+
 model.GetContent = id =>{
     let query = `
         select
@@ -40,7 +22,7 @@ model.GetContent = id =>{
               `;
     return request(query);
 };
-model.GetUserById = (id)=>{
+model.security.GetUserById = ({id})=>{
     let query = `
         select
             * 
@@ -62,15 +44,34 @@ model.GetUserCart =  (userId)=>{
            `;
     return request(query);
 };
-model.GetAllShopItems = () =>{
-    // noinspection SqlDialectInspection
+model.Login = async ({login,password})=> {
+    console.log(login,password)
     let query = `
-    select * from MazShop.dbo.ShopItem `;
-    return request(query);
+        select
+            * 
+        from
+            MazShop.dbo.UserShop
+        where
+            login = '${ login }' 
+            and password = '${ password }'`;
+    let req = await request(query);
+    console.log(req);
+    if(req[0]){
+        return{request: true,userId:req[0].userId };
+    }
+    else{
+        return{request: false};
+    }
+
 };
-model.GetShopItem = (ShopItemId) =>{
+model.GetShopItem = ({ShopItemId}) =>{
     let query = `
     select * from MazShop.dbo.ShopItem where ShopItemId = '${ShopItemId}'`;
+    return request(query);
+};
+model.GetPreviewImage = ({imageId}) =>{
+    let query = `
+    select content from MazShop.dbo.ItemContent where contentId = '${imageId}'`;
     return request(query);
 };
 module.exports = model;

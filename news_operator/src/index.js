@@ -1,54 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import { Router,Route,browserHistory,IndexRoute } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import store from './Store'
-import NewsPage from './components/NewsPage'
-import NewsTempl from "./components/NewsTempl";
+import createSotre from './Store'
 import About from "./components/About";
-import You from "./components/You";
-import PostPage from "./components/PostPage";
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
+import FeatureTable from "./components/FeatureTable";
+import ItemPage from "./pages/ItemPage";
+import {createRest} from "./rest/rest";
+import {loadActions} from "./reducers";
 
-import {ApolloProvider} from 'react-apollo'
-import { HttpLink } from 'apollo-link-http';
-import {ApolloClient} from 'apollo-client-preset';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import FloraComponent from "./components/FloraComponent";
-import ImageUpload from './components/Editor'
-import Test from "./components/Test";
+const  store = createSotre();
+const history = syncHistoryWithStore(browserHistory, store);
 
-
-const history = syncHistoryWithStore(browserHistory, store)
-
-const httpLink = {
-    uri: '/api/graphQL',
-};
-
-const client = new ApolloClient({
-    link:  new HttpLink(httpLink),
-    cache: new InMemoryCache()
-});
-
-
-ReactDOM.render(
-    <ApolloProvider client={client}>
+createRest().then(()=>{
+    loadActions();
+    ReactDOM.render(
     <Provider store={store}>
             <Router history={history}>
-                <Route path={'/'} component={App}/>
-                <Route path="/Test" component={Test}/>
-                <Route path="/About" component={About}/>
-                <Route path="/You" component={You}/>
-                <Route path="/Post" component={PostPage}/>
-                <Route path="/Editor" component={FloraComponent}/>
-                <Route path="/NewEditor" component={ImageUpload}/>
-                <Route path={"/news/:id"} component={NewsTempl}/>
+                <Route exact path="/" component={ Home }/>
+                <Route path="/About" component={ About }/>
+                <Route path={'/Catalog'} component={Catalog}/>
+                <Route path={'/Test'} component={FeatureTable}/>
+                <Route path={'/Item/:id'} component={ItemPage}/>
             </Router>
     </Provider>
-    </ApolloProvider>
-    , document.getElementById('root'));
+    , document.getElementById('root'))});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

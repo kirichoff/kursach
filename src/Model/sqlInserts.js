@@ -1,5 +1,5 @@
 request = require('./model.config');
-const model = {};
+const model = {security:{}};
 model.Register = ({login,password,rights,email,phoneNumber}) => {
     // Query
     let query = `
@@ -12,7 +12,7 @@ model.Register = ({login,password,rights,email,phoneNumber}) => {
            `;
     return request(query);
 };
-model.AddShopItem = ({description,header,previewImage,price}) =>{
+model.security.AddShopItem = ({description,header,previewImage,price}) =>{
     let query = `
         Insert         
         into
@@ -31,7 +31,7 @@ model.AddOrder = ({itemId, userId, status, startDate})=>{
         (itemId, userId, status, startDate) value (${itemId},${userId},${status},'${startDate}')`;
     return request(query)
 };
-model.AddItemContent = ({itemId, content}) =>{
+model.security.AddItemContent = ({itemId, content}) =>{
     let query = `
     insert       
     into
@@ -40,7 +40,7 @@ model.AddItemContent = ({itemId, content}) =>{
        `;
     return request(query)
 };
-model.AddItemComment = ({itemId, content,userId}) =>{
+model.security.AddItemComment = ({itemId, content,userId}) =>{
     let query = `
     insert       
     into
@@ -49,7 +49,7 @@ model.AddItemComment = ({itemId, content,userId}) =>{
        `;
     return request(query)
 };
-model.AddChar = ({itemId, charName, charContent}) =>{
+model.security.AddChar = ({itemId, charName, charContent}) =>{
     let query = `
     insert       
     into

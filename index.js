@@ -1,16 +1,52 @@
 const express = require('express');
 const path = require('path');
-const graphqlHTTP = require('express-graphql');
-const mainShema = require('./src/mainShema.js');
 const bodyParser = require('body-parser');
-
-
+const model = require('./src/Model/modelCombainer');
+const jwt = require('./src/utils/jwt');
+const httpHandler = require('./src/utils/httpHandler')
 const app = express();
+const cors = require('cors');
 
 app.use(bodyParser({limit: '50mb'}));
-app.use('/api/graphQL', graphqlHTTP({
-    schema: mainShema
-}));
+
+const exclude = ['Login','security','get'];
+app.use(cors());
+
+
+console.log(model);
+
+httpHandler(app,model,exclude,'/api/');
+
+httpHandler(app,model.security,exclude,'/api/security/');
+
+httpHandler(app,model.get,exclude,'/api/get/');
+
+app.all(`/api/Login`,async (req,res)=>{
+    let user = await model.Login(req.body);
+    if (user.request){
+        res.send({token: jwt.generate(req.body.login),userId: user.userId })
+    }
+    else {
+        res.status(401);
+        res.send({ex: 'invalid user or password'})
+    }
+});
+app.all(`/api/security`,async (req,res,next)=>{
+    if (jwt.verify(req.headers.Authorization)){
+        next()
+    }
+    else {
+        res.status(401);
+        res.send({ex: 'invalid token'})
+    }
+});
+app.get(`/api/model`,async (req,res)=>{
+    res.send( await JSON.stringify( {
+        "public":Object.keys(model),
+        "private": Object.keys(model.security),
+        "get": Object.keys(model.get)
+        }))
+});
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 // Handles any requests that don't match the ones above

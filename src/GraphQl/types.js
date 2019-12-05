@@ -29,7 +29,8 @@ const ShopItem = new GraphQLObjectType({
         ShopItemId: { type: GraphQLInt},
         header: { type: GraphQLString},
         description: { type: GraphQLString},
-        previewImage: { type: GraphQLString},
+        previewImage: { type: GraphQLInt},
+        previewImageRaw: { type: GraphQLString ,resolve: async (root,params)=>await model.GetPreviewImage(root.previewImage)},
         price: {type: GraphQLFloat}
     })
 });

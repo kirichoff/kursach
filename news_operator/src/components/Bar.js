@@ -7,12 +7,14 @@ class Bar extends Component {
         return (
             <div>
                 <div className={"Bar"}>
-                    <Link className={'point'} to={'/'} >News</Link>
-                    <Link className={'point'} to={'/About'} >About</Link>
-                    <Link className={'point'} to={'/You'} >You</Link>
-                    <Link className={'point'} to={'/Post'} >Post</Link>
+                    <img style={{
+                        width:'4em'
+                    }} src="./logo.png" alt=""/>
+                    <Link className={'point'} to={'/'} >Главная</Link>
+                    <Link className={'point'} to={'/Catalog'} >Каталог</Link>
+                    <Link className={'point'} to={'/You'} >Личный кабинет</Link>
+                    <Link className={'point'} to={'/Post'} >О предприятии</Link>
                 </div>
-
             </div>
         );
     }

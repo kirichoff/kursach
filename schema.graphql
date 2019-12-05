@@ -62,7 +62,7 @@ type Mutation {
     AddItemComment(content: String, itemId: Int): Request
     AddItemContent(content: String, itemId: Int): Request
     AddOrder(itemId: Int, status: Int, userId: Int): Request
-    AddShopItem(description: String, header: String, previewImage: String, price: Float): Request
+    AddShopItem(description: String, header: String, previewImage: Int, price: Float): Request
     AddToCart(count: String, itemId: Int, userId: Int): Request
     addUser(email: String, login: String!, password: String!, phoneNumber: Int, rights: Int): Request
 }
@@ -76,7 +76,8 @@ type ShopItem {
     ShopItemId: Int
     description: String
     header: String
-    previewImage: String
+    previewImage: Int
+    previewImageRaw: String
     price: Float
 }
 

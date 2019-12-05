@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
 import { Mutation } from '@apollo/react-components';
+import {useQuery} from "@apollo/react-hooks";
 
 const ADD_TODO = gql`
-    mutation AddTodo($type: String!) {
+     query ($type: String!) {
         addTodo(type: $type) {
             id
             type
@@ -12,7 +13,10 @@ const ADD_TODO = gql`
 
 const AddTodo = () => {
     let input;
+    const { loading, error, data } = useQuery();
 
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
     return (
         <Mutation mutation={ADD_TODO}>
             {(addTodo, { data }) => (

@@ -3,8 +3,11 @@
     position: fixed;
     position: static;
     font-family: "Roboto Condensed";
+    display: flex;
+    justify-content: center;
     width: 99%;
-    height: 10%;
+    height: 1%;
+    align-items: center;
     padding: 0.1%;
     text-align: center;
     margin-bottom:1%;
@@ -15,7 +18,7 @@
 }
 
 .point{
-    margin: 6vmin;
+    margin-left: 6vmin;
     font-size: 5vmin;
     text-align: center;
     position: center;

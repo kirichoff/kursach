@@ -3,8 +3,6 @@ import Bar from "./Bar";
 import crypto from 'crypto'
 
 class Register extends Component {
-
-
     sub(e){
         let inputs = e.target.childNodes
         console.log(inputs[0].value)
@@ -23,7 +21,6 @@ class Register extends Component {
 
         e.preventDefault()
     }
-
     render() {
         return (
             <div>
