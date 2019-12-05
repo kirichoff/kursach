@@ -12,22 +12,28 @@ import FeatureTable from "./components/FeatureTable";
 import ItemPage from "./pages/ItemPage";
 import {createRest} from "./rest/rest";
 import {loadActions} from "./reducers";
-
+import { ApplyTheme } from 'rambler-ui/theme'
+import Login from "./components/Login";
+import CartPage from "./pages/CartPage";
 const  store = createSotre();
 const history = syncHistoryWithStore(browserHistory, store);
 
 createRest().then(()=>{
     loadActions();
     ReactDOM.render(
+        <ApplyTheme>
     <Provider store={store}>
             <Router history={history}>
                 <Route exact path="/" component={ Home }/>
                 <Route path="/About" component={ About }/>
                 <Route path={'/Catalog'} component={Catalog}/>
                 <Route path={'/Test'} component={FeatureTable}/>
+                <Route path={'/Login'} component={Login}/>
+                <Route exdct path={'/Cart'} component={CartPage}/>
                 <Route path={'/Item/:id'} component={ItemPage}/>
             </Router>
-    </Provider>
+         </Provider>
+        </ApplyTheme>
     , document.getElementById('root'))});
 
 // If you want your app to work offline and load faster, you can change

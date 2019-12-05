@@ -4,10 +4,10 @@ import CatalogItem from "../components/CatalogItem";
 import {connect,useStore,useSelector } from 'react-redux'
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
-
+import CatalogNavbar from "../components/CatalogNavbar";
+import '../style/Catalog.css'
 
 class Catalog extends Component {
-
 
     componentDidMount() {
         this.props.Login({login: 'eee', password: 'eee'});
@@ -16,13 +16,13 @@ class Catalog extends Component {
 
     render() {
         let isAdmin = true;
-        let rendData =  this.props.state.data || [];
+        let rendData =  [];
         console.log(this.props);
         return (
             <Layout>
-                <div>
+                <CatalogNavbar/>
+                <div className={'catalog-container'} >
                     {rendData.map((k,index)=><CatalogItem key={index} {...k}/>) }
-                </div>
                 {isAdmin?
                     <div>
                         <CatalogItem header={'Add'} previewImage={''} description={'description'}  />
@@ -30,6 +30,7 @@ class Catalog extends Component {
                     :
                     null
                 }
+                </div>
             </Layout>
         );
     }

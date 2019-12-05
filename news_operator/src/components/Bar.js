@@ -12,8 +12,9 @@ class Bar extends Component {
                     }} src="./logo.png" alt=""/>
                     <Link className={'point'} to={'/'} >Главная</Link>
                     <Link className={'point'} to={'/Catalog'} >Каталог</Link>
-                    <Link className={'point'} to={'/You'} >Личный кабинет</Link>
+                    <Link className={'point'} to={'/Login'} >Войти</Link>
                     <Link className={'point'} to={'/Post'} >О предприятии</Link>
+                    <Link className={'point'} to={'/Cart'} >Корзина</Link>
                 </div>
             </div>
         );
