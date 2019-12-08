@@ -6,7 +6,7 @@ import  {useRouteMatch} from "react-router-dom";
 
 function Bar({activeOnlyWhenExact}) {
     return (
-        <div style={ {marginTop: '10px'} }>
+        <div style={ {marginTop: '17px'} }>
             <Link className={ ' point' } to={ '/' } onlyActiveOnIndex>Главная</Link>
             <Link className={ 'point' } to={ '/Catalog' }>Каталог</Link>
             <Link className={ 'point' } to={ '/About' }>О предприятии</Link>

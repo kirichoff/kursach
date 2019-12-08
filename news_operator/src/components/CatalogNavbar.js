@@ -37,7 +37,7 @@ export default class CatalogNavbar extends Component {
     render() {
         return (
         <div className={'catalogNavbar'} >
-            <div style={{width: '70%', marginBottom: 15}}>
+            <div style={{width: '14vw', marginBottom: 15}}>
                 <h3>Категории</h3>
                 <Select
                     placeholder="Type something..."

@@ -1,10 +1,10 @@
 .catalogNavbar{
     display: inline-block;
+    width: 30%;
 }
 .checkBox-Navbar{
 
 }
-
 .label-checkBox-Navbar{
     width: 100px;
 }

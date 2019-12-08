@@ -15,6 +15,7 @@ import {loadActions} from "./reducers";
 import { ApplyTheme } from 'rambler-ui/theme'
 import Login from "./components/Login";
 import CartPage from "./pages/CartPage";
+import ItemPageMutation from "./pages/ItemPageMutation";
 const  store = createSotre();
 const history = syncHistoryWithStore(browserHistory, store);
 

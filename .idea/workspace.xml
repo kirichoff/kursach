@@ -2,37 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/Menu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/style/menu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/npm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/src/style/ItemPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/src/style/catalogItem.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/src/style/featureTable.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/build/static/js/1.993e8092.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/build/static/js/1.993e8092.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/public/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/public/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/EditorStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/EditorStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/ImgBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/ImgBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/Store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/src/components/Bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/News.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/News.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Tag.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Tag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/TagPiker.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/TagPiker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Tagsbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Tagsbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/You.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/You.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/ex.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/CatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/CatalogItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/CatalogNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/CatalogNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/FeatureItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/FeatureItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/FeatureTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/FeatureTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/MyCarousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/MyCarousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/pages/Catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/pages/Catalog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/pages/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/pages/ItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/pages/ItemPageMutation.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/pages/ItemPageMutation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/rest/rest.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/rest/rest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/style/Catalog.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/Catalog.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/style/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/style/catalogNavbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/catalogNavbar.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_DATA_SOURCES" value="true" />
@@ -77,6 +77,9 @@
     </expand>
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="bd" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -87,6 +90,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/kirichoff/kursach" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1TlOJNWXgr57g77Ena80fL8p2ph" />
   <component name="ProjectLevelVcsManager">
@@ -118,15 +128,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kirill\Desktop\bd\news_operator\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kirill\Desktop\bd\news_operator\src\style" />
       <recent name="C:\Users\kirill\Desktop\bd\src\utils" />
       <recent name="C:\Users\kirill\Desktop\bd\news_operator\src\pages" />
       <recent name="C:\Users\kirill\Desktop\bd\src\GraphQl" />
       <recent name="C:\Users\kirill\Desktop\bd\src\Model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\kirill\Desktop\bd\news_operator\public" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -411,7 +421,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574292522703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="many before sss">
+      <created>1575798608586</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798608586</updated>
+    </task>
+    <task id="LOCAL-00005" summary="many before sss">
+      <created>1575798624774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575798624774</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +444,16 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="2">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -432,9 +466,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <MESSAGE value="dd" />
     <MESSAGE value="many" />
-    <option name="LAST_COMMIT_MESSAGE" value="many" />
+    <MESSAGE value="many before sss" />
+    <option name="LAST_COMMIT_MESSAGE" value="many before sss" />
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1575795346342">
@@ -445,37 +481,49 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="434" y="112" key="#dev/0.0.1440.860@0.0.1440.860" timestamp="1575794940739" />
-    <state x="343" y="0" key="CommitChangelistDialog2" timestamp="1575798607573">
+    <state x="343" y="0" key="CommitChangelistDialog2" timestamp="1575798624021">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="343" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1575798607573" />
-    <state width="1397" height="289" key="GridCell.Tab.0.bottom" timestamp="1575798527078">
+    <state x="343" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1575798624021" />
+    <state width="1397" height="289" key="GridCell.Tab.0.bottom" timestamp="1575820200047">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="289" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
+    <state width="1397" height="289" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1575820200047" />
     <state width="1899" height="539" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1397" height="289" key="GridCell.Tab.0.center" timestamp="1575798527078">
+    <state width="1397" height="289" key="GridCell.Tab.0.center" timestamp="1575820200047">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="289" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
+    <state width="1397" height="289" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1575820200047" />
     <state width="1899" height="539" key="GridCell.Tab.0.center/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1397" height="289" key="GridCell.Tab.0.left" timestamp="1575798527078">
+    <state width="1397" height="289" key="GridCell.Tab.0.left" timestamp="1575820200047">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="289" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
+    <state width="1397" height="289" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1575820200047" />
     <state width="1899" height="539" key="GridCell.Tab.0.left/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1397" height="289" key="GridCell.Tab.0.right" timestamp="1575798527078">
+    <state width="1397" height="289" key="GridCell.Tab.0.right" timestamp="1575820200047">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="289" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
+    <state width="1397" height="289" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1575820200047" />
     <state width="1899" height="539" key="GridCell.Tab.0.right/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
+    <state x="312" y="158" key="Vcs.Push.Dialog.v2" timestamp="1575798778170">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="312" y="158" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1575798778170" />
+    <state x="300" y="84" key="com.intellij.database.dbimport.ImportDialog" timestamp="1575801558005">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="300" y="84" key="com.intellij.database.dbimport.ImportDialog/0.0.1440.860@0.0.1440.860" timestamp="1575801558005" />
+    <state x="450" y="234" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1575801553443">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="450" y="234" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1440.860@0.0.1440.860" timestamp="1575801553443" />
     <state x="376" y="195" key="run.anything.popup" timestamp="1575751325015">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="376" y="195" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1575751325015" />
-    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1575798568104">
+    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1575820923567">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1575798568104" />
+    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1575820923567" />
   </component>
 </project>

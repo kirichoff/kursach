@@ -1,0 +1,68 @@
+.FeatureContainer{
+    margin-top: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center
+}
+.desc {
+    font-family: Roboto, sans-serif;
+    height: 100px;
+    background: none;
+    border: none;
+    width: 100%;
+    padding:0 15px;
+}
+.desc textarea{
+    padding: 0 30px;
+    display: block;
+    height: 300px;
+    resize: none;
+    background: none;
+    border: none;
+    width: 100%;
+}
+.desc .header{
+    text-align: center;
+    resize: none;
+    padding: 0 0px;
+    width: 100%;
+    display: block;
+    height: 90px;
+    font-size: large;
+    font-weight: bold;
+    background: none;
+    border: none;
+}
+.desc input:focus{
+    outline: none;
+}
+.desc textarea:focus{
+    outline: none;
+}
+.carousel-item{
+width: 50%;
+    height: 10%;
+}
+.desc{
+    width: 30vw;
+    grid-area: desc;
+}
+.carousel{
+    grid-area: carousel;
+}
+.FeatureContainer{
+    grid-area: FeatureContainer;
+}
+.save{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-area: save;
+}
+form{
+    display: grid;
+    grid-template-areas:
+            "carousel  desc"
+            "FeatureContainer FeatureContainer "
+                "save save ";
+}

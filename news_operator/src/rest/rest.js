@@ -17,9 +17,10 @@ function reuest (server,api,type){
         console.log(options)
         return fetch(server+api,options
         )
-            .then(data => {
+            .then(async data => {
                 console.log(data);
-                let j =  data.json();
+                let j = await data.json();
+                console.log(j)
                 return  j;
             })
             .catch(ex => ex)

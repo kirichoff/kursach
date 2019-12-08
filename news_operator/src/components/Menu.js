@@ -24,7 +24,6 @@ class Menu extends Component {
         };
     }
     Scroll = ()=>{
-        console.log('scroll');
         let nav = {position: "",top:"",zIndex: 200};
         let prevScrollpos = this.state.prevS
         let currentScrollpos = window.pageYOffset;
@@ -65,7 +64,6 @@ class Menu extends Component {
     }
     async getLogin ()
     {
-        console.log(this.state)
         if (this.state.pass != '') {
             const url = `api/SampleData/Login?name=${this.state.name}&pas=${this.state.pass}`;
             const response = await fetch(url, {method: "GET"});
