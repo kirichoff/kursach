@@ -8,18 +8,18 @@ function FeatureItem(props) {
     const form = useRef(null);
     const [isEdited, setEdited] = useState(false);
 
-    function submit(e) {
+    let submit = (e) => {
+        console.log('sub')
         let inputs = form.current.children;
-        if(props.onChage){
-            props.onChage(inputs[0].children[0].value,inputs[1].children[0].value)
-        }
+            props.onChange(inputs[0].children[0].value,inputs[1].children[0].value)
+        setEdited(!isEdited)
     }
     return (
         <div className={'f-container'} >
             { !isEdited?
                 <div className={'f-row'} >
-                    <div className={'f-cell'}>{props.featureName}</div>
-                    <div  className={'f-cell'}>{props.featureText}</div>
+                    <div className={'f-cell'}>{props.charName}</div>
+                    <div  className={'f-cell'}>{props.charContent}</div>
                     {props.editable && !isEdited?
                         <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}><EditIcon/></div>
                         :
@@ -28,8 +28,8 @@ function FeatureItem(props) {
                 </div>
                 :
                 <div  className={'f-row'} ref={form} >
-                    <div className={'f-cell'}><input type="text"/></div>
-                    <div className={'f-cell'}><input type="text"/></div>
+                    <div className={'f-cell'}><input defaultValue={props.charName}  type="text"/></div>
+                    <div className={'f-cell'}><input defaultValue={props.charContent} type="text"/></div>
                     <div className={'f-cell icon-cell'} onClick={submit}><TickIcon/></div>
                     <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}> <ClearIcon/> </div>
                 </div>

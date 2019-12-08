@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import { Router,Route,browserHistory,IndexRoute } from 'react-router'
+import { Router,Route,browserHistory} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import createSotre from './Store'
+import createStore from './Store'
 import About from "./components/About";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
@@ -15,8 +15,7 @@ import {loadActions} from "./reducers";
 import { ApplyTheme } from 'rambler-ui/theme'
 import Login from "./components/Login";
 import CartPage from "./pages/CartPage";
-import ItemPageMutation from "./pages/ItemPageMutation";
-const  store = createSotre();
+const  store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 createRest().then(()=>{
@@ -36,8 +35,4 @@ createRest().then(()=>{
          </Provider>
         </ApplyTheme>
     , document.getElementById('root'))});
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();

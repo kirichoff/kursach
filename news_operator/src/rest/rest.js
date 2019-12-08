@@ -3,7 +3,10 @@ const exclude = ['security','get'];
 export const rest = {};
 function reuest (server,api,type){
     return (params,token='') => {
-        console.log(params);
+        let query = params && '?'+Object.keys(params)
+            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+            .join('&') || '';
+
         let options = {
             method: type || 'post',
             headers: {
@@ -15,13 +18,12 @@ function reuest (server,api,type){
             options.body =JSON.stringify(params);
         }
         console.log(options)
-        return fetch(server+api,options
-        )
-            .then(async data => {
+        return fetch(server+api+query,options
+        ).then(async data => {
                 console.log(data);
                 let j = await data.json();
-                console.log(j)
-                return  j;
+                console.log('jjj',j);
+                return j;
             })
             .catch(ex => ex)
             ;
@@ -30,15 +32,10 @@ function reuest (server,api,type){
  export const createRest  = ()=> fetch(server+'/model',{method: 'GET'}).then(response=>response.json().then(res =>{
         let model  = res;
         console.log(model)
-        for (let name of model.public) {
+        for (let name of model.post) {
             if (exclude.find(el => el === name))
                 continue;
-            rest[name] = reuest(server + '/', name)
-        }
-        for (let name of model.private) {
-            if (exclude.find(el => el === name))
-                continue;
-            rest[name] = reuest(server + '/security/', name)
+            rest[name] = reuest(server + '/post/', name)
         }
      for (let name of model.get) {
          if (exclude.find(el => el === name))

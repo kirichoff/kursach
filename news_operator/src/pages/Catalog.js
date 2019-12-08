@@ -16,8 +16,9 @@ const breakpointColumnsObj = {
 };
 class Catalog extends Component {
     componentDidMount() {
-        this.props.Login({login: 'eee', password: 'eee'});
-        this.props.GetAllShopItems();
+        // this.props.Login({login: 'eee', password: 'eee'});
+         this.props.GetAllShopItems();
+        console.log('get',this.props)
     }
     render() {
         let isAdmin = true;
@@ -32,7 +33,10 @@ class Catalog extends Component {
                         breakpointCols = {breakpointColumnsObj }
                         className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column">
-                    {rendData.map((k,index)=><CatalogItem key={index} {...k}/>) }
+                    {rendData.map((k,index)=>
+                         <CatalogItem link={<Link to={`/Item/${k.ShopItemId}`}>Подрбнее</Link>} key={index} {...k}/>
+                    )
+                    }
                     </Masonry>
                 {isAdmin?
                     <div>
