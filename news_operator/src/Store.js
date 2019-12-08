@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { routerReducer } from 'react-router-redux';
 import {reducer}  from './reducers/index';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export default function configureStore() {
     const rootReducer = combineReducers({
@@ -11,6 +12,6 @@ export default function configureStore() {
 
     return createStore(
         rootReducer,
-        compose(applyMiddleware(thunk))
+        composeWithDevTools(applyMiddleware(thunk)),
     );
 }

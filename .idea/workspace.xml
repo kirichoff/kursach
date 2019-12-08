@@ -2,21 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/news_operator/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/public/pngtree-cancel-cart-product-icon-png-image_1736147.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/components/CatalogNavbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/pages/CartPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/style/Catalog.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news_operator/src/style/catalogNavbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/src/components/Menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news_operator/src/style/menu.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/public/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/public/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/EditorStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/EditorStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/ImgBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/ImgBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/Store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news_operator/src/components/Bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/pages/Catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/pages/Catalog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/pages/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/pages/ItemPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/style/teststyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/teststyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/ImgRender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/News.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/News.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/NewsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/PostPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Tag.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Tag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/TagPiker.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/TagPiker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Tagsbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Tagsbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/You.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/You.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news_operator/src/components/ex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +80,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -92,9 +102,10 @@
     <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowGraph Database Console.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/news_operator/node_modules/react-router-redux/lib/sync.js&#10;C:/Users/kirill/Desktop/bd/news_operator/node_modules/react-draft-wysiwyg/src/utils/common.js" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/news_operator/public" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -107,14 +118,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\kirill\Desktop\bd\news_operator\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kirill\Desktop\bd\news_operator\src\style" />
       <recent name="C:\Users\kirill\Desktop\bd\src\utils" />
       <recent name="C:\Users\kirill\Desktop\bd\news_operator\src\pages" />
       <recent name="C:\Users\kirill\Desktop\bd\src\GraphQl" />
       <recent name="C:\Users\kirill\Desktop\bd\src\Model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kirill\Desktop\bd\news_operator\public" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -281,7 +293,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="rest.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/news_operator/src/rest/rest.js" working-dir="$PROJECT_DIR$/news_operator/src/rest">
       <method v="2" />
     </configuration>
@@ -327,8 +339,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev-server" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev-server" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start (1)" />
         <item itemvalue="Node.js.rest.js" />
@@ -375,6 +387,8 @@
       <workItem from="1575321719196" duration="766000" />
       <workItem from="1575497923285" duration="15395000" />
       <workItem from="1575547068177" duration="8577000" />
+      <workItem from="1575748920898" duration="6879000" />
+      <workItem from="1575795108522" duration="2534000" />
     </task>
     <task id="LOCAL-00001" summary="dd">
       <created>1574279744119</created>
@@ -423,21 +437,45 @@
     <option name="LAST_COMMIT_MESSAGE" value="many" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="539" key="GridCell.Tab.0.bottom" timestamp="1575549588092">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state x="450" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1575795346342">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="450" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860@0.0.1440.860" timestamp="1575795346342" />
+    <state x="434" y="112" key="#dev" timestamp="1575794940739">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="434" y="112" key="#dev/0.0.1440.860@0.0.1440.860" timestamp="1575794940739" />
+    <state x="343" y="0" key="CommitChangelistDialog2" timestamp="1575798607573">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="343" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1575798607573" />
+    <state width="1397" height="289" key="GridCell.Tab.0.bottom" timestamp="1575798527078">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="289" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
     <state width="1899" height="539" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1899" height="539" key="GridCell.Tab.0.center" timestamp="1575549588092">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state width="1397" height="289" key="GridCell.Tab.0.center" timestamp="1575798527078">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state width="1397" height="289" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
     <state width="1899" height="539" key="GridCell.Tab.0.center/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1899" height="539" key="GridCell.Tab.0.left" timestamp="1575549588092">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state width="1397" height="289" key="GridCell.Tab.0.left" timestamp="1575798527078">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state width="1397" height="289" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
     <state width="1899" height="539" key="GridCell.Tab.0.left/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
-    <state width="1899" height="539" key="GridCell.Tab.0.right" timestamp="1575549588092">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state width="1397" height="289" key="GridCell.Tab.0.right" timestamp="1575798527078">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state width="1397" height="289" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1575798527078" />
     <state width="1899" height="539" key="GridCell.Tab.0.right/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575549588092" />
+    <state x="376" y="195" key="run.anything.popup" timestamp="1575751325015">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="376" y="195" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1575751325015" />
+    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1575798568104">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="383" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1575798568104" />
   </component>
 </project>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import News from "./News";
 import "../shadowlll.jpg"
 import '../night.jpg'
-import '../Style.css'
+import '../style/Style.css'
 import {connect} from 'react-redux'
 import {Link}from 'react-router'
 import {filtTag} from "../actions/filtTag";

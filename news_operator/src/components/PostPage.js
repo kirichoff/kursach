@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Post from "./Post";
-import '../Style.css'
+import '../style/Style.css'
 import {Editor, EditorState, RichUtils} from 'draft-js'
 import {stateToHTML} from 'draft-js-export-html';
 import Bar from "./Bar";

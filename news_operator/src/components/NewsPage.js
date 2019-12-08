@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import  {connect} from 'react-redux'
-import '../Style.css'
+import '../style/Style.css'
 import Bar from "./Bar";
 import ImageUpload from "./Editor";
 import date from "date-and-time";

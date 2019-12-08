@@ -1,24 +1,18 @@
-import React, {Component} from 'react';
-import '../Style.css'
+import React from 'react';
+import '../style/Style.css'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-class Bar extends Component {
-    render() {
-        return (
-            <div>
-                <div className={"Bar"}>
-                    <img style={{
-                        width:'4em'
-                    }} src="./logo.png" alt=""/>
-                    <Link className={'point'} to={'/'} >Главная</Link>
-                    <Link className={'point'} to={'/Catalog'} >Каталог</Link>
-                    <Link className={'point'} to={'/Login'} >Войти</Link>
-                    <Link className={'point'} to={'/Post'} >О предприятии</Link>
-                    <Link className={'point'} to={'/Cart'} >Корзина</Link>
-                </div>
-            </div>
-        );
-    }
+import  {useRouteMatch} from "react-router-dom";
+
+function Bar({activeOnlyWhenExact}) {
+    return (
+        <div style={ {marginTop: '10px'} }>
+            <Link className={ ' point' } to={ '/' } onlyActiveOnIndex>Главная</Link>
+            <Link className={ 'point' } to={ '/Catalog' }>Каталог</Link>
+            <Link className={ 'point' } to={ '/About' }>О предприятии</Link>
+            <Link className={ 'point' } to={ '/Cart' }>Корзина</Link>
+        </div>
+    );
 }
 
 function mapStateToProps(state) {

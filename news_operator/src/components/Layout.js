@@ -1,14 +1,15 @@
 import React from 'react';
 import Bar from "./Bar";
 import '../style/teststyle.css'
+import Menu from "./Menu";
 function Layout(props) {
     return (
         <div>
-            <Bar/>
+            <Menu/>
             <div className={'main'} >
                 {props.children}
             </div>
-            <footer>foter</footer>
+            <footer className={'footer'} >foter</footer>
         </div>
     );
 }

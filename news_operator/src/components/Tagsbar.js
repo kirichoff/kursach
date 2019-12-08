@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import  {connect} from 'react-redux'
-import '../Style.css'
+import '../style/Style.css'
 import Tags from "../reducers/Tags";
 import Tag from "./Tag";
 import {swit} from "../actions/swit";
