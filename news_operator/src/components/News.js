@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../ImgBox.css'
+import '../style/ImgBox.css'
 import  {connect} from 'react-redux'
 import date from 'date-and-time';
 import {Link} from "react-router";

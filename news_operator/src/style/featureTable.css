@@ -1,0 +1,19 @@
+.f-row{
+    height: 25px;
+}
+.f-cell{
+    display: inline-block;
+    overflow: hidden;
+    width: 30vw;
+    border: #2d2c2c solid 1px;
+
+}
+.f-container  input{
+    border: none;
+    height: 23px;
+    width: 100%;
+    background: none;
+}
+.icon-cell{
+    width: 23px;
+}

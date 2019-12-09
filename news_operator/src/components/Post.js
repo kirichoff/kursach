@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../EditorStyle.css'
+import '../style/EditorStyle.css'
 import {getDefaultKeyBinding, KeyBindingUtil} from 'draft-js';
 import {Editor, EditorState, RichUtils} from 'draft-js'
 const {hasCommandModifier} = KeyBindingUtil;

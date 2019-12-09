@@ -6,30 +6,46 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
 import CatalogNavbar from "../components/CatalogNavbar";
 import '../style/Catalog.css'
+import Masonry from "react-masonry-css";
+import {Link} from 'react-router'
+const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    770: 1
 
+};
 class Catalog extends Component {
-
     componentDidMount() {
-        this.props.Login({login: 'eee', password: 'eee'});
-        this.props.GetAllShopItems();
+        // this.props.Login({login: 'eee', password: 'eee'});
+         this.props.GetAllShopItems();
+        console.log('get',this.props)
     }
-
     render() {
         let isAdmin = true;
-        let rendData =  [];
-        console.log(this.props);
+        let rendData = (this.props.state.data.length)? this.props.state.data : [];
         return (
             <Layout>
-                <CatalogNavbar/>
+
                 <div className={'catalog-container'} >
-                    {rendData.map((k,index)=><CatalogItem key={index} {...k}/>) }
+                    <CatalogNavbar/>
+                    <div style={{marginTop: 25}}>
+                    <Masonry
+                        breakpointCols = {breakpointColumnsObj }
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column">
+                    {rendData.map((k,index)=>
+                         <CatalogItem link={<Link to={`/Item/${k.ShopItemId}`}>Подрбнее</Link>} key={index} {...k}/>
+                    )
+                    }
+                    </Masonry>
                 {isAdmin?
                     <div>
-                        <CatalogItem header={'Add'} previewImage={''} description={'description'}  />
+                       <Link to={'/Item/editor'} > <CatalogItem header={'Add'} previewImage={''} description={'description'}  /></Link>
                     </div>
                     :
                     null
                 }
+                    </div>
                 </div>
             </Layout>
         );

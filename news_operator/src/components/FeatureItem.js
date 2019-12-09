@@ -1,33 +1,38 @@
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
+import '../style/featureTable.css'
+import TickIcon from 'rambler-ui/icons/forms/TickIcon'
+import ClearIcon from 'rambler-ui/icons/forms/ClearIcon'
+import EditIcon from 'rambler-ui/icons/forms/EditIcon'
 
 function FeatureItem(props) {
-    console.log(props)
+    const form = useRef(null);
     const [isEdited, setEdited] = useState(false);
-    function submit(e) {
-        console.log(e.target.children[0].value);
-        e.preventDefault()
+
+    let submit = (e) => {
+        console.log('sub')
+        let inputs = form.current.children;
+            props.onChange(inputs[0].children[0].value,inputs[1].children[0].value)
+        setEdited(!isEdited)
     }
     return (
-        <div>
-            <div>
+        <div className={'f-container'} >
             { !isEdited?
-                <div>
-                    <div>{props.featureName}</div>
-                    <div>{props.featureText}</div>
+                <div className={'f-row'} >
+                    <div className={'f-cell'}>{props.charName}</div>
+                    <div  className={'f-cell'}>{props.charContent}</div>
+                    {props.editable && !isEdited?
+                        <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}><EditIcon/></div>
+                        :
+                        null
+                    }
                 </div>
                 :
-                <form onSubmit={submit} >
-                    <input type="text"/>
-                    <input type="text"/>
-                    <input type="submit" value={'клац'}  />
-                    <div onClick={()=>setEdited(!isEdited)} >close</div>
-                </form>
-            }
-            </div>
-            {props.editable && !isEdited?
-                <div onClick={()=>setEdited(!isEdited)} >edit</div>
-                :
-                null
+                <div  className={'f-row'} ref={form} >
+                    <div className={'f-cell'}><input defaultValue={props.charName}  type="text"/></div>
+                    <div className={'f-cell'}><input defaultValue={props.charContent} type="text"/></div>
+                    <div className={'f-cell icon-cell'} onClick={submit}><TickIcon/></div>
+                    <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}> <ClearIcon/> </div>
+                </div>
             }
         </div>
     );

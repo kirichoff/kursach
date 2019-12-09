@@ -14,7 +14,7 @@ module.exports = function request (query){
         return pool.request()
             .query(query)
     }).then(result => {
-        console.log(result)
+        console.log('reqRES',result);
         return result.recordset;
     }).catch(err => {
         console.log('ERR',err)

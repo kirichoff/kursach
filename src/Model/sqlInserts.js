@@ -1,5 +1,5 @@
 request = require('./model.config');
-const model = {security:{}};
+const model = {};
 model.Register = ({login,password,rights,email,phoneNumber}) => {
     // Query
     let query = `
@@ -12,14 +12,15 @@ model.Register = ({login,password,rights,email,phoneNumber}) => {
            `;
     return request(query);
 };
-model.security.AddShopItem = ({description,header,previewImage,price}) =>{
+model.AddShopItem = ({description,header,previewImage,price}) =>{
     let query = `
         Insert         
         into
              MazShop.dbo.ShopItem
             (description,header,previewImage,price)           
         values
-            ('${description}','${header}','${previewImage}',${price})
+            ('${description}','${header}',${previewImage},${price});
+            select @@IDENTITY as Id  
            `;
     return request(query);
 };
@@ -31,7 +32,7 @@ model.AddOrder = ({itemId, userId, status, startDate})=>{
         (itemId, userId, status, startDate) value (${itemId},${userId},${status},'${startDate}')`;
     return request(query)
 };
-model.security.AddItemContent = ({itemId, content}) =>{
+model.AddItemContent = ({itemId, content}) =>{
     let query = `
     insert       
     into
@@ -40,7 +41,7 @@ model.security.AddItemContent = ({itemId, content}) =>{
        `;
     return request(query)
 };
-model.security.AddItemComment = ({itemId, content,userId}) =>{
+model.AddItemComment = ({itemId, content,userId}) =>{
     let query = `
     insert       
     into
@@ -49,7 +50,7 @@ model.security.AddItemComment = ({itemId, content,userId}) =>{
        `;
     return request(query)
 };
-model.security.AddChar = ({itemId, charName, charContent}) =>{
+model.AddChar = ({itemId, charName, charContent}) =>{
     let query = `
     insert       
     into

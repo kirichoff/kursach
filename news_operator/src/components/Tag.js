@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../Style.css'
+import '../style/Style.css'
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {swit} from "../actions/swit";

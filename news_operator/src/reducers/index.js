@@ -30,7 +30,7 @@ export const actionCreators = {
             Email: Email,
             StartDate: `${new Date().toISOString()}`
         };
-//        let res = await rest.addUser(user)
+        //let res = await rest.addUser(user)
       //  dispatch({type:'REGISTER_TRUE',res: res })
     }
 };
@@ -43,6 +43,7 @@ export const loadActions = ()=>{
         actionCreators[property] = (params) => async (dispatch, getState) => {
             let res = await rest[property](params);
             dispatch({type: 'DATA', data: res});
+            return res;
         };
     }
 };

@@ -1,0 +1,40 @@
+#navbar {
+    font-family: Roboto;
+    font-size: 120%;
+    background: #fffcfe;
+    padding-left: 15%;
+    padding-right: 14.3%;
+    z-index: 100000;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+    top: 0;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.13) 0 1px 20px;
+    transition: all ease-in-out 0.8s;
+}
+.LnStyle{
+    color: #212121;
+    text-decoration: none;
+    margin-left: 20%;
+    margin-top: 20%;
+}
+.LnStyle:hover {
+    text-decoration: none;
+    color: #274BC8;
+}
+.LnStyle:focus{
+    color: #274BC8;
+    text-decoration: none;
+}
+@media (max-width: 767px) {
+    .LnStyle {
+        margin-left: 5%;
+    }
+    .LnStyle{
+        margin-left: 5%;
+    }
+    #navbar{
+        grid-template-columns: 10% 65% 25%;
+    }
+}
