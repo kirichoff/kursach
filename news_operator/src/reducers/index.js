@@ -59,7 +59,7 @@ export const reducer = (state = {data: []}, action) => {
             };
         case 'DATA' : return {
             ...state,
-            data:[...action.data]
+            data:action.data
         }
     }
     return state;

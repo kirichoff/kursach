@@ -18,7 +18,7 @@ function ItemPage(props) {
     const isAdmin = true;
     const id = props.params.id;
     const [shopItem,setShopItem] = useState({});
-    const [images,setImages] = useState([]);
+    const [images,setImages] = useState([{contentId: -1,itemId:id,content:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'}]);
     const [featureItems,setFeatureItems] = useState([] );
 
     let fetchData = async () => {
@@ -34,30 +34,57 @@ function ItemPage(props) {
             console.log(ShopItem,Features,content)
         }
     };
-
     useEffect(  ()=>{
             fetchData();
         }
     ,[id]);
+
+    let addImage = (e)=>{
+        let f = e.target.files[0]
+        let reader = new FileReader();
+        reader.onloadend = () =>{
+            setImages([
+                ...images,
+                {contentId: -1,itemId:id,content:reader.result}
+            ])
+        };
+        reader.readAsDataURL(f);
+    };
+
+
+
+
     let item = {featureName: 'qwe',featureText: 'qwe'};
     let data = [item,item,item,item,item];
     let imCor = [{url:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',content: ''},{url:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',content: ''}]
     let update = async(e)=>{
        let res = await props.AddShopItem({description: description.value, header:header.value, previewImage: null, price:2000});
+       console.log(res)
         let id  = res[0].Id || null;
         for(let pt of featureItems){
-
+            if(pt.charId >0)
+                continue;
+            props.AddChar(pt);
         }
         for(let img of images){
-
+            if(img.contentId > 0)
+                continue;
+            props.AddItemContent(img);
         }
     };
-    console.log(featureItems)
+    console.log(images)
     return (
         <Layout>
                 <form >
                     <div className={'carousel'}  >
-                        <MyCarousel style={{width: '100%'}} items={imCor} />
+                        <MyCarousel style={{width: '100%'}} items={images} />
+                        <IconButton
+                            overlay={<input onChange={addImage} type={'file'} />}
+                            onClick={ ()=>{}}
+                            style={ {marginLeft: '50%', marginRight: 'auto'} }
+                            type={ 'primary' }>
+                            <AddIcon/>
+                        </IconButton>
                     </div>
                     <div className={'desc'}  >
                         <textarea
@@ -86,10 +113,8 @@ function ItemPage(props) {
                                     setFeatureItems([...featureItems]);
                                     }
                                 }
-                                {...k}/> )
-                        }
-                        {
-                            isAdmin ?
+                                {...k}/> ) }
+                        { isAdmin ?
                                 <div>
                                     <div style={ {marginLeft: 'auto', marginRight: 'auto', width: 65, marginTop: 20} }>
                                         <IconButton
@@ -103,11 +128,9 @@ function ItemPage(props) {
                                             <AddIcon/>
                                         </IconButton>
                                     </div>
-                                </div>: null
-                        }
+                                </div>: null }
                     </div>
-                    {
-                        isAdmin?  <div className={'save'} >
+                    { isAdmin?  <div className={'save'} >
                             <Button
                                 onClick={update}
                                 style={{margin: 20}}
@@ -117,8 +140,7 @@ function ItemPage(props) {
                                 loading={false}>
                                 сохранить
                             </Button>
-                        </div> : null
-                    }
+                        </div> : null }
                 </form>
         </Layout>
     );

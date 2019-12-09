@@ -3,10 +3,12 @@ const exclude = ['security','get'];
 export const rest = {};
 function reuest (server,api,type){
     return (params,token='') => {
-        let query = params && '?'+Object.keys(params)
-            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-            .join('&') || '';
-
+        let query = '';
+        if(type === 'get') {
+           query = params && '?' + Object.keys(params)
+                .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                .join('&') || '';
+        }
         let options = {
             method: type || 'post',
             headers: {
@@ -14,7 +16,7 @@ function reuest (server,api,type){
                 'Authorization': token
             }
             };
-        if(!type){
+        if(type === 'post'){
             options.body =JSON.stringify(params);
         }
         console.log(options)
