@@ -38,3 +38,13 @@
         grid-template-columns: 10% 65% 25%;
     }
 }
+.reg{
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+}
+.reg:hover{
+ color: #0053E6;
+}
+.regContainer{
+    margin-top: -5px;
+}

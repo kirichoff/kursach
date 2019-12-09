@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import './style.css'
 
 const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 

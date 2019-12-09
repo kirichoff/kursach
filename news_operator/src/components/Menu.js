@@ -111,27 +111,25 @@ class Menu extends Component {
                 <div style={{ marginTop: 10}} >
                     <div style={ {  marginBottom:5,   float: 'right'}}>
                         {(this.state.LogIn.isLogin)?
-                            <div style={{marginTop: 10 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.state.name +" !    "}</div>
+                            <div style={{marginTop: 5 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.state.name +" !    "}</div>
                             :
-                            <div >
-                                <Button
+                            <div className={'regContainer'} >
+                                <span
+                                    className={'reg'}
                                     onClick={this.openPopup2}
-                                    type={'outline'}
-                                    size={'small'}
-                                    rounded={false}
-                                    style={{height: '30px'}}
+                                    style={{}}
                                 >
                                 Регистрация
-                            </Button>
-                                <Button
+                            </span>
+                                <span
+                                    className={'reg l'}
                                     onClick={this.openPopup}
-                                    style={{marginLeft: 20,marginRight: 10, height: '30px' } }
-                                    size={'small'}
-                                    rounded={false}
+                                    style={{marginLeft: 20} }
                                 >
                                     Войти
-                                </Button>
-                            </div> }
+                                </span>
+                            </div>
+                        }
                     </div>
                 </div>
                 <Popup

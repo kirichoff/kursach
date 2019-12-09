@@ -50,6 +50,9 @@ width: 50%;
 .carousel{
     grid-area: carousel;
 }
+.Price{
+    grid-area: price;
+}
 .FeatureContainer{
     grid-area: FeatureContainer;
 }
@@ -63,6 +66,7 @@ form{
     display: grid;
     grid-template-areas:
             "carousel  desc"
+            "price price"
             "FeatureContainer FeatureContainer "
                 "save save ";
 }

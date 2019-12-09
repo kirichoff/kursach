@@ -5,11 +5,12 @@ import MyCarousel from "../components/MyCarousel";
  import Layout from "../components/Layout";
 import '../style/ItemPage.css'
  import Button from "rambler-ui/Button";
- import {AddIcon, ChevronRightIcon} from "rambler-ui/icons/forms";
+ import {AddIcon, ChevronRightIcon, ClearIcon} from "rambler-ui/icons/forms";
  import IconButton from "rambler-ui/IconButton";
  import {connect} from "react-redux";
  import {bindActionCreators} from "redux";
  import {actionCreators} from "../reducers";
+ import Price from "../components/Price";
 
 
 function ItemPage(props) {
@@ -20,10 +21,10 @@ function ItemPage(props) {
     const [shopItem,setShopItem] = useState({});
     const [images,setImages] = useState([{contentId: -1,itemId:id,content:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'}]);
     const [featureItems,setFeatureItems] = useState([] );
+    const [current,setCurrent] = useState(0);
+    const [deleteImages,setDeleteImages] = useState([]);
 
     let fetchData = async () => {
-         description ={ value:'' } ;
-          header = { value:'' };
         if(id !== 'editor'){
             let ShopItem =  await props.GetShopItem({ShopItemId:+id});
             setShopItem({...ShopItem[0]});
@@ -40,7 +41,8 @@ function ItemPage(props) {
     ,[id]);
 
     let addImage = (e)=>{
-        let f = e.target.files[0]
+        console.log('add')
+        let f = e.target.files[0];
         let reader = new FileReader();
         reader.onloadend = () =>{
             setImages([
@@ -50,20 +52,12 @@ function ItemPage(props) {
         };
         reader.readAsDataURL(f);
     };
-
-
-
-
-    let item = {featureName: 'qwe',featureText: 'qwe'};
-    let data = [item,item,item,item,item];
-    let imCor = [{url:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',content: ''},{url:'https://images.unsplash.com/photo-1499084732479-de2c02d45fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',content: ''}]
     let update = async(e)=>{
        let res = await props.AddShopItem({description: description.value, header:header.value, previewImage: null, price:2000});
        console.log(res)
         let id  = res[0].Id || null;
         for(let pt of featureItems){
-            if(pt.charId >0)
-                continue;
+            if(pt.charId === -1)
             props.AddChar(pt);
         }
         for(let img of images){
@@ -71,21 +65,42 @@ function ItemPage(props) {
                 continue;
             props.AddItemContent(img);
         }
+        for(let pt in deleteImages){
+
+        }
+
     };
     console.log(images)
     return (
         <Layout>
                 <form >
                     <div className={'carousel'}  >
-                        <MyCarousel style={{width: '100%'}} items={images} />
-                        <IconButton
+                        <MyCarousel
+                            onChange={(e)=>setCurrent(e)}
+                            style={{width: '100%'}}
+                            items={images}
+                        />
+                        <div style={{display:'flex'}} >
+                        <Button
                             overlay={<input onChange={addImage} type={'file'} />}
-                            onClick={ ()=>{}}
-                            style={ {marginLeft: '50%', marginRight: 'auto'} }
+                            style={ {marginLeft: '44%'} }
                             type={ 'primary' }>
-                            <AddIcon/>
-                        </IconButton>
+                            <AddIcon color={'white'} />
+                        </Button>
+                        <Button
+                            onClick={ ()=>{
+                                console.log('clear');
+                                setDeleteImages([...deleteImages,images[current].contentId]);
+                                images.splice(current,1);
+                                setImages([...images]);
+                            }}
+                            style={ {} }
+                            type={ 'outline' }>
+                            <ClearIcon color={'blue'} />
+                        </Button>
+                            </div>
                     </div>
+                    <div className={'Price'} ><Price price={200}/></div>
                     <div className={'desc'}  >
                         <textarea
                             readOnly={!isAdmin}
@@ -103,6 +118,7 @@ function ItemPage(props) {
                             ref={node=>description=node}
                         />
                     </div>
+
                     <div  className={'FeatureContainer'} >
                         {featureItems.map((k,index)=>
                             <FeatureItem

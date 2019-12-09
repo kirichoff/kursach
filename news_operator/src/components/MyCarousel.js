@@ -9,10 +9,13 @@ function MyCarousel(props) {
             emulateTouch={ true }
             showArrows={ false }
             showStatus={ false }
-            interval={ 1000 }
+            interval={ 5000 }
             autoPlay={ true }
             infiniteLoop={ true }
-            showThumbs={ false }>
+            showThumbs={ false }
+            onChange ={(e)=> props.onChange && props.onChange(e) || null }
+            >
+
             { props.items.map((k, index) =>
                 <div key={ index }>
                     <img src={ k.content } alt={'img'}/>

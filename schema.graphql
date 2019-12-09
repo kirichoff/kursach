@@ -7,7 +7,7 @@ schema {
 
 "Blog Application Schema Query Root"
 type BlogAppSchema {
-    Cart(userId: Int!): [ChartItem]
+    CartItem(userId: Int!): [ChartItem]
     Item(itemId: Int!): ShopItem
     ItemPage(itemId: Int!): ItemPage
     "ALL users"

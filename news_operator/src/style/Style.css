@@ -28,7 +28,10 @@
     font-family: Roboto, sans-serif;
     text-transform:uppercase;
 }
-
+.point:hover{
+    color: #0053E6;
+    text-decoration: none;
+}
 .box{
     display: flex;
     justify-content: center;

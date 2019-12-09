@@ -1,16 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Layout from "../components/Layout";
+import CartItem from "../components/CartItem";
 
-class CartPage extends Component {
-    render() {
-        return (
-    <Layout>
-        <div>
-
-        </div>
-    </Layout>
-        );
-    }
+function CartPage() {
+    let cartItems = [{price: '1333',description:'qqqq',header:'eqweqeq'},{}];
+    return (
+        <Layout>
+            <div>
+                 {cartItems.map((item,index)=>
+                     <CartItem
+                     key={index}
+                         {...item}
+                     />
+                     )}
+            </div>
+        </Layout>
+    );
 }
 
 export default  CartPage;
