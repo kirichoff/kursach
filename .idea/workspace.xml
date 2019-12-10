@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="">
+    <list default="true" id="f977d738-7c55-4cc0-b73f-a0a72a7b9708" name="Default Changelist" comment="add cart">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/CartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/CartItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/style/CartItem.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/CartItem.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/style/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/style/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news_operator/src/style/teststyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/news_operator/src/style/teststyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,7 +386,7 @@
       <workItem from="1575795108522" duration="2534000" />
       <workItem from="1575893864930" duration="8421000" />
       <workItem from="1575902473267" duration="3413000" />
-      <workItem from="1575980852544" duration="3456000" />
+      <workItem from="1575980852544" duration="7382000" />
     </task>
     <task id="LOCAL-00001" summary="dd">
       <created>1574279744119</created>
@@ -457,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575906128780</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add cart">
+      <created>1575984990469</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575984990469</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,11 +512,15 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="434" y="112" key="#dev/0.0.1440.860@0.0.1440.860" timestamp="1575794940739" />
-    <state x="457" y="0" key="CommitChangelistDialog2" timestamp="1575906128145">
+    <state x="457" y="0" key="CommitChangelistDialog2" timestamp="1575988926326">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="343" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1575847879600" />
-    <state x="457" y="0" key="CommitChangelistDialog2/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575906128145" />
+    <state x="457" y="0" key="CommitChangelistDialog2/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575988926326" />
+    <state x="55" y="0" key="DiffContextDialog" timestamp="1575988889753">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="55" y="0" key="DiffContextDialog/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575988889753" />
     <state width="1899" height="539" key="GridCell.Tab.0.bottom" timestamp="1575981010203">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
@@ -592,11 +597,11 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="461" y="222" key="SettingsEditor/0.0.1920.1160/-1680.80.1680.1050@0.0.1920.1160" timestamp="1575902458414" />
-    <state x="416" y="213" key="Vcs.Push.Dialog.v2" timestamp="1575906141479">
+    <state x="416" y="213" key="Vcs.Push.Dialog.v2" timestamp="1575988930254">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="312" y="158" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1575847899522" />
-    <state x="416" y="213" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575906141479" />
+    <state x="416" y="213" key="Vcs.Push.Dialog.v2/0.0.1920.1160/-1680.80.1680.1010@0.0.1920.1160" timestamp="1575988930254" />
     <state x="715" y="424" key="cloudConfig.SelfSettingsDialog" timestamp="1575902445474">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
