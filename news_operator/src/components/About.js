@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import Bar from "./Bar";
 import {connect} from "react-redux";
+import Layout from "./Layout";
 
 class About extends Component {
     render() {
-        console.log(this.props.base.addNews)
         return (
-            <div>
-                <Bar/>
+                <Layout>
                 About
-            </div>
+                </Layout>
         );
     }
 }

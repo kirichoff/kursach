@@ -1,7 +1,5 @@
 #navbar {
-    font-family: Roboto;
-    font-size: 120%;
-    background: #fffcfe;
+    font-family: Roboto, sans-serif;
     padding-left: 15%;
     padding-right: 14.3%;
     z-index: 100000;
@@ -9,6 +7,7 @@
     justify-content: space-between;
     margin-bottom: 2%;
     top: 0;
+    background-color: #ffffff;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.13) 0 1px 20px;
     transition: all ease-in-out 0.8s;

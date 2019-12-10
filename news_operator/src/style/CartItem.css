@@ -1,0 +1,21 @@
+.p-header{
+    font-family: Roboto, sans-serif;
+   text-align: center;
+}
+.cardbody{
+display: grid;
+    grid-template-areas:"  ";
+}
+.count{
+float: right;
+    grid-area: count;
+}
+.price{
+    grid-area: price;
+    float: right;
+}
+.removeIco{
+    grid-area:removeIco ;
+    float: right;
+}
+

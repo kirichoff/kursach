@@ -9,16 +9,16 @@ function CartItem(props) {
             <Card>
 
                 <Card.Body>
-                    <Card.Text>
-                        <Card.Img style={{width: '100px'}}  variant="left" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-                        <span  style={{display:'inline-block'}} className={'p-header'}>
+                    <div className={'cardbody'}  >
+                        <Card.Img clas style={{width: '100px'}}  variant="left" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                        <div  style={{display:'inline-block'}} className={'p-header'}>
                             <div>{props.header}</div>
                             <div>{props.description}</div>
-                        </span>
-                        <input defaultValue={count} type={'number'} min={1}/>
+                        </div>
+                        <input className={'count'} defaultValue={count} type={'number'} min={1}/>
                         <span className={'price'} >{props.price}</span>
                         <RemoveIcon className={'removeIco'} />
-                    </Card.Text>
+                    </div>
                 </Card.Body>
             </Card>
     );

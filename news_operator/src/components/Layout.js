@@ -1,5 +1,4 @@
 import React from 'react';
-import Bar from "./Bar";
 import '../style/teststyle.css'
 import Menu from "./Menu";
 function Layout(props) {
