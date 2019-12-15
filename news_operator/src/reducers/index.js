@@ -34,17 +34,24 @@ export const actionCreators = {
       //  dispatch({type:'REGISTER_TRUE',res: res })
     },
     AddToCart: (Item) => async (dispatch,getState)=>{
-        if(getState.state.userId) {
-            let res =await rest.AddToCart(Item);
-            dispatch({type: 'CART', cart: Item})
+        let state = getState().state;
+        let exist = state.cart.find(k=>k.ShopItemId === Item.ShopItemId);
+        if(state && state.userId) {
+            if(!exist) {
+                let res =await rest.AddToCart(Item);
+                dispatch({type: 'CART', cart: [...state.cart, Item]})
+            }
         }
         else {
-            dispatch({type: 'CART', cart: Item})
+            if (!exist) {
+                dispatch({type: 'CART', cart:  [...state.cart, Item]})
+            }
         }
         },
     GetCart: ()=> async (dispatch,getState)=>{
-            if(getState.state.userId){
-                let res = await rest.GetUserCart(getState.state.userId);
+        let state = getState().state;
+        if(state && state.userId){
+                let res = await rest.GetUserCart(state.userId);
                 dispatch({type: 'SET_CART',cart: res })
             }
             else {
@@ -54,7 +61,7 @@ export const actionCreators = {
 };
 
 export const loadActions = ()=>{
-    const exclude = ['Login'];
+    const exclude = ['Login','AddToCart'];
     for(let property in rest){
         if (exclude.find(el => el === property))
             continue;
@@ -81,7 +88,7 @@ export const reducer = (state = {data: [],cart:[]}, action) => {
         };
         case 'CART': return {
             ...state,
-            cart: [...state.cart,action.cart]
+            cart:action.cart
         };
         case 'SET_CART': return {
             ...state,

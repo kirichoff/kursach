@@ -5,8 +5,7 @@ import {rest} from '../rest/rest'
 
 
 function CategoryPiker(props) {
-    const findId =(value)=>  data.find(k=>k.categoryName == value) ;
-    const findCategory = (id,res) => res.find(k=> k.CategoryId == id);
+    const findId =(value)=>  data.find(k=>k.categoryName == value);
     const [value,setValue] = useState( '');
     const [data,setData] =useState([]);
     let filterData = search => {
@@ -21,14 +20,13 @@ function CategoryPiker(props) {
     useEffect(()=>{
         rest.getCategory().then(res=>
             {console.log('res',res);
+                setValue(
+                    res.find(k=>k.categoryId === props.categoryId)
+                    && res.find(k=>k.categoryId === props.categoryId).categoryName
+                    || '' );
             if (res.length>0) {
                 setData(res);
-                console.log(props)
-                console.log(res.find(k=>k.categoryId == props.categoryId))
-            setValue('')
-            }
-
-            })
+            }})
     },[]);
 
 

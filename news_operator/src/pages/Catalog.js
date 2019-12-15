@@ -19,33 +19,33 @@ const breakpointColumnsObj = {
 };
 
 function Catalog(props) {
-    let [rendData,setData]= useState([]);
-    let [Nav,setNav] = useState({});
+    let [rendData, setData] = useState([]);
+    let [Nav, setNav] = useState({});
 
-    const get = ()=>{
-        props.GetAllShopItemsFilter(Nav).then(data=>
-            {
+    const get = () => {
+        props.GetAllShopItemsFilter(Nav).then(data => {
                 //  props.GetAllShopItemsFilter(Nav);
-                if(data.length)
-                    setData((data.length)? data : [])
+                if (data.length)
+                    setData((data.length) ? data : [])
                 else
-                    props.GetAllShopItemsFilter(Nav).then(data=>
-                    {
-                        setData((data.length)? data : [])
+                    props.GetAllShopItemsFilter(Nav).then(data => {
+                        setData((data.length) ? data : [])
                     })
             }
         )
     };
-
     useEffect( ()=>{
         get()
     },[]);
+
+
+
+
     let isAdmin = true;
     return (
         <Layout>
-
             <div className={ 'catalog-container' }>
-                <CatalogNavbar onClick={()=>get()} onChange={(nav)=>setNav(nav) } />
+                <CatalogNavbar onClick={ () => get() } onChange={ (nav) => setNav(nav) }/>
                 <div style={ {marginTop: 25} }>
                     <Masonry
                         breakpointCols={ breakpointColumnsObj }
@@ -53,18 +53,22 @@ function Catalog(props) {
                         columnClassName="my-masonry-grid_column">
                         { rendData.map((k, index) =>
                             <CatalogItem link={
-                                <Link className={'Link-style'} to={ `/Item/${ k.ShopItemId }` }>
+                                <Link className={ 'Link-style' } to={ `/Item/${ k.ShopItemId }` }>
                                     подробнее
                                 </Link>
                             }
-                                         cart={<span
-                                             style={{
-                                                 marginLeft: '20%'}}
-                                             className={'Link-style'}
-                                            onClick={()=>{}}
-                                             >
+                                         cart={ <span
+                                             style={ {
+                                                 marginLeft: '20%'
+                                             } }
+                                             className={ 'Link-style' }
+                                             onClick={ () => {
+                                                 console.log(k)
+                                                props.AddToCart({...k})
+                                             }}
+                                         >
                                              в корзину
-                                         </span>}
+                                         </span> }
                                          key={ index } { ...k }/>
                         )
                         }

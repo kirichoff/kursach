@@ -196,7 +196,7 @@ function ItemPage(props) {
                                 </div>: null }
                     </div>
                     { isAdmin?  <div className={'save'} >
-                        <CategoryPiker categoryId={category} onChange={(e)=> setCategory(e)} />
+                        <CategoryPiker val={'Тягач'} categoryId={category} onChange={(e)=> setCategory(e)} />
                             <Button
                                 onClick={()=>actionPiker()}
                                 style={{margin: 20}}

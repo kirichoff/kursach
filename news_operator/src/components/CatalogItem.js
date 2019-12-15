@@ -17,6 +17,7 @@ function CatalogItem(props) {
                     <div>
                         {props.link}
                         {props.cart}
+                        {props.delete}
                     </div>
                 </Card.Body>
             </Card>
