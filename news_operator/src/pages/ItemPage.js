@@ -11,6 +11,8 @@ import '../style/ItemPage.css'
  import {bindActionCreators} from "redux";
  import {actionCreators} from "../reducers";
  import Price from "../components/Price";
+ import Select from "rambler-ui/Select";
+ import MenuItem from "rambler-ui/Menu/MenuItem";
 
 
 function ItemPage(props) {
@@ -66,11 +68,21 @@ function ItemPage(props) {
             props.AddItemContent(img);
         }
         for(let pt in deleteImages){
-
         }
-
     };
-    console.log(images)
+
+
+    let [value,setValue] = useState('');
+    let filterData = search => {
+        const filteredData =
+            search === ''
+                ? data
+                : data.filter(item => search !== '' && item.indexOf(search) > -1);
+        this.setState({
+            data: filteredData
+        })
+    };
+    const data = [...Array(5)].map((item, i) => `Foo${i}`);
     return (
         <Layout>
                 <form >
@@ -147,6 +159,20 @@ function ItemPage(props) {
                                 </div>: null }
                     </div>
                     { isAdmin?  <div className={'save'} >
+
+                        <Select
+                            placeholder="Type something..."
+                            lightPlaceholderColor={true}
+                            value={value}
+                            onChange={(e)=>setValue(e)}
+                            onSearch={filterData}>
+                            {data.map(item =>
+                                <MenuItem value={item} key={item}>
+                                    {item}
+                                </MenuItem>
+                            )}
+                        </Select>
+
                             <Button
                                 onClick={update}
                                 style={{margin: 20}}

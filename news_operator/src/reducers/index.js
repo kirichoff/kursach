@@ -32,6 +32,24 @@ export const actionCreators = {
         };
         //let res = await rest.addUser(user)
       //  dispatch({type:'REGISTER_TRUE',res: res })
+    },
+    AddToCart: (Item) => async (dispatch,getState)=>{
+        if(getState.state.userId) {
+            let res =await rest.AddToCart(Item);
+            dispatch({type: 'CART', cart: Item})
+        }
+        else {
+            dispatch({type: 'CART', cart: Item})
+        }
+        },
+    GetCart: ()=> async (dispatch,getState)=>{
+            if(getState.state.userId){
+                let res = await rest.GetUserCart(getState.state.userId);
+                dispatch({type: 'SET_CART',cart: res })
+            }
+            else {
+
+            }
     }
 };
 
@@ -49,7 +67,7 @@ export const loadActions = ()=>{
 };
 
 
-export const reducer = (state = {data: []}, action) => {
+export const reducer = (state = {data: [],cart:[]}, action) => {
     state = state || initialState;
     switch (action.type) {
         case "LOGIN":
@@ -60,7 +78,15 @@ export const reducer = (state = {data: []}, action) => {
         case 'DATA' : return {
             ...state,
             data:action.data
-        }
+        };
+        case 'CART': return {
+            ...state,
+            cart: [...state.cart,action.cart]
+        };
+        case 'SET_CART': return {
+            ...state,
+            cart: action.cart
+        };
     }
     return state;
 };

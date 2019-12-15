@@ -3,6 +3,8 @@ import Checkbox from 'rambler-ui/Checkbox'
 import Select from "rambler-ui/Select";
 import MenuItem from "rambler-ui/Menu/MenuItem";
 import '../style/catalogNavbar.css'
+import Input from "rambler-ui/Input";
+import Button from "rambler-ui/Button";
 const data = [...Array(5)].map((item, i) => `Foo${i}`);
 
 export default class CatalogNavbar extends Component {
@@ -51,19 +53,12 @@ export default class CatalogNavbar extends Component {
                         </MenuItem>
                     )}
                 </Select>
-                <div>
-                <h4>Под Категории</h4>
-                    {this.state.checkBoxes.map((item,index)=>
-                        <Checkbox
-                            checked={item.checked}
-                            key={index}
-                            onCheck={this.check(index)}
-                            checkboxClassName={'checkBox-Navbar'}
-                            labelClassName={'label-checkBox-Navbar'}
-                            size={'medium'}
-                        >{item.name}
-                        </Checkbox>
-                    )}
+                <h5>Цена от</h5>
+                <Input  type={ 'number' } />
+                <h5>До</h5>
+                <Input  type={ 'number' } />
+                <div style={{    padding: '10% 21%'}} >
+                    <Button>подобрать</Button>
                 </div>
             </div>
         </div>
