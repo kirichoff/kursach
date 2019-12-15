@@ -16,10 +16,12 @@ function reuest (server,api,type){
                 'Authorization': token
             }
             };
-        if(type === 'post'){
-            options.body =JSON.stringify(params);
+        console.log('params',params);
+        console.log(type)
+        if(!type){
+            options.body = JSON.stringify(params);
         }
-        console.log(options)
+        console.log(options);
         return fetch(server+api+query,options
         ).then(async data => {
                 console.log(data);

@@ -20,17 +20,32 @@ const breakpointColumnsObj = {
 
 function Catalog(props) {
     let [rendData,setData]= useState([]);
+    let [Nav,setNav] = useState({});
+
+    const get = ()=>{
+        props.GetAllShopItemsFilter(Nav).then(data=>
+            {
+                //  props.GetAllShopItemsFilter(Nav);
+                if(data.length)
+                    setData((data.length)? data : [])
+                else
+                    props.GetAllShopItemsFilter(Nav).then(data=>
+                    {
+                        setData((data.length)? data : [])
+                    })
+            }
+        )
+    };
+
     useEffect( ()=>{
-        props.GetAllShopItems().then(data=>
-            setData((data.length)? data : [])
-        );
+        get()
     },[]);
     let isAdmin = true;
     return (
         <Layout>
 
             <div className={ 'catalog-container' }>
-                <CatalogNavbar/>
+                <CatalogNavbar onClick={()=>get()} onChange={(nav)=>setNav(nav) } />
                 <div style={ {marginTop: 25} }>
                     <Masonry
                         breakpointCols={ breakpointColumnsObj }
@@ -38,22 +53,33 @@ function Catalog(props) {
                         columnClassName="my-masonry-grid_column">
                         { rendData.map((k, index) =>
                             <CatalogItem link={
-                                <Button  size={'small'} container={<Link to={ `/Item/${ k.ShopItemId }` }/>} > подробнее </Button>
+                                <Link className={'Link-style'} to={ `/Item/${ k.ShopItemId }` }>
+                                    подробнее
+                                </Link>
                             }
-                                         cart={<Button
-                                             size={'small'}
+                                         cart={<span
+                                             style={{
+                                                 marginLeft: '20%'}}
+                                             className={'Link-style'}
                                             onClick={()=>{}}
-                                             type={'outline'}>
+                                             >
                                              в корзину
-                                         </Button>}
+                                         </span>}
                                          key={ index } { ...k }/>
                         )
                         }
                     </Masonry>
                     { isAdmin ?
-                        <div>
-                            <Link to={ '/Item/editor' }> <CatalogItem header={ 'Add' } previewImage={ '' }
-                                                                      description={ 'description' }/></Link>
+                        <div style={{width: '210px'}} >
+                            <Link
+                                className={'Link-style'}
+                                  to={ '/Item/editor' }>
+                                <CatalogItem
+                                    header={ 'добавить товар' }
+                                    previewImage={ '' }
+                                    description={ '' }
+                                />
+                            </Link>
                         </div>
                         :
                         null

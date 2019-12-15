@@ -1,5 +1,9 @@
 module.exports =
     {
-        get: {...require('./sqlGet')},
-        post: {...require('./sqlInserts')}
+        get: {...require('./sqlGet'),     ...require('./sqlDelete'),
+            ...require('./sqlUpdate')},
+        post: {
+            ...require('./sqlInserts'),
+
+        }
     };

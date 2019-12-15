@@ -33,4 +33,11 @@ float: right;
     float: right;
     padding: 10% 40%;
 }
-
+.Link-style{
+    color: #2d2c2c;
+}
+.Link-style:hover{
+    color: #0053E6;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -3,7 +3,9 @@ module.exports = function httpHandler(app,model,exclude,path,type='get') {
         if(exclude.find(el=> el === name))
             continue;
         app[type](`${path}${name}`, async (req,res)=>{
+            console.log('reqqqqq');
             console.log(req);
+            console.log(req.body);
             let q = type === 'get'? req.query : req.body;
             let re = await model[name](q);
             console.log('req',re);

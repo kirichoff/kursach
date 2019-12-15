@@ -21,7 +21,7 @@
     display: -ms-flexbox; /* Not needed if autoprefixing */
     display: flex;
     margin-left: -30px; /* gutter size offset */
-    width: 111%;
+    width: 95%;
 }
 .my-masonry-grid_column {
     padding-left: 30px; /* gutter size */
