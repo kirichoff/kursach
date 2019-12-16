@@ -1,9 +1,8 @@
 ## Introducing
 ### Instalation
-1. start client dev server
-    npm i
-    cd /news_operator
-    npm i 
+1. npm i
+2. cd /news_operator
+3. npm i 
 ### Runing
-2. start server 
-    npm ruin dev
+2. start server: npm run dev
+    
