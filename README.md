@@ -4,5 +4,6 @@
 2. cd /news_operator
 3. npm i 
 ### Runing
-2. start server: npm run dev
+start server:
+##### npm run dev
     
