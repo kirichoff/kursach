@@ -1,11 +1,9 @@
-c## Introducing
+## Introducing
 ### Instalation
 1. start client dev server
-    cd /newsServer/news_operator
+    npm i
+    cd /news_operator
     npm i 
-    npm start
 ### 
-2. start graphql dev server
-    cd /newsServer
-    npm i 
-    npm start
+2. start server 
+    npm ruin dev
