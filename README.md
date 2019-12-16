@@ -4,6 +4,6 @@
 2. cd /news_operator
 3. npm i 
 ### Start
-cd /kursach
+>cd /kursach
 >npm run dev
     
