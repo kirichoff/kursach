@@ -1,12 +1,9 @@
 ## Introducing
-
-###
-1. start client dev server
-    cd /newsServer/news_operator
-    npm i 
-    npm start
-###
-2. start graphql dev server
-    cd /newsServer
-    npm i 
-    npm start
+### Instalation
+1. npm i
+2. cd /news_operator
+3. npm i 
+### Start
+1. cd /kursach
+1. npm run dev
+    

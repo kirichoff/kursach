@@ -22,9 +22,55 @@ model.GetChar = ({id})=>{
 model.GetAllShopItems = () =>{
     // noinspection SqlDialectInspection
     let query = `
-    select * from MazShop.dbo.ShopItem `;
+    SELECT ShopItemId
+     , description
+     , header
+     , price
+     , content AS 'previewImage'
+FROM MAZSHOP.DBO.SHOPITEM
+         LEFT JOIN
+     MAZSHOP.DBO
+         .ITEMCONTENT
+     ON
+         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
+WHERE ITEMCONTENT.CONTENTID = (
+    SELECT MIN(ITEMCONTENT.CONTENTID)
+    FROM ITEMCONTENT
+    WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID
+)
+`;
     return request(query);
 };
+
+
+model.GetAllShopItemsFilter = ({category,min,max}) =>{
+    // noinspection SqlDialectInspection
+    console.log('values',min,max,category)
+    let q = category &&`and ShopItem.CategoryId=${category}` || '';
+    min = min || 1
+    max = max || Number.MAX_VALUE
+    let query = `
+    SELECT ShopItemId
+     , description
+     , header
+     , price
+     , content AS 'previewImage'
+FROM MAZSHOP.DBO.SHOPITEM
+         LEFT JOIN
+     MAZSHOP.DBO
+         .ITEMCONTENT
+     ON
+         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
+WHERE ITEMCONTENT.CONTENTID = (
+    SELECT MIN(ITEMCONTENT.CONTENTID)
+    FROM ITEMCONTENT
+    WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
+)${q} and ShopItem.price between ${min} and ${max} 
+`;
+    return request(query);
+};
+
+
 model.GetUser = ({login,password})=> {
     let query = `
         select
@@ -46,6 +92,7 @@ model.GetContent = ({id}) =>{
         where itemId = ${id}`;
     return request(query);
 };
+
 model.GetUserById = ({id})=>{
     let query = `
         select
@@ -79,15 +126,13 @@ model.Login = async ({login,password})=> {
             login = '${ login }' 
             and password = '${ password }'`;
     let req = await request(query);
-    console.log(req);
-    if(req[0]){
-        return{request: true,userId:req[0].userId };
-    }
-    else{
-        return{request: false};
-    }
-
+    return req;
 };
+model.getCategory = () => {
+    // noinspection SqlDialectInspection
+    let query = 'select * from MazShop.dbo.Category';
+    return request(query);
+}
 model.GetShopItem = ({ShopItemId}) =>{
     let query = `
     select * from MazShop.dbo.ShopItem where ShopItemId = '${ShopItemId}'`;

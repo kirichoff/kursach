@@ -4,6 +4,9 @@ import '../style/menu.css'
 import {Popup} from "rambler-ui/Popup";
 import Input from "rambler-ui/Input";
 import Bar from "./Bar";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../reducers";
 
 const values = ['Home', 'About', 'Contact'];
 class Menu extends Component {
@@ -11,13 +14,14 @@ class Menu extends Component {
         super(props, context);
         this.state = {
             value: values[1],
-            customIsOpened: false,
+            customIsOpened:false,
             SignUpOpened: false,
             Key: '',
-            name: '',
-            pass: '',
+            login: '',
+            password: '',
+            phoneNumber: '',
+            email:'',
             isKey: false,
-            isFail: false,
             prevS: window.pageYOffset,
             navBar:{position: 'relative',top: '0px'},
             LogIn: {isLogin: false,isAdmin: false,name:'' }
@@ -135,11 +139,14 @@ class Menu extends Component {
                 <Popup
                     title="Войдите"
                     showClose
-                    isOpened={this.state.customIsOpened}
+                    isOpened={this.state.customIsOpened }
                     backdropColor="blue"
                     okButton={
-                        <Button type="primary"  size="small" onClick={()=>{}}
-                        //    this.getLogin()}
+                        <Button type="primary"  size="small" onClick={()=>{
+                            this.props.Login(this.state).then(r=>{
+                                this.setState({customIsOpened: !!!r})})
+                        }
+                        }
                         >
                             Ок
                         </Button>
@@ -151,23 +158,30 @@ class Menu extends Component {
                     }
                     onRequestClose={this.closePopup}>
                     <div style={{width: 400}}>
-                        <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isFail)? 'Неверное имя пользователя или пароль' : null}</div>
+                        <div style={{marginBottom: '5%',color: 'red' }} >
+                            {(!this.props.state.hasOwnProperty('User'))? null
+                             :
+                               (this.props.state.User
+                                   && this.props.state.User.hasOwnProperty('login') )?
+                                null
+                                : 'Неверное имя пользователя или пароль'
+                            }</div>
                         <Input
                             style={{marginBottom: 5}}
                             type="email"
-                            status={(this.state.isFail)? 'error': null}
+                            status={(this.props.state.hasOwnProperty('User'))? 'error': null}
                             autoFocus
                             placeholder={'имя'}
-                            value={this.state.name}
-                            onChange={this.updateValue('name')}
+                            value={this.state.login}
+                            onChange={this.updateValue('login')}
                         />
                         <Input
                             type="password"
                             autoFocus
                             placeholder={'пароль'}
-                            status={(this.state.isFail)? 'error': null}
-                            value={this.state.pass}
-                            onChange={this.updateValue('pass')}
+                            status={(this.props.state.hasOwnProperty('User'))? 'error': null}
+                            value={this.state.password}
+                            onChange={this.updateValue('password')}
                         />
                     </div>
                 </Popup>
@@ -177,7 +191,7 @@ class Menu extends Component {
                     isOpened={this.state.SignUpOpened}
                     backdropColor="blue"
                     okButton={
-                        <Button type="primary" size="small" onClick={()=>console.log('Reg')}>
+                        <Button type="primary" size="small" onClick={()=>this.props.Register(this.state)}>
                             Ок
                         </Button>
                     }
@@ -201,25 +215,32 @@ class Menu extends Component {
                             placeholder={'имя'}
                             status={(this.state.isFail)? 'error': null}
                             autoFocus
-                            value={this.state.name}
-                            onChange={this.updateValue('name')}
+                            value={this.state.login}
+                            onChange={this.updateValue('login')}
                         />
-
+                        <Input
+                            type="email"
+                            style={{marginBottom: 5}}
+                            autoFocus
+                            placeholder={'email'}
+                            value={this.state.email}
+                            onChange={this.updateValue('email')}
+                        />
                         <Input
                             type="password"
                             style={{marginBottom: 5}}
                             autoFocus
                             placeholder={'пароль'}
-                            value={this.state.pass}
-                            onChange={this.updateValue('pass')}
+                            value={this.state.password}
+                            onChange={this.updateValue('password')}
                         />
                         <Input
-                            type="text"
-                            placeholder={'ключ'}
+                            type="tel"
+                            style={{marginBottom: 5}}
                             autoFocus
-                            status={(this.state.isKey)? 'error': null}
-                            value={this.state.Key}
-                            onChange={this.updateValue('Key')}
+                            placeholder={'телефон'}
+                            value={this.state.phoneNumber}
+                            onChange={this.updateValue('phoneNumber')}
                         />
                     </div>
                 </Popup>
@@ -227,5 +248,7 @@ class Menu extends Component {
         )
     }
 }
-
-export default Menu;
+export default connect(
+    state => state,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(Menu);

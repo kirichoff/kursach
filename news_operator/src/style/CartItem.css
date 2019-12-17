@@ -1,21 +1,42 @@
 .p-header{
     font-family: Roboto, sans-serif;
-   text-align: center;
+   text-align: left;
+    grid-area: headers;
 }
 .cardbody{
 display: grid;
-    grid-template-areas:"  ";
+    grid-template-areas:
+            "img headers price count removeIco";
+}
+.imgg{
+    grid-area: img;
+}
+.count input{
+    width: 17%;
+    text-align: center;
 }
 .count{
 float: right;
+    padding: 4% 0%;
     grid-area: count;
 }
 .price{
+    padding:  11%;
     grid-area: price;
     float: right;
+    text-align: center;
+
 }
 .removeIco{
     grid-area:removeIco ;
     float: right;
+    padding: 10% 40%;
 }
-
+.Link-style{
+    color: #2d2c2c;
+}
+.Link-style:hover{
+    color: #0053E6;
+    text-decoration: none;
+    cursor: pointer;
+}

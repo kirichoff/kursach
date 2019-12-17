@@ -1,25 +1,26 @@
 request = require('./model.config');
 const model = {};
-model.Register = ({login,password,rights,email,phoneNumber}) => {
+model.Register = ({login,password,email,phoneNumber}) => {
     // Query
     let query = `
         Insert         
         into
              MazShop.dbo.UserShop
-            (login,password,rights,email,phoneNumber)            
+            (login,password,email,phoneNumber)            
         values
-            ('${login}','${password}',${rights},'${email}',${phoneNumber})
+            ('${login}','${password}','${email}',${phoneNumber})
            `;
     return request(query);
 };
-model.AddShopItem = ({description,header,previewImage,price}) =>{
+model.AddShopItem = ({description,header,price,categoryId}) =>{
+    console.log('add',description,header,price,categoryId);
     let query = `
         Insert         
         into
              MazShop.dbo.ShopItem
-            (description,header,previewImage,price)           
+            (description,header,categoryId,price)           
         values
-            ('${description}','${header}',${previewImage},${price});
+            ('${description}','${header}',${categoryId},${price});
             select @@IDENTITY as Id  
            `;
     return request(query);
