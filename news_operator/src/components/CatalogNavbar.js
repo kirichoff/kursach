@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import Checkbox from 'rambler-ui/Checkbox'
-import Select from "rambler-ui/Select";
-import MenuItem from "rambler-ui/Menu/MenuItem";
 import '../style/catalogNavbar.css'
 import Input from "rambler-ui/Input";
 import Button from "rambler-ui/Button";

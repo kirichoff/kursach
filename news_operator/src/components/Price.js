@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from "rambler-ui/Button";
 
 
 
 function Price(props) {
+    console.log('price',props)
     return (
         <div style={{float:'right'}}>
             <div style={{display:'inline-block',margin: '50px 50px'}} >
                 {props.isAdmin?
                     <input
                         defaultValue={props.price}
-                        style={{textAlign:'center'}}
+                        style={{textAlign:'center',border:'none'}}
+                        value={props.price}
                         min={1}
                         onChange={(e,value)=> {
                             props.onChange(e.target.value)}

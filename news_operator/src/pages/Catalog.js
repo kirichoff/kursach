@@ -9,8 +9,8 @@ import '../style/Catalog.css'
 import Masonry from "react-masonry-css";
 import {Link} from 'react-router'
 import {useEffect } from 'react'
-import Button from "rambler-ui/Button";
-
+import IconButton from "rambler-ui/IconButton";
+import {AddIcon} from "rambler-ui/icons/forms";
 const breakpointColumnsObj = {
     default: 3,
     1100: 2,
@@ -24,7 +24,6 @@ function Catalog(props) {
 
     const get = () => {
         props.GetAllShopItemsFilter(Nav).then(data => {
-                //  props.GetAllShopItemsFilter(Nav);
                 if (data.length)
                     setData((data.length) ? data : [])
                 else
@@ -65,30 +64,44 @@ function Catalog(props) {
                                              onClick={ () => {
                                                  console.log(k)
                                                 props.AddToCart({...k})
-                                             }}
-                                         >
+                                             }}>
                                              в корзину
                                          </span> }
+                                         delete = {
+                                             <span
+                                                 style={ {
+                                                     marginLeft: '20%'
+                                                 } }
+                                                 className={ 'Link-style' }
+                                                 onClick={ () => {
+                                                     props.DeleteItem({ShopItemId:k.ShopItemId}).then(get())
+                                                 }}>
+                                                 удалить
+                                         </span>
+                                         }
+
                                          key={ index } { ...k }/>
                         )
                         }
                     </Masonry>
                     { isAdmin ?
-                        <div style={{width: '210px'}} >
+                        <div style={{margin: 'auto',width:'47px',display: 'block'}} >
                             <Link
                                 className={'Link-style'}
                                   to={ '/Item/editor' }>
-                                <CatalogItem
-                                    header={ 'добавить товар' }
-                                    previewImage={ '' }
-                                    description={ '' }
-                                />
+                                <IconButton
+                                    onClick={ ()=>{} }
+                                    type={ 'primary' }>
+                                    <AddIcon/>
+                                </IconButton>
                             </Link>
                         </div>
                         :
                         null
                     }
+
                 </div>
+
             </div>
         </Layout>
     );
