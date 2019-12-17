@@ -17,8 +17,9 @@ function CartItem(props) {
                         </div>
                         <div className={'count'} >
                         <input  defaultValue={count} type={'number'} min={1}/>
+                        <span>  :колличество</span>
                         </div>
-                        <span className={'price'} >{props.price}</span>
+                        <span className={'price'} >{props.price} :цена</span>
                         <div className={'removeIco'}>
                             <RemoveIcon  />
                         </div>

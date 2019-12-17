@@ -126,14 +126,7 @@ model.Login = async ({login,password})=> {
             login = '${ login }' 
             and password = '${ password }'`;
     let req = await request(query);
-    console.log(req);
-    if(req[0]){
-        return{request: true,userId:req[0].userId };
-    }
-    else{
-        return{request: false};
-    }
-
+    return req;
 };
 model.getCategory = () => {
     // noinspection SqlDialectInspection

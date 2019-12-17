@@ -16,6 +16,7 @@ import { ApplyTheme } from 'rambler-ui/theme'
 import Login from "./components/Login";
 import CartPage from "./pages/CartPage";
 import StatsPage from "./pages/StatsPage";
+import Profile from "./pages/Profile";
 const  store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -30,6 +31,7 @@ createRest().then(()=>{
                 <Route path={'/Catalog'} component={Catalog}/>
                 <Route path={'/Test'} component={FeatureTable}/>
                 <Route path={'/Login'} component={Login}/>
+                <Route path={'/Profile'} component={Profile} />
                 <Route exdct path={'/Cart'} component={CartPage}/>
                 <Route path={'/Item/:id'} component={ItemPage}/>
                 <Route path={'/Stats'} component={StatsPage}/>

@@ -1,14 +1,14 @@
 request = require('./model.config');
 const model = {};
-model.Register = ({login,password,rights,email,phoneNumber}) => {
+model.Register = ({login,password,email,phoneNumber}) => {
     // Query
     let query = `
         Insert         
         into
              MazShop.dbo.UserShop
-            (login,password,rights,email,phoneNumber)            
+            (login,password,email,phoneNumber)            
         values
-            ('${login}','${password}',${rights},'${email}',${phoneNumber})
+            ('${login}','${password}','${email}',${phoneNumber})
            `;
     return request(query);
 };

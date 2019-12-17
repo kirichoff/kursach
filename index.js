@@ -9,7 +9,7 @@ const cors = require('cors');
 
 app.use(bodyParser({limit: '50mb'}));
 
-const exclude = ['Login','get'];
+const exclude = ['get'];
 app.use(cors());
 console.log(model);
 

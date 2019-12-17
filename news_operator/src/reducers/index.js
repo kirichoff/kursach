@@ -6,30 +6,12 @@ const initialState = {};
 export const actionCreators = {
     Login: ({login,password}) => async (dispatch, getState) => {
         const token = await rest.Login({login,password});
-        let user= null;
-        if (token.token){
-            authHelper.saveAuth(token.userId,token.token);
-            user = token;
-        }
-        dispatch({ type: "LOGIN",User: user });
+        dispatch({ type: "LOGIN",User: token[0] });
+        return token[0];
     },
-    Register: ({
-                   UserName,
-                   Password,
-                   objectValue,
-                   FirstName,
-                   LastName,
-                   Email}
+    Register: ({login,password,email,phoneNumber}
     ) => async (dispatch, getState) =>{
-        const user = {
-            UserName: UserName,
-            Password: Password,
-            Type: objectValue === 'Admin',
-            FirstName: FirstName,
-            LastName: LastName,
-            Email: Email,
-            StartDate: `${new Date().toISOString()}`
-        };
+        await rest.Register({login,password,email,phoneNumber})
         //let res = await rest.addUser(user)
       //  dispatch({type:'REGISTER_TRUE',res: res })
     },

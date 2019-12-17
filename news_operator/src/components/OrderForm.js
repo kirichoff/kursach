@@ -14,7 +14,7 @@ function OrderForm(props) {
                 <h6>телефон</h6>
                 <Input placeholder={ '+3752999999999' }
                        onChange={ (e) => setPhone(e.target.value) }
-                       type={ 'phone' }
+                       type={ 'tel' }
                        value={ phone }/>
             </div>
             <div className={ 'email' }>
