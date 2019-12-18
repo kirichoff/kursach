@@ -25,7 +25,7 @@ function Catalog(props) {
     const get = () => {
         props.GetAllShopItemsFilter(Nav).then(data => {
                 if (data.length)
-                    setData((data.length) ? data : [])
+                    setData((data.length) ? data : []);
                 else
                     props.GetAllShopItemsFilter(Nav).then(data => {
                         setData((data.length) ? data : [])

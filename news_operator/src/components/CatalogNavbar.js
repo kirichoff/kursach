@@ -22,7 +22,7 @@ export default class CatalogNavbar extends Component {
             <div style={{width: '14vw', marginBottom: 15}}>
                 <h3>Категории</h3>
                 <CategoryPiker onChange={ (id) => {
-                    this.setState({category: id})
+                    this.setState({category: id});
                     this.props.onChange(this.state)
                 }
                 }
@@ -30,7 +30,7 @@ export default class CatalogNavbar extends Component {
                 <h5>Цена от</h5>
                 <Input
                     value={this.state.min}
-                    onChange={(value)=>{this.setState({min:value.target.value})
+                    onChange={(value)=>{this.setState({min:value.target.value});
                         this.props.onChange(this.state)}
                     }
                     type={ 'number' } />

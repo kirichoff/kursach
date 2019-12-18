@@ -8,15 +8,6 @@ function CategoryPiker(props) {
     const findId =(value)=>  data.find(k=>k.categoryName == value);
     const [value,setValue] = useState( '');
     const [data,setData] =useState([]);
-    let filterData = search => {
-        const filteredData =
-            search === ''
-                ? data
-                : data.filter(item => search !== '' && item.indexOf(search) > -1);
-       setData({
-            data: filteredData
-        })
-    };
     useEffect(()=>{
         rest.getCategory().then(res=>
             {
@@ -28,9 +19,6 @@ function CategoryPiker(props) {
                 setData(res);
             }})
     },[]);
-
-
-
     return (
             <Select
                 placeholder="Выберите категорию"

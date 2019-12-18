@@ -29,7 +29,7 @@ export default {
 
     getToken: () => {
         let item = sessionStorage.getItem(constants.tokenKey);
-        console.log(sessionStorage)
+        console.log(sessionStorage);
         let token = null;
         if (item) {
             token = JSON.parse(item).access_token;

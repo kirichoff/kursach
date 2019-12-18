@@ -83,7 +83,7 @@ function ItemPage(props) {
                 continue;
             props.DeleteItemContent(img);
         }
-    }
+    };
 
     let add = async()=>{
 

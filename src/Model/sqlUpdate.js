@@ -15,4 +15,14 @@ model.UpdateShopItem = ({description,header,price,categoryId,ShopItemId})=>{
     return request(query);
 };
 module.exports = model;
-
+model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
+    let query = `
+    update
+     MazShop.dbo.UserShop
+             SET login = '${login}',
+             password = '${password}',
+             phoneNumber = ${phoneNumber} ,
+             email = '${email}'           
+             where userId = ${userId}`;
+    return request(query);
+    };

@@ -45,10 +45,10 @@ WHERE ITEMCONTENT.CONTENTID = (
 
 model.GetAllShopItemsFilter = ({category,min,max}) =>{
     // noinspection SqlDialectInspection
-    console.log('values',min,max,category)
+    console.log('values',min,max,category);
     let q = category &&`and ShopItem.CategoryId=${category}` || '';
-    min = min || 1
-    max = max || Number.MAX_VALUE
+    min = min || 1;
+    max = max || Number.MAX_VALUE;
     let query = `
     SELECT ShopItemId
      , description
@@ -116,7 +116,7 @@ model.GetUserCart =  (userId)=>{
     return request(query);
 };
 model.Login = async ({login,password})=> {
-    console.log(login,password)
+    console.log(login,password);
     let query = `
         select
             * 
@@ -132,7 +132,7 @@ model.getCategory = () => {
     // noinspection SqlDialectInspection
     let query = 'select * from MazShop.dbo.Category';
     return request(query);
-}
+};
 model.GetShopItem = ({ShopItemId}) =>{
     let query = `
     select * from MazShop.dbo.ShopItem where ShopItemId = '${ShopItemId}'`;

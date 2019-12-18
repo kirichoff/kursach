@@ -10,7 +10,8 @@ export const actionCreators = {
     },
     Register: ({login,password,email,phoneNumber}
     ) => async (dispatch, getState) =>{
-        await rest.Register({login,password,email,phoneNumber})
+          let res = await rest.Register({login, password, email, phoneNumber});
+          return  res;
         //let res = await rest.addUser(user)
       //  dispatch({type:'REGISTER_TRUE',res: res })
     },

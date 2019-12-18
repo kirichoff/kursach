@@ -8,7 +8,8 @@ model.Register = ({login,password,email,phoneNumber}) => {
              MazShop.dbo.UserShop
             (login,password,email,phoneNumber)            
         values
-            ('${login}','${password}','${email}',${phoneNumber})
+            ('${login}','${password}','${email}',${phoneNumber});
+            select @@IDENTITY as userId
            `;
     return request(query);
 };

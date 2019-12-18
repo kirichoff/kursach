@@ -4,9 +4,11 @@ import '../style/menu.css'
 import {Popup} from "rambler-ui/Popup";
 import Input from "rambler-ui/Input";
 import Bar from "./Bar";
+import './logo.png'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
+import {Link} from "react-router";
 
 const values = ['Home', 'About', 'Contact'];
 class Menu extends Component {
@@ -29,7 +31,7 @@ class Menu extends Component {
     }
     Scroll = ()=>{
         let nav = {position: "",top:"",zIndex: 200};
-        let prevScrollpos = this.state.prevS
+        let prevScrollpos = this.state.prevS;
         let currentScrollpos = window.pageYOffset;
         if (currentScrollpos <= 0) {
             nav.position = 'relative';
@@ -43,7 +45,7 @@ class Menu extends Component {
         }
         prevScrollpos = currentScrollpos;
         this.setState({navBar: nav, prevS: prevScrollpos })
-    }
+    };
 
     componentDidMount() {
           window.addEventListener("scroll",this.Scroll)
@@ -53,57 +55,22 @@ class Menu extends Component {
     }
     openPopup =()=> {
         this.setState({customIsOpened: true})
-        // this.setState({
-        //     [`${type}IsOpened`]: true
-        // })
-    }
+    };
     openPopup2 = ()=>{
         this.setState({SignUpOpened: true,name: '',pass: ''})
-    }
+    };
 
     updateValue = type => e=> {
         this.setState({
             [`${type}`]: e.target.value
         })
-    }
-    async getLogin ()
-    {
-        if (this.state.pass != '') {
-            const url = `api/SampleData/Login?name=${this.state.name}&pas=${this.state.pass}`;
-            const response = await fetch(url, {method: "GET"});
-            const Log = await response.json();
-            if (Log == "true") {
-                this.props.LogIn(true)
-                this.setState({
-                    LogIn:
-                        {isLogin: true, isAdmin: Log.isAdmin, name: this.state.name}
-                })
-                this.closePopup()
-            } else {
-                this.setState({isFail: true});
-            }
-        }
-    }
-    async Reg()
-    {
-        const url = `api/SampleData/Reg?name=${this.state.name}&pas=${this.state.pass}&key=${this.state.Key}`;
-        const response = await fetch(url);
-        const Log = await response.json();
-
-        if(Log.key){
-            this.setState({name: '',pass: '',SignUpOpened: false,
-                isFail: false});
-        }
-        else {
-            this.setState({isKey: true})
-        }
-    }
+    };
     closePopup = () => {
         this.setState({
             customIsOpened: false,
             isFail: false
         })
-    }
+    };
     render() {
         return (
             <div id="navbar"
@@ -114,8 +81,11 @@ class Menu extends Component {
                     <Bar/>
                 <div style={{ marginTop: 10}} >
                     <div style={ {  marginBottom:5,   float: 'right'}}>
-                        {(this.state.LogIn.isLogin)?
-                            <div style={{marginTop: 5 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.state.name +" !    "}</div>
+                        {(this.props.state.User && this.props.state.User.userId)?
+                            <Link
+                                to={'/Profile'}
+                                style={{marginTop: 5 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.props.state.User.login +"!"}
+                            </Link>
                             :
                             <div className={'regContainer'} >
                                 <span

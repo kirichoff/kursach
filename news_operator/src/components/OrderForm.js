@@ -31,7 +31,9 @@ function OrderForm(props) {
                        type={ 'text' }
                        value={ name }/>
             </div>
-            <div className={'btn-order'} ><Button>Заказать</Button></div>
+            <div className={'btn-order'} >
+                <Button onClick={()=>props.onSubmit(name,phone,email)} >Заказать</Button>
+            </div>
         </div>
     );
 }

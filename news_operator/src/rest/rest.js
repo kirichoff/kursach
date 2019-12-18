@@ -30,7 +30,7 @@ function reuest (server,api,type){
 }
  export const createRest  = ()=> fetch(server+'/model',{method: 'GET'}).then(response=>response.json().then(res =>{
         let model  = res;
-        console.log(model)
+        console.log(model);
         for (let name of model.post) {
             if (exclude.find(el => el === name))
                 continue;

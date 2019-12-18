@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const model = require('./src/Model/modelCombainer');
 const jwt = require('./src/utils/jwt');
-const httpHandler = require('./src/utils/httpHandler')
+const httpHandler = require('./src/utils/httpHandler');
 const app = express();
 const cors = require('cors');
 

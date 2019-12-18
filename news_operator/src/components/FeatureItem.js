@@ -10,9 +10,9 @@ function FeatureItem(props) {
 
     let submit = (e) => {
         let inputs = form.current.children;
-            props.onChange(inputs[0].children[0].value,inputs[1].children[0].value)
+            props.onChange(inputs[0].children[0].value,inputs[1].children[0].value);
         setEdited(!isEdited)
-    }
+    };
     return (
         <div className={'f-container'} >
             { !isEdited?
