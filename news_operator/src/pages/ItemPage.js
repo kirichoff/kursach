@@ -31,13 +31,16 @@ function ItemPage(props) {
         if(id !== 'editor'){
             let ShopItem =  await props.GetShopItem({ShopItemId:+id});
             setShopItem({...ShopItem[0]});
+
             console.log('SHOPITEm',ShopItem[0])
-            setCategory(ShopItem[0] && +ShopItem[0].CategoryId || 1);
+            setCategory(ShopItem[0] && ShopItem[0].CategoryId || 1);
             let Features = await props.GetChar({id}) || [];
             setFeatureItems(Features);
             let content = await props.GetContent({id}) || [];
             console.log('content',content)
             setImages(content);
+            setPrice(ShopItem[0] && ShopItem[0].price || 221);
+            console.log('price',price)
             console.log(ShopItem,Features,content)
         }
     };
@@ -45,7 +48,7 @@ function ItemPage(props) {
             fetchData();
         }
     ,[id]);
-
+    console.log('price2',price)
     let addImage = (e)=>{
         let f = e.target.files[0];
         let reader = new FileReader();
@@ -57,10 +60,9 @@ function ItemPage(props) {
         };
         reader.readAsDataURL(f);
     };
-
     const actionPiker = () =>{
-        if (id === 'editor') add().then();
-        else update().then();
+        if (id === 'editor') add().then().then(()=>props.router.push('/Catalog'));
+        else update().then(()=>props.router.push('/Catalog'));
     };
 
     const update= async () =>{

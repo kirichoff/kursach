@@ -17,8 +17,8 @@ function CatalogItem(props) {
                     <div>
                         {props.link}
                         {props.cart}
-                        {props.delete}
                     </div>
+                    <div style={{  marginLeft: 'auto%'}} >{props.delete}</div>
                 </Card.Body>
             </Card>
     );

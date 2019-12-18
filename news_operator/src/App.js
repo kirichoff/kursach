@@ -4,7 +4,7 @@ import Route from "react-router/lib/Route";
 import Home from "./pages/Home";
 import Test from "./components/Test";
 import Profile from "./components/Profile";
-import About from "./components/About";
+import About from "./pages/About";
 import Layout from "./components/Layout";
 import PostPage from "./components/PostPage";
 import FloraComponent from "./components/FloraComponent";

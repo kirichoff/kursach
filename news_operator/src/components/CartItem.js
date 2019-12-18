@@ -10,9 +10,9 @@ function CartItem(props) {
 
                 <Card.Body>
                     <div className={'cardbody'}  >
-                        <Card.Img className={'imgg'} style={{width: '100px'}}  variant="left" src="https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                        <Card.Img className={'imgg'} style={{width: '100px'}}  variant="left" src={props.previewImage} />
                         <div  style={{display:'inline-block'}} className={'p-header'}>
-                            <div>{props.header}</div>
+                            <h4>{props.header}</h4>
                             <div>{props.description}</div>
                         </div>
                         <div className={'count'} >

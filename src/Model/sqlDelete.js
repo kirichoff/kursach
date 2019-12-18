@@ -2,7 +2,6 @@ request = require('./model.config');
 const model = {};
 model.DeleteItemContent = ({contentId})=>{
     // Query
-    console.log(contentId)
     let query = `
         delete
         from
@@ -12,4 +11,16 @@ model.DeleteItemContent = ({contentId})=>{
            `;
     return request(query);
 };
+
+model.DeleteItem = ({ShopItemId}) =>{
+    let query = `
+        delete
+        from
+            MazShop.dbo.ShopItem
+            where
+            ShopItemId = ${ShopItemId}
+           `;
+    return request(query);
+};
+
 module.exports=model;

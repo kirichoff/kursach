@@ -5,15 +5,13 @@ import { Provider } from 'react-redux'
 import { Router,Route,browserHistory} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './Store'
-import About from "./components/About";
+import About from "./pages/About";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
-import FeatureTable from "./components/FeatureTable";
 import ItemPage from "./pages/ItemPage";
 import {createRest} from "./rest/rest";
 import {loadActions} from "./reducers";
 import { ApplyTheme } from 'rambler-ui/theme'
-import Login from "./components/Login";
 import CartPage from "./pages/CartPage";
 import StatsPage from "./pages/StatsPage";
 import Profile from "./pages/Profile";
@@ -29,8 +27,6 @@ createRest().then(()=>{
                 <Route exact path="/" component={ Home }/>
                 <Route path="/About" component={ About }/>
                 <Route path={'/Catalog'} component={Catalog}/>
-                <Route path={'/Test'} component={FeatureTable}/>
-                <Route path={'/Login'} component={Login}/>
                 <Route path={'/Profile'} component={Profile} />
                 <Route exdct path={'/Cart'} component={CartPage}/>
                 <Route path={'/Item/:id'} component={ItemPage}/>

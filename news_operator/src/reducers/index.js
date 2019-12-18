@@ -1,5 +1,4 @@
-import {createRest, rest} from '../rest/rest'
-import authHelper from "../utils/authHelper";
+import {rest} from '../rest/rest'
 
 const initialState = {};
 
@@ -20,7 +19,7 @@ export const actionCreators = {
         let exist = state.cart.find(k=>k.ShopItemId === Item.ShopItemId);
         if(state && state.userId) {
             if(!exist) {
-                let res =await rest.AddToCart(Item);
+                await rest.AddToCart(Item);
                 dispatch({type: 'CART', cart: [...state.cart, Item]})
             }
         }
