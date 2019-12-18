@@ -61,9 +61,7 @@ function Catalog(props) {
                                                  marginLeft: '20%'
                                              } }
                                              className={ 'Link-style' }
-                                             onClick={ () => {
-                                                 console.log(k)
-                                                props.AddToCart({...k})
+                                             onClick={ () => {props.AddToCart({...k})
                                              }}>
                                              в корзину
                                          </span> }

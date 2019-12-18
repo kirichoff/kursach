@@ -19,7 +19,7 @@ function CategoryPiker(props) {
     };
     useEffect(()=>{
         rest.getCategory().then(res=>
-            {console.log('res',res);
+            {
                 setValue(
                     res.find(k=>k.categoryId === props.categoryId)
                     && res.find(k=>k.categoryId === props.categoryId).categoryName

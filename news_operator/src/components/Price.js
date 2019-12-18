@@ -4,7 +4,6 @@ import Button from "rambler-ui/Button";
 
 
 function Price(props) {
-    console.log('price',props)
     return (
         <div style={{float:'right'}}>
             <div style={{display:'inline-block',margin: '50px 50px'}} >

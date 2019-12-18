@@ -9,7 +9,6 @@ function FeatureItem(props) {
     const [isEdited, setEdited] = useState(false);
 
     let submit = (e) => {
-        console.log('sub')
         let inputs = form.current.children;
             props.onChange(inputs[0].children[0].value,inputs[1].children[0].value)
         setEdited(!isEdited)

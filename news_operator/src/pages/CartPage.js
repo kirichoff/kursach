@@ -12,7 +12,6 @@ function CartPage(props) {
     useEffect(()=>{
         props.GetCart();
         setCart(props.state.cart);
-        console.log(cartItems, props)
     },[cartItems,props]);
     return (
         <Layout>

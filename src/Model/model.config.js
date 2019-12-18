@@ -1,9 +1,9 @@
 const sql = require("mssql");
 const config =  {
     user: 'sa',
-    password: '12345',
+    password: '123',
     server: 'localhost',
-    port:1433,
+    port:1434,
     database: 'MazShop',
 };
 sql.on('error', err => {

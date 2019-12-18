@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import MyCarousel from "../components/MyCarousel";
-import Bar from "../components/Bar";
 import Layout from "../components/Layout";
 import NewsRendering from "../components/NewsRendering";
 const item = {url: "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",

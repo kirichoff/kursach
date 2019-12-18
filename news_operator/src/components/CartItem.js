@@ -3,7 +3,6 @@ import {RemoveIcon} from "rambler-ui/icons/forms";
 import Card from "react-bootstrap/Card";
 import '../style/CartItem.css'
 function CartItem(props) {
-    console.log(props)
     const [count,setCount] = useState(1);
     return (
             <Card>

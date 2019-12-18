@@ -11,8 +11,6 @@ app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
 app.use(cors());
-console.log(model);
-
 httpHandler(app,model.post,exclude,'/api/post/','post');
 
 httpHandler(app,model.get,exclude,'/api/get/');

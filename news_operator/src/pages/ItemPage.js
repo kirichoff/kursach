@@ -31,24 +31,18 @@ function ItemPage(props) {
         if(id !== 'editor'){
             let ShopItem =  await props.GetShopItem({ShopItemId:+id});
             setShopItem({...ShopItem[0]});
-
-            console.log('SHOPITEm',ShopItem[0])
             setCategory(ShopItem[0] && ShopItem[0].CategoryId || 1);
             let Features = await props.GetChar({id}) || [];
             setFeatureItems(Features);
             let content = await props.GetContent({id}) || [];
-            console.log('content',content)
             setImages(content);
             setPrice(ShopItem[0] && ShopItem[0].price || 221);
-            console.log('price',price)
-            console.log(ShopItem,Features,content)
         }
     };
     useEffect(  ()=>{
             fetchData();
         }
     ,[id]);
-    console.log('price2',price)
     let addImage = (e)=>{
         let f = e.target.files[0];
         let reader = new FileReader();
@@ -74,11 +68,7 @@ function ItemPage(props) {
             categoryId: category,
             ShopItemId: props.params.id
         };
-            console.log('params',params)
         let res = await props.UpdateShopItem(params);
-
-        console.log('features',featureItems,'DELETE',deleteImages,images);
-
         for(let pt of featureItems){
             if(pt.charId === -1)
                 props.AddChar(pt);
@@ -101,13 +91,10 @@ function ItemPage(props) {
             header:header.value,
             price:price,
             categoryId: category};
-        console.log('params',params);
         let res = await props.AddShopItem(
            {
              ...params
                 });
-
-       console.log(res)
         let id  = res[0].Id || null;
         for(let pt of featureItems){
             if(pt.charId === -1)
@@ -137,7 +124,6 @@ function ItemPage(props) {
                         </Button>
                         <Button
                             onClick={ ()=>{
-                                console.log('clear',images);
                                 setDeleteImages([...deleteImages,{...images[current]}]);
                                 images.splice(current,1);
                                 setImages([...images]);
