@@ -7,6 +7,16 @@ create table Category
 )
 go
 
+create table Post
+(
+    image  varchar(max),
+    postId int identity
+        constraint Post_pk
+            primary key nonclustered,
+    text   varchar(300)
+)
+go
+
 create table ShopItem
 (
     ShopItemId  int identity
@@ -107,11 +117,20 @@ create table OrderShop
             references ShopItem
             on delete cascade,
     userId    int
-        constraint Fk_user_order
+        constraint OrderShop_UserShop_userId_fk
             references UserShop,
     status    int,
-    startDate datetime
+    startDate datetime,
+    count     int default 1
 )
+go
+
+create unique index UserShop_login_uindex
+    on UserShop (login)
+go
+
+create unique index UserShop_email_uindex
+    on UserShop (email)
 go
 
 
