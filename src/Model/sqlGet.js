@@ -103,16 +103,41 @@ model.GetUserById = ({id})=>{
               `;
     return request(query);
 };
-model.GetUserCart =  (userId)=>{
+model.GetUserCart =  ({userId})=>{
+    console.log('UserID',userId)
     // Query
     let query = `
-        select
-            * 
-        from
-            MazShop.dbo.Cart 
-        where
-            userId = '${userId}'
-           `;
+     SELECT
+	count
+,	cartId
+,	userId
+,   MazShop.dbo.ItemContent.itemId
+,	description
+,	header
+,	price
+,	CategoryId
+,	content	AS 'previewImage'
+FROM
+	MAZSHOP.DBO.CART
+INNER JOIN
+	MAZSHOP.DBO
+.SHOPITEM
+ON
+	CART.ITEMID	=	MAZSHOP.DBO.SHOPITEM.SHOPITEMID
+INNER JOIN
+	MAZSHOP.DBO
+.ITEMCONTENT
+ON
+	MAZSHOP.DBO.CART.ITEMID	=	MAZSHOP.DBO.ITEMCONTENT.ITEMID
+WHERE
+	MAZSHOP.DBO.ITEMCONTENT.CONTENTID	=	(
+		SELECT
+			MIN(ITEMCONTENT.CONTENTID)
+		FROM
+			MAZSHOP.DBO.ITEMCONTENT
+		WHERE
+			MAZSHOP.DBO.ITEMCONTENT.ITEMID	=	MAZSHOP.DBO.SHOPITEM.SHOPITEMID
+	) and MAZSHOP.DBO.CART.USERID	= ${userId}`;
     return request(query);
 };
 model.Login = async ({login,password})=> {

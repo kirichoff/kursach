@@ -9,46 +9,47 @@ import {forEach} from "react-bootstrap/cjs/ElementChildren";
 import Button from "rambler-ui/Button";
 
 function CartPage(props) {
-    const  [cartItems,setCart] = useState([]);
-
+    let cartItems = props.state.cart;
     useEffect(()=>{
         props.GetCart();
-        setCart(props.state.cart);
-    },[cartItems,props]);
+    },[]);
     let user = props.state.User;
     user = user && user.userId  ||  null;
     let addOrder = (userId)=> {
-            for (let item in props.state.cart || [])
-            props.AddOrder({
-                startDate: Date.now(),
-                itemId: item.ShopItemId,
+        if(userId)
+            for (let item of props.state.cart || [])
+            {
+                props.AddOrder({
+                startDate: new Date().toISOString(),
+                itemId: item.ShopItemId || item.itemId ,
                 userId: userId,
-                status: 0
-            })
+                status: 0,
+                    count:item.count
+            })}
+        props.ClearCart();
     };
     let handler = async (name,phone,email)=>{
-        if (props.cart.length) {
+        if (props.state.cart && props.state.cart.length) {
             let us = await props.Register({login: name, phoneNumber: phone, email, password: 'user'});
-            addOrder(us[0].userId)
+            addOrder(us[0].userId);
         }
     };
-
-
-
 
     return (
         <Layout>
             <div>
                  {cartItems.map((item,index)=>
-                     <CartItem
+                    {
+                     return <CartItem
                      key={index}
                          {...item}
-                     />
+                        setCount={(value)=> props.SetCountCart(value,item.itemId || item.ShopItemId )}
+                     />}
                      )}
             </div>
 
             {user?
-                <div style={{margin: 'auto',width: 107}} ><Button  onClick={()=>addOrder(user)} >Заказать</Button></div>
+                <div style={{margin: 'auto', marginTop: '5%',width: 107}} ><Button  onClick={()=>addOrder(user)} >Заказать</Button></div>
                 :
                 <OrderForm onSubmit={handler} />
             }

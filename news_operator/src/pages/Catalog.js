@@ -11,6 +11,7 @@ import {Link} from 'react-router'
 import {useEffect } from 'react'
 import IconButton from "rambler-ui/IconButton";
 import {AddIcon} from "rambler-ui/icons/forms";
+import Spinner from "rambler-ui/Spinner";
 const breakpointColumnsObj = {
     default: 3,
     1100: 2,
@@ -26,19 +27,16 @@ function Catalog(props) {
         props.GetAllShopItemsFilter(Nav).then(data => {
                 if (data.length)
                     setData((data.length) ? data : []);
-                else
+                else{
                     props.GetAllShopItemsFilter(Nav).then(data => {
                         setData((data.length) ? data : [])
-                    })
+                    })}
             }
         )
     };
     useEffect( ()=>{
         get()
     },[]);
-
-
-
 
     let isAdmin = true;
     return (
@@ -50,7 +48,7 @@ function Catalog(props) {
                         breakpointCols={ breakpointColumnsObj }
                         className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column">
-                        { rendData.map((k, index) =>
+                        { rendData.length?  rendData.map((k, index) =>
                             <CatalogItem link={
                                 <Link className={ 'Link-style' } to={ `/Item/${ k.ShopItemId }` }>
                                     подробнее
@@ -80,6 +78,12 @@ function Catalog(props) {
 
                                          key={ index } { ...k }/>
                         )
+                            :
+                            <div style={ {
+                                position: 'absolute',
+                                top: ' 53vh',
+                                left: '56%'
+                            } }><Spinner size={ 30 }/></div>
                         }
                     </Masonry>
                     { isAdmin ?
@@ -97,9 +101,7 @@ function Catalog(props) {
                         :
                         null
                     }
-
                 </div>
-
             </div>
         </Layout>
     );

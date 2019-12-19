@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/order.css'
 import {Input} from "rambler-ui";
 import Button from "rambler-ui/Button";
@@ -9,10 +9,23 @@ import Layout from "../components/Layout";
 
 function Profile(props) {
     let user = props.state && props.state.User || {};
+
     const [password,setPassword] = useState(user.password || '');
     const [email, setEmail] = useState(user.email || '');
     const [phone, setPhone] = useState(user.phoneNumber || '');
     const [name, setName] = useState(user.login || '');
+    const [loading, setLoading] = useState(false);
+
+    //let loading = false;
+
+    useEffect(()=>{
+        setPhone(user.phoneNumber || '');
+        setPassword(user.password || '');
+        setEmail(user.email || '');
+        setName(user.login || '');
+    },[user.userId])
+
+
     return (
         <Layout>
         {user.userId?
@@ -20,7 +33,8 @@ function Profile(props) {
                     <h3>Ваши данные</h3>
                     <div className={'phone'}>
                         <h6>телефон</h6>
-                        <Input placeholder={'+3752999999999'}
+                        <Input
+                            placeholder={'+3752999999999'}
                                onChange={(e) => setPhone(e.target.value)}
                                type={'tel'}
                                value={phone}/>
@@ -41,13 +55,15 @@ function Profile(props) {
                     </div>
                     <div className={'password'}>
                         <h6>пароль</h6>
-                        <Input placeholder={'Валера'}
+                        <Input placeholder={'пароль'}
                                onChange={(e) => setPassword(e.target.value)}
                                type={'password'}
                                value={password}/>
                     </div>
                     <div className={'btn-order'}>
-                        <Button onClick={() => {
+                        <Button
+                            loading={loading}
+                            onClick={() => {
                             props.UpdateUser({
                                     email,
                                     password,
@@ -55,6 +71,8 @@ function Profile(props) {
                                     login: name,
                                     userId: user.userId
                             })
+                            setLoading(true)
+                            setTimeout(()=>setLoading(false),1000)
                         }}>
                             сохранить
                         </Button>

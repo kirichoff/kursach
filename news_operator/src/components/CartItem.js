@@ -3,10 +3,9 @@ import {RemoveIcon} from "rambler-ui/icons/forms";
 import Card from "react-bootstrap/Card";
 import '../style/CartItem.css'
 function CartItem(props) {
-    const [count,setCount] = useState(1);
+    console.log(props)
     return (
-            <Card>
-
+            <Card key={props.key}>
                 <Card.Body>
                     <div className={'cardbody'}  >
                         <Card.Img className={'imgg'} style={{width: '100px'}}  variant="left" src={props.previewImage} />
@@ -15,12 +14,14 @@ function CartItem(props) {
                             <div>{props.description}</div>
                         </div>
                         <div className={'count'} >
-                        <input  defaultValue={count} type={'number'} min={1}/>
+                            <input defaultValue={ props.count }
+                                   onChange={ (e) => props.setCount && props.setCount(e.target.value) || null }
+                                   type={ 'number' } min={ 1 }/>
                         <span>  :колличество</span>
                         </div>
                         <span className={'price'} >{props.price} :цена</span>
                         <div className={'removeIco'}>
-                            <RemoveIcon  />
+                            <RemoveIcon onClick={()=>props.DeleteCartIte  && props.DeleteCartItem(props.ShopItemId) || null } />
                         </div>
                     </div>
                 </Card.Body>

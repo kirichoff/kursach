@@ -12,32 +12,72 @@ export const actionCreators = {
     ) => async (dispatch, getState) =>{
           let res = await rest.Register({login, password, email, phoneNumber});
           return  res;
-        //let res = await rest.addUser(user)
-      //  dispatch({type:'REGISTER_TRUE',res: res })
+    },
+    DeleteCartItem: (itemId) => async (dispatch,getState)=> {
+        let state = getState().state;
+        if(state.User && state.User.userId){
+            rest.DeleteCartItem({
+                ShopItemId: itemId,
+                userId: state.User.userId});
+            let res = await rest.GetUserCart({userId: state.User.userId});
+            dispatch({type: 'SET_CART',cart: res })
+        }
+        else {
+            let cart = state.cart;
+            cart = cart.splice(cart.findIndex(k => itemId === itemId), 1);
+            dispatch({type: 'SET_CART',cart: cart })
+        }
+    }
+        ,
+    SetCountCart: (value,itemId) => async (dispatch,getState)=>{
+
+        let state = getState().state;
+        if(state.User && state.User.userId){
+            console.log('Item',itemId)
+            await rest.UpdateCountCart({count: value, itemId: itemId, userId: state.User.userId});
+            let res = await rest.GetUserCart({userId: state.User.userId});
+            dispatch({type: 'SET_CART',cart: res })
+        }
+        else {
+            let cart = state.cart;
+            let newCount =  cart.find(k => itemId === itemId);
+            newCount.count = value;
+            dispatch({type: 'SET_CART',cart: [...cart] })
+        }
+
     },
     AddToCart: (Item) => async (dispatch,getState)=>{
         let state = getState().state;
         let exist = state.cart.find(k=>k.ShopItemId === Item.ShopItemId);
-        if(state && state.userId) {
+        if(state.User && state.User.userId) {
+            console.log('add')
             if(!exist) {
-                await rest.AddToCart(Item);
+                console.log('add3')
+                console.log(Item);
+                await rest.AddToCart({ItemId: Item.ShopItemId,userId: state.User.userId,count:1});
                 dispatch({type: 'CART', cart: [...state.cart, Item]})
             }
         }
         else {
+            console.log('add2')
             if (!exist) {
                 dispatch({type: 'CART', cart:  [...state.cart, Item]})
             }
         }
         },
+    ClearCart:  ()=> async (dispatch,getState)=>{
+            dispatch({type: 'SET_CART',cart: [] })
+    },
     GetCart: ()=> async (dispatch,getState)=>{
         let state = getState().state;
-        if(state && state.userId){
-                let res = await rest.GetUserCart(state.userId);
+        console.log('User',state);
+        if(state.User && state.User.userId){
+            console.log('Cart')
+                let res = await rest.GetUserCart({userId: state.User.userId});
                 dispatch({type: 'SET_CART',cart: res })
             }
             else {
-
+            console.log('Cart2')
             }
     }
 };

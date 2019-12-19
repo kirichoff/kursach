@@ -8,7 +8,7 @@ const app = express();
 const cors = require('cors');
 
 app.use(bodyParser({limit: '50mb'}));
-
+console.log(model)
 const exclude = ['get'];
 app.use(cors());
 httpHandler(app,model.post,exclude,'/api/post/','post');

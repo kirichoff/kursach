@@ -114,6 +114,7 @@ class Menu extends Component {
                     okButton={
                         <Button type="primary"  size="small" onClick={()=>{
                             this.props.Login(this.state).then(r=>{
+                                this.props.GetCart({userId: r.userId});
                                 this.setState({customIsOpened: !!!r})})
                         }
                         }

@@ -14,7 +14,6 @@ model.UpdateShopItem = ({description,header,price,categoryId,ShopItemId})=>{
            `;
     return request(query);
 };
-module.exports = model;
 model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
     let query = `
     update
@@ -26,3 +25,14 @@ model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
              where userId = ${userId}`;
     return request(query);
     };
+model.UpdateCountCart = ({itemId,userId,count}) =>{
+    console.log('count',itemId,userId,count)
+    let query = `
+    update
+     MazShop.dbo.Cart
+             SET count = '${count}'         
+             where userId = ${userId} and ItemId=${itemId}`;
+    return request(query);
+
+};
+module.exports = model;

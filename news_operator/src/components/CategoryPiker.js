@@ -12,6 +12,7 @@ function CategoryPiker(props) {
         rest.getCategory().then(res=>
             {
                 setValue(
+                    res.length &&
                     res.find(k=>k.categoryId === props.categoryId)
                     && res.find(k=>k.categoryId === props.categoryId).categoryName
                     || '' );

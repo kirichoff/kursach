@@ -26,12 +26,16 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
            `;
     return request(query);
 };
-model.AddOrder = ({itemId, userId, status, startDate})=>{
+model.AddOrder = ({itemId, userId, status, startDate,count})=>{
+        console.log(itemId, userId, status, startDate,count);
+        count = count || 1;
     let query = `
     insert       
     into
         MazShop.dbo.OrderShop
-        (itemId, userId, status, startDate) value (${itemId},${userId},${status},'${startDate}')`;
+        (itemId, userId, status, startDate,count) values (${itemId},${userId},${status},'${startDate}',${count});
+        delete from MazShop.dbo.Cart where Cart.ItemId = ${itemId}  
+        `;
     return request(query)
 };
 model.AddItemContent = ({itemId, content}) =>{
@@ -63,6 +67,7 @@ model.AddChar = ({itemId, charName, charContent}) =>{
 };
 model.AddToCart = ({ItemId,count,userId})=>{
     // Query
+    console.log('Add cart',{ItemId,count,userId})
     let query = `
         Insert         
         into
@@ -73,5 +78,20 @@ model.AddToCart = ({ItemId,count,userId})=>{
            `;
     return request(query);
 };
+
+model.AddUnregisteredUser = ({login,password,email,phoneNumber}) => {
+        // Query
+        let query = `
+        Insert         
+        into
+             MazShop.dbo.UserShop
+            (login,password,email,phoneNumber)            
+        values
+            ('${login}','${password}','${email}',${phoneNumber});
+            select @@IDENTITY as userId
+           `;
+        return request(query);
+    };
+
 
 module.exports = model;

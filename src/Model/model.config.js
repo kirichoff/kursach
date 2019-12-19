@@ -1,9 +1,9 @@
 const sql = require("mssql");
 const config =  {
     user: 'sa',
-    password: '123',
+    password: '1234',
     server: 'localhost',
-    port:1434,
+    port:1433,
     database: 'MazShop',
 };
 sql.on('error', err => {
@@ -17,6 +17,7 @@ module.exports = function request (query){
         console.log('reqRES',result);
         return result.recordset;
     }).catch(err => {
-        console.log('ERR',err)
+        console.log('ERR',err);
+        return {ERROR: 'ERROR'}
     });
 };

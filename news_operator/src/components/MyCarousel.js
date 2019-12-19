@@ -15,11 +15,9 @@ function MyCarousel(props) {
             showThumbs={ false }
             onChange ={(e)=> props.onChange && props.onChange(e) || null }
             >
-
             { props.items.map((k, index) =>
                 <div key={ index }>
-                    <img src={ k.content } alt={'img'}/>
-                    <p className="">cont</p>
+                    <img src={ k.url } alt={'img'}/>
                 </div>) }
         </Carousel>
     );

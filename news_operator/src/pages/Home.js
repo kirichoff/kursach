@@ -1,26 +1,32 @@
 import React, {useState} from 'react';
 import MyCarousel from "../components/MyCarousel";
 import Layout from "../components/Layout";
-import NewsRendering from "../components/NewsRendering";
-const item = {url: "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-content: 'content'
-};
-const array = [item,item,item,item];
+import '../style/Home.css'
+const array = [
+    {url: './images/index-bg-1.jpg'},
+    {url: './images/index-bg-2.jpg'},
+    {url: './images/index-bg-3.jpg'}
+];
 function Home(props) {
-    let brakePoints = [100, 950];
-    let images = [];
-    const imgId = [1011, 883, 1074, 823, 64, 65, 839, 314, 256, 316, 92,643];
-    for(let i = 0; i< imgId.length; i++){
-        const ih = 200 + Math.floor(Math.random()*(215-415)+415);
-        images.push("https://unsplash.it/550/" + ih + "?image=" + imgId[i]);
-    }
-    const [state,count] = useState({text:"TEXTTT"});
+
     return (
         <Layout>
             <div style={{width: '100%'}} >
             <MyCarousel items ={ array }/>
-            <div style={{margin:'100px'}} > </div>
-                <NewsRendering images = {images} brakePoints = {brakePoints}  />
+            <div style={{margin:'70px'}} >
+                <div className={'item-home'} >
+                <img src={'./images/bus.png'} />
+                <div>
+                Продукция Минского автомобильного завода – это техника, соответствующая экологическим стандартам Евро-2, Евро-3, Евро-4, Евро-5, Евро-6.
+                Под маркой «МАЗ» с конвейера завода сходят седельные тягачи, бортовые автомобили, шасси под установку различного спецоборудования. Всего более 500 моделей и модификаций.</div>
+                </div>
+                <div className={'item-home'} >
+                <img src={'./images/maz_grating.jpg'} alt={''}/>
+                <div>
+                    С 1995 года Минский автомобильный завод выпускает пассажирскую технику. Городские, междугородние, туристические и специальные автобусы успешно работают на различных маршрутах по всему миру. За свой дизайн, функциональность, качество и надежность они неоднократно были удостоены высоких наград на международных автомобильных салонах и специализированных выставках. Сегодня пассажирская техника МАЗ представлена 15 моделями в более чем ста исполнениях.
+                </div>
+                </div>
+            </div>
             </div>
         </Layout>
     );

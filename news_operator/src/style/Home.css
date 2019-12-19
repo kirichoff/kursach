@@ -1,0 +1,27 @@
+.item-home{
+    display: flex;
+    box-shadow: 3px 17px 114px -44px rgba(0,0,0,0.75);
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 100px;
+    transition: all linear .5s;
+    animation: ease-in-out alternate infinite;
+}
+.item-home img{
+    display: inline-block;
+    border-radius: 20px;
+    margin-right: 15px;
+    margin-bottom: 32px;
+}
+.item-home div{
+    margin-top: 0;
+    display: inline-block;
+    width: 30vw;
+}
+.item-home:hover{
+    box-shadow: 3px 17px 114px -44px rgba(0,0,0,0.35);
+    transform: scale(1.05);
+    transition: all linear .5s;
+    animation: ease-in-out alternate infinite;
+
+}
