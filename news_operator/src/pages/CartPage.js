@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
 import OrderForm from "../components/OrderForm";
-import {forEach} from "react-bootstrap/cjs/ElementChildren";
 import Button from "rambler-ui/Button";
 import NotifyError from "../components/NotifyError";
 
@@ -15,7 +14,8 @@ function CartPage(props) {
         props.GetCart();
     },[]);
     const [notification,setNotification] = useState(false);
-    const error = {message: 'все поля должны быть заполнены'};
+    const [error,setError] = useState({message: ''});
+
     let user = props.state.User;
     user = user && user.userId  ||  null;
     let addOrder = (userId)=> {
@@ -38,6 +38,7 @@ function CartPage(props) {
                 addOrder(us[0].userId);
             }
             else {
+                setError({message: 'все поля должны быть заполнены'});
                 setNotification(true)
             }
         }
@@ -52,7 +53,13 @@ function CartPage(props) {
                      return <CartItem
                      key={index}
                          {...item}
-                        setCount={(value)=> props.SetCountCart(value,item.itemId || item.ShopItemId )}
+                        setCount={(value)=> {
+                            if (value > 0) props.SetCountCart(value, item.itemId || item.ShopItemId);
+                            else {
+                                setError({message: 'количество не может быть отрицательным'});
+                                setNotification(true)}
+                            }
+                        }
                      />}
                      )}
             </div>

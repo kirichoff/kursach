@@ -10,12 +10,14 @@ import {connect} from 'react-redux'
 
 function OrderPage(props) {
     const [data,setData] = useState([]);
-    useEffect(()=>{
+    const getOrders = ()=> {
         props.GetOrders().then(res=>{
-           console.log(res);
-           setData(res)
-       });
-
+            console.log(res);
+            setData(res)
+        });
+    }
+    useEffect(()=>{
+        getOrders();
         },[data.orderId]);
 
     return (
@@ -48,7 +50,7 @@ function OrderPage(props) {
                         <td>{k.orderId}</td>
                         <td>{k.itemId}</td>
                         <td><Link to={`/Item/${k.itemId}`} >перейти</Link></td>
-                        {/*<td><span className={'point'} onClick={()=>props.DeleteOrder({orderId: k.orderId})} >завершить</span></td>*/}
+                        <td><span className={'point'} onClick={()=>props.DeleteOrder({orderId: k.orderId}).then(()=>getOrders())} >завершить</span></td>
                     </tr>
                 )}
                 </tbody>

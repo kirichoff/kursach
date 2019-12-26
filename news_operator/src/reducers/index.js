@@ -24,7 +24,7 @@ export const actionCreators = {
         }
         else {
             let cart = state.cart;
-            cart = cart.splice(cart.findIndex(k => itemId === itemId), 1);
+            cart.splice(cart.findIndex(k => k.itemId === itemId),1);
             dispatch({type: 'SET_CART',cart: cart })
         }
     }
@@ -83,7 +83,7 @@ export const actionCreators = {
 };
 
 export const loadActions = ()=>{
-    const exclude = ['Login','AddToCart'];
+    const exclude = ['Login','AddToCart','DeleteCartItem'];
     for(let property in rest){
         if (exclude.find(el => el === property))
             continue;
@@ -114,7 +114,7 @@ export const reducer = (state = {data: [],cart:[]}, action) => {
         };
         case 'SET_CART': return {
             ...state,
-            cart: action.cart
+            cart: [...action.cart]
         };
     }
     return state;
