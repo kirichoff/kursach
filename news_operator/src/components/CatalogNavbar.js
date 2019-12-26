@@ -6,10 +6,9 @@ import CategoryPiker from "./CategoryPiker";
 
 export default class CatalogNavbar extends Component {
     state = {
-        value: 'general',
-        min: 1,
-        category: 0,
-        max: 200000000000
+        min: this.props.Nav.min,
+        category: this.props.Nav.category,
+        max: this.props.Nav.max
     };
     check = (index) =>(val)=>{
         let boxes= this.state.checkBoxes;
@@ -17,31 +16,35 @@ export default class CatalogNavbar extends Component {
         this.setState({checkBoxes: [...boxes] })
     };
     render() {
+        console.log('Nav',this.state);
         return (
         <div className={'catalogNavbar'} >
             <div style={{width: '14vw', marginBottom: 15}}>
                 <h3>Категории</h3>
                 <CategoryPiker onChange={ (id) => {
                     this.setState({category: id});
-                    this.props.onChange(this.state)
+                    this.state.category = id;
+                    this.props.onChange({...this.state})
                 }
                 }
                 />
                 <h5>Цена от</h5>
                 <Input
                     value={this.state.min}
-                    onChange={(value)=>{this.setState({min:value.target.value});
-                        this.props.onChange(this.state)}
+                    onChange={(value)=>{
+                        this.setState({min:value.target.value});
+                        this.state.min = value.target.value
+                        this.props.onChange(this.state)
+                    }
                     }
                     type={ 'number' } />
                 <h5>До</h5>
                 <Input value={this.state.max}
                        onChange={(value)=>
                            {
-                               this.setState({max:value.target.value
-                           }
-                           );
-                           this.props.onChange(this.state)
+                               this.setState({max:value.target.value});
+                               this.state.max = value.target.value
+                               this.props.onChange(this.state)
                            }
                        }
                        type={ 'number' } />

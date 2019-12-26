@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/teststyle.css'
 import Menu from "./Menu";
+import Notification from "rambler-ui/Notification/Notification";
 function Layout(props) {
     return (
         <div>
@@ -8,7 +9,7 @@ function Layout(props) {
             <div className={'main'} >
                 {props.children}
             </div>
-            <footer className={'footer'} >foter</footer>
+            <footer className={'footer'} >footer</footer>
         </div>
     );
 }

@@ -3,8 +3,8 @@ import {rest} from '../rest/rest'
 const initialState = {};
 
 export const actionCreators = {
-    Login: ({login,password}) => async (dispatch, getState) => {
-        const token = await rest.Login({login,password});
+    Login: ({email,password}) => async (dispatch, getState) => {
+        const token = await rest.Login({email,password});
         dispatch({ type: "LOGIN",User: token[0] });
         return token[0];
     },

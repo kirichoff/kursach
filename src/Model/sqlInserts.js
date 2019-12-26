@@ -79,8 +79,13 @@ model.AddToCart = ({ItemId,count,userId})=>{
     return request(query);
 };
 
-model.AddUnregisteredUser = ({login,password,email,phoneNumber}) => {
+model.AddCartUser = async ({login,password,email,phoneNumber}) => {
         // Query
+        let testing = `select userId from MazShop.dbo.UserShop where email = '${email}' `;
+        let user = await request(testing);
+        if(user.length > 0){
+            return user
+        }
         let query = `
         Insert         
         into

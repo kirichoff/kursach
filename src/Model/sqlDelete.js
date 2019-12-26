@@ -32,4 +32,11 @@ model.DeleteCartItem = ({ShopItemId,userId}) =>{
            `;
     return request(query);
 };
+
+model.DeleteOrder =({orderId}) => {
+   let query = `
+    delete from MazShop.dbo.OrderShop where orderId=${orderId}`;
+    return request(query);
+} ;
+
 module.exports=model;

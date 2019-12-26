@@ -17,7 +17,7 @@ function MyCarousel(props) {
             >
             { props.items.map((k, index) =>
                 <div key={ index }>
-                    <img src={ k.url } alt={'img'}/>
+                    <img src={ k.content } alt={'img'}/>
                 </div>) }
         </Carousel>
     );

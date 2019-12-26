@@ -46,7 +46,11 @@ WHERE ITEMCONTENT.CONTENTID = (
 model.GetAllShopItemsFilter = ({category,min,max}) =>{
     // noinspection SqlDialectInspection
     console.log('values',min,max,category);
-    let q = category &&`and ShopItem.CategoryId=${category}` || '';
+    let q = category && `and ShopItem.CategoryId=${category}` || ' ';
+    if (+category === 3){
+        q=' ';
+    }
+    console.log(q);
     min = min || 1;
     max = max || Number.MAX_VALUE;
     let query = `
@@ -65,9 +69,8 @@ WHERE ITEMCONTENT.CONTENTID = (
     SELECT MIN(ITEMCONTENT.CONTENTID)
     FROM ITEMCONTENT
     WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
-)${q} and ShopItem.price between ${min} and ${max} 
-`;
-    return request(query);
+)  ${q} and ShopItem.price between ${min} and ${max}`;
+    return  request(query);
 };
 
 
@@ -140,15 +143,14 @@ WHERE
 	) and MAZSHOP.DBO.CART.USERID	= ${userId}`;
     return request(query);
 };
-model.Login = async ({login,password})=> {
-    console.log(login,password);
+model.Login = async ({email,password})=> {
     let query = `
         select
             * 
         from
             MazShop.dbo.UserShop
         where
-            login = '${ login }' 
+            email = '${ email }' 
             and password = '${ password }'`;
     let req = await request(query);
     return req;
@@ -168,4 +170,14 @@ model.GetPreviewImage = ({imageId}) =>{
     select content from MazShop.dbo.ItemContent where contentId = '${imageId}'`;
     return request(query);
 };
+model.GetOrders = async () =>{
+  let query = `
+    select login,orderId, phoneNumber,email,itemId,UserShop.userId as 'userId', 
+        MazShop.dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
+    on UserShop.userId=OrderShop.userId
+  `;
+  return request(query);
+};
+
+
 module.exports = model;

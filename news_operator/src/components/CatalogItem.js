@@ -2,8 +2,7 @@ import React from 'react';
 import '../style/catalogItem.css'
 import Card from "react-bootstrap/Card";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link} from "react-router";
-import Button from "rambler-ui/Button";
+
 
 function CatalogItem(props) {
     return (
@@ -11,7 +10,9 @@ function CatalogItem(props) {
                 <Card.Img variant="top" src={props.previewImage} />
                 <Card.Body>
                     <Card.Title>{props.header}</Card.Title>
-                    <Card.Text>
+                    <Card.Text style={{height: '1.2em',
+                        overflow: 'hidden',
+                        width: '13vw'}}>
                         {props.description}
                     </Card.Text>
                     <div>

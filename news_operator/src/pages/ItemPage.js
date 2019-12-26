@@ -12,12 +12,13 @@ import '../style/ItemPage.css'
  import {actionCreators} from "../reducers";
  import Price from "../components/Price";
  import CategoryPiker from "../components/CategoryPiker";
+ import NotifyError from "../components/NotifyError";
 
 
 function ItemPage(props) {
     let description;
     let header;
-    const isAdmin = true;
+    const isAdmin = (props.state.User && props.state.User.rights === 1);
     const id = props.params.id;
     const [shopItem,setShopItem] = useState({});
     const [price,setPrice] = useState(1);
@@ -26,7 +27,8 @@ function ItemPage(props) {
     const [current,setCurrent] = useState(0);
     const [deleteImages,setDeleteImages] = useState([]);
     const [category,setCategory] = useState(1);
-
+    const [notification,setNotification] = useState(false);
+    const [error,setError] = useState({});
     let fetchData = async () => {
         if(id !== 'editor'){
             let ShopItem =  await props.GetShopItem({ShopItemId:+id});
@@ -55,7 +57,8 @@ function ItemPage(props) {
         reader.readAsDataURL(f);
     };
     const actionPiker = () =>{
-        if (id === 'editor') add().then().then(()=>props.router.push('/Catalog'));
+        if (id === 'editor') add().then((val)=> (!val || val && !val.error)? props.router.push('/Catalog') : null
+        );
         else update().then(()=>props.router.push('/Catalog'));
     };
 
@@ -95,7 +98,13 @@ function ItemPage(props) {
            {
              ...params
                 });
-        let id  = res[0].Id || null;
+        console.log('res',res)
+        if(res.error){
+            setError(res.error);
+            setNotification(true);
+            return res;
+        }
+        let id  = res[0] && res[0].Id || null;
         for(let pt of featureItems){
             if(pt.charId === -1)
             props.AddChar({itemId:id, charName: pt.charName,charContent: pt.charContent});
@@ -108,14 +117,15 @@ function ItemPage(props) {
     };
     return (
         <Layout>
-                <form >
+            <NotifyError notify={notification} close={()=>setNotification(false)} error={error || null} />
+                <form>
                     <div className={'carousel'}  >
                         <MyCarousel
                             onChange={(e)=>setCurrent(e)}
                             style={{width: '100%'}}
                             items={images}
                         />
-                        <div style={{display:'flex'}} >
+                        <div style={{display: isAdmin?'flex':'none'}} >
                         <Button
                             overlay={<input onChange={addImage} type={'file'} />}
                             style={ {marginLeft: '44%'} }

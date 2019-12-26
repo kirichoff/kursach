@@ -114,7 +114,8 @@ class Menu extends Component {
                     okButton={
                         <Button type="primary"  size="small" onClick={()=>{
                             this.props.Login(this.state).then(r=>{
-                                this.props.GetCart({userId: r.userId});
+
+                                this.props.GetCart({userId: r && r.userId||null});
                                 this.setState({customIsOpened: !!!r})})
                         }
                         }
@@ -142,9 +143,9 @@ class Menu extends Component {
                             type="email"
                             status={(this.props.state.hasOwnProperty('User'))? 'error': null}
                             autoFocus
-                            placeholder={'имя'}
-                            value={this.state.login}
-                            onChange={this.updateValue('login')}
+                            placeholder={'email'}
+                            value={this.state.email}
+                            onChange={this.updateValue('email')}
                         />
                         <Input
                             type="password"

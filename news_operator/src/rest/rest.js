@@ -24,8 +24,7 @@ function reuest (server,api,type){
                 let j = await data.json();
                 return j;
             })
-            .catch(ex => ex)
-            ;
+            .catch(ex => ex);
     }
 }
  export const createRest  = ()=> fetch(server+'/model',{method: 'GET'}).then(response=>response.json().then(res =>{

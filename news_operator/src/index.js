@@ -15,6 +15,8 @@ import { ApplyTheme } from 'rambler-ui/theme'
 import CartPage from "./pages/CartPage";
 import StatsPage from "./pages/StatsPage";
 import Profile from "./pages/Profile";
+import OrderPage from "./pages/OrderPage";
+import CategoryEdit from "./pages/CategoryEdit";
 const  store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -31,6 +33,8 @@ createRest().then(()=>{
                 <Route exdct path={'/Cart'} component={CartPage}/>
                 <Route path={'/Item/:id'} component={ItemPage}/>
                 <Route path={'/Stats'} component={StatsPage}/>
+                <Route path={'/Orders'} component={OrderPage}/>
+                <Route path={'/Category'} component={CategoryEdit}/>
             </Router>
          </Provider>
         </ApplyTheme>

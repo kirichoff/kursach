@@ -11,13 +11,14 @@ function CategoryPiker(props) {
     useEffect(()=>{
         rest.getCategory().then(res=>
             {
+                console.log('Category',res);
                 setValue(
                     res.length &&
                     res.find(k=>k.categoryId === props.categoryId)
                     && res.find(k=>k.categoryId === props.categoryId).categoryName
                     || '' );
             if (res.length>0) {
-                setData(res);
+                setData([...res]);
             }})
     },[]);
     return (
@@ -26,6 +27,7 @@ function CategoryPiker(props) {
                 lightPlaceholderColor={true}
                 value={value}
                 onChange={(e)=>{
+                    console.log(e);
                     setValue(e);
                     if (props.onChange) props.onChange(findId(e).categoryId) ;
                 }}

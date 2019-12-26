@@ -9,7 +9,6 @@ function Price(props) {
             <div style={{display:'inline-block',margin: '50px 50px'}} >
                 {props.isAdmin?
                     <input
-                        defaultValue={props.price}
                         style={{textAlign:'center',border:'none'}}
                         value={props.price}
                         min={1}
@@ -19,7 +18,7 @@ function Price(props) {
                         type="number"/>
                 :
                     <h4>
-                        {props.price}
+                        {props.price} BYN
                     </h4>
                 }
             </div>
