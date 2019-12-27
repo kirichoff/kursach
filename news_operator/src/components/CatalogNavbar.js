@@ -3,6 +3,8 @@ import '../style/catalogNavbar.css'
 import Input from "rambler-ui/Input";
 import Button from "rambler-ui/Button";
 import CategoryPiker from "./CategoryPiker";
+import {EditIcon} from "rambler-ui/icons/forms";
+import {Link} from "react-router";
 
 export default class CatalogNavbar extends Component {
     state = {
@@ -20,7 +22,7 @@ export default class CatalogNavbar extends Component {
         return (
         <div className={'catalogNavbar'} >
             <div style={{width: '14vw', marginBottom: 15}}>
-                <h3>Категории</h3>
+                <h3>Категории <Link  to={'/Category'} ><EditIcon/></Link> </h3>
                 <CategoryPiker onChange={ (id) => {
                     this.setState({category: id});
                     this.state.category = id;

@@ -84,7 +84,7 @@ model.AddCartUser = async ({login,password,email,phoneNumber}) => {
         let testing = `select userId from MazShop.dbo.UserShop where email = '${email}' `;
         let user = await request(testing);
         if(user.length > 0){
-            return user
+            return  user
         }
         let query = `
         Insert         
@@ -97,6 +97,12 @@ model.AddCartUser = async ({login,password,email,phoneNumber}) => {
            `;
         return request(query);
     };
+model.SetCategory = async ({categoryName}) =>{
+  let query =`
+    insert into Category(categoryName) values('${categoryName}');
+  `;
 
+  return request(query)
+};
 
 module.exports = model;

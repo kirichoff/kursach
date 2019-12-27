@@ -31,6 +31,7 @@ function Home(props) {
         <Layout>
             <div style={{width: '100%'}} >
             <MyCarousel items ={ array }/>
+            
                 {data.map((item,index)=>
                     <PostItem
                         key={index}

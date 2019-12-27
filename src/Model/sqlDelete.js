@@ -28,11 +28,20 @@ model.DeleteCartItem = ({ShopItemId,userId}) =>{
         from
             MazShop.dbo.Cart
             where
-            itemId = ${ShopItemId} and ${userId}
+            itemId = ${ShopItemId} and userId = ${userId}
            `;
     return request(query);
 };
 
+model.DeleteCategory = ({categoryId}) =>{
+    let query = `
+        delete
+        from
+            MazShop.dbo.Category
+            where
+            categoryId = ${categoryId}`;
+    return request(query);
+};
 model.DeleteOrder =({orderId}) => {
    let query = `
     delete from MazShop.dbo.OrderShop where orderId=${orderId}`;
