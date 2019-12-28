@@ -11,7 +11,6 @@ model.DeleteItemContent = ({contentId})=>{
            `;
     return request(query);
 };
-
 model.DeleteItem = ({ShopItemId}) =>{
     let query = `
         delete
@@ -23,6 +22,7 @@ model.DeleteItem = ({ShopItemId}) =>{
     return request(query);
 };
 model.DeleteCartItem = ({ShopItemId,userId}) =>{
+    console.log(ShopItemId,userId);
     let query = `
         delete
         from
@@ -47,5 +47,11 @@ model.DeleteOrder =({orderId}) => {
     delete from MazShop.dbo.OrderShop where orderId=${orderId}`;
     return request(query);
 } ;
+
+model.DeleteOrder =({imageId}) => {
+    let query = `delete from MazShop.dbo.images where imageId = ${imageId}`;
+    return request(query);
+} ;
+
 
 module.exports=model;

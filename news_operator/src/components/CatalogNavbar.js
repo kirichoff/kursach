@@ -18,11 +18,13 @@ export default class CatalogNavbar extends Component {
         this.setState({checkBoxes: [...boxes] })
     };
     render() {
+
+        let isAdmin = this.props.isAdmin;
         console.log('Nav',this.state);
         return (
         <div className={'catalogNavbar'} >
             <div style={{width: '14vw', marginBottom: 15}}>
-                <h3>Категории <Link  to={'/Category'} ><EditIcon/></Link> </h3>
+                <h3>Категории {isAdmin?  <Link  to={'/Category'} ><EditIcon/></Link>:null} </h3>
                 <CategoryPiker onChange={ (id) => {
                     this.setState({category: id});
                     this.state.category = id;

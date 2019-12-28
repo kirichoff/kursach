@@ -101,8 +101,11 @@ model.SetCategory = async ({categoryName}) =>{
   let query =`
     insert into Category(categoryName) values('${categoryName}');
   `;
-
   return request(query)
+};
+model.SetImages = async ({content}) =>{
+    let query =`insert into images(content) values('${content}')`;
+    return request(query)
 };
 
 module.exports = model;

@@ -4,7 +4,7 @@ const model = {};
 
 model.GetItemStats = ({}) =>{
     const query = `
-select count(itemId)  as count,
+select sum(count) as count,
             itemId,
        (select price from ShopItem where ShopItemId= itemId) as price,
        (select header from ShopItem where ShopItemId= itemId) as header,

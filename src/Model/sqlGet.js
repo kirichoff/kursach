@@ -43,13 +43,17 @@ WHERE ITEMCONTENT.CONTENTID = (
 };
 
 
-model.GetAllShopItemsFilter = ({category,min,max}) =>{
+model.GetAllShopItemsFilter = ({category,min,max,searchQuery = ''}) =>{
     // noinspection SqlDialectInspection
     console.log('values',min,max,category);
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
     if (+category === 3){
         q=' ';
     }
+    let s ='';
+    if(searchQuery)
+        s = `and ShopItem.header like '%${searchQuery}%'`;
+
     console.log(q);
     min = min || 1;
     max = max || Number.MAX_VALUE;
@@ -69,7 +73,7 @@ WHERE ITEMCONTENT.CONTENTID = (
     SELECT MIN(ITEMCONTENT.CONTENTID)
     FROM ITEMCONTENT
     WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
-)  ${q} and ShopItem.price between ${min} and ${max}`;
+)  ${q} ${s} and ShopItem.price between ${min} and ${max} `;
     return  request(query);
 };
 
@@ -177,6 +181,16 @@ model.GetOrders = async () =>{
     on UserShop.userId=OrderShop.userId
   `;
   return request(query);
+};
+
+model.GetHeadersSearch = async ({value}) => {
+    let query = `select header from MazShop.dbo.ShopItem where ShopItem.header like '%${value}%'`;
+    return request(query);
+};
+
+model.GetImages = async ()=>{
+    let query = `select * from MazShop.dbo.images `;
+    return request(query);
 };
 
 

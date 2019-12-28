@@ -22,14 +22,18 @@ const breakpointColumnsObj = {
 };
 
 function Catalog(props) {
-    let [rendData, setData] = useState(null);
-    let [Nav, setNav] = useState({
+    const [rendData, setData] = useState(null);
+    const [Nav, setNav] = useState({
         min: 1,
         max: 99999999999,
         category: 3
     });
-    const get = () => {
-        props.GetAllShopItemsFilter(Nav).then(data => {
+    const [search,setSearch] = useState('');
+
+
+
+    const get = (searchQuery = '') => {
+        props.GetAllShopItemsFilter({...Nav,searchQuery: searchQuery}).then(data => {
                 console.log('data',data);
             setData((data.length) ? data : []);
                 if(data.error){
@@ -48,9 +52,9 @@ function Catalog(props) {
     console.log('Catalog',Nav)
     return (
         <Layout >
-            {/*<Serch/>*/}
+            <div><Serch find={(value)=> get(value)} /></div>
             <div className={ 'catalog-container' }>
-                <CatalogNavbar  onClick={ () => get() } Nav={Nav} onChange={ setNav }/>
+                <CatalogNavbar  isAdmin={isAdmin} onClick={ () => get() } Nav={Nav} onChange={ setNav }/>
                 <div style={ {marginTop: 25} }>
                     { rendData && rendData.length !== 0?
                         <Masonry

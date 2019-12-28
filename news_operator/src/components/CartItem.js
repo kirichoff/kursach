@@ -26,8 +26,8 @@ function CartItem(props) {
                         <div className={'removeIco'}>
                             <RemoveIcon onClick={()=>
                             {
-                                console.log(props.ShopItemId,'CartItem');
-                                props.DeleteCartItem(props.ShopItemId);
+                                console.log(props,'CartItem');
+                                props.DeleteCartItem(props.itemId);
                             }
                             } />
                         </div>
