@@ -48,10 +48,13 @@ model.DeleteOrder =({orderId}) => {
     return request(query);
 } ;
 
-model.DeleteOrder =({imageId}) => {
+model.DeleteImages =({imageId}) => {
     let query = `delete from MazShop.dbo.images where imageId = ${imageId}`;
     return request(query);
 } ;
-
+model.DeleteFeature = async ({charId}) => {
+    let query = `delete from MazShop.dbo.Characteristic where charId = ${charId} `;
+    return request(query);
+};
 
 module.exports=model;

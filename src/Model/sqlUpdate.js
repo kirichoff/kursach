@@ -35,4 +35,17 @@ model.UpdateCountCart = ({itemId,userId,count}) =>{
     return request(query);
 
 };
+
+
+model.UpdateFeature = ({charName,charContent,charId})=>{
+    let query = `
+    update
+        MazShop.dbo.Characteristic
+        set
+       charName = '${charName}',
+       charContent = '${charContent}'
+        where charId = ${charId}`;
+    return request(query)
+};
+
 module.exports = model;

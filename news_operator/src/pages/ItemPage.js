@@ -45,6 +45,11 @@ function ItemPage(props) {
             fetchData();
         }
     ,[id]);
+
+    const deleteFeature = (charId) =>{
+        props.DeleteFeature({charId:charId}).then(r=>props.GetChar({id}).then(Features => setFeatureItems(Features)));
+    };
+
     let addImage = (e)=>{
         let f = e.target.files[0];
         let reader = new FileReader();
@@ -61,9 +66,7 @@ function ItemPage(props) {
         );
         else update().then(()=>props.router.push('/Catalog'));
     };
-
     const update= async () =>{
-
         let params = {
             description: description.value,
             header:header.value,
@@ -75,6 +78,7 @@ function ItemPage(props) {
         for(let pt of featureItems){
             if(pt.charId === -1)
                 props.AddChar(pt);
+            else props.UpdateFeature(pt)
         }
         for(let img of images){
             if(img.contentId > 0)
@@ -89,7 +93,6 @@ function ItemPage(props) {
     };
 
     let add = async()=>{
-
         let params = { description: description.value,
             header:header.value,
             price:price,
@@ -168,6 +171,7 @@ function ItemPage(props) {
                     <div  className={'FeatureContainer'} >
                         {featureItems.map((k,index)=>
                             <FeatureItem
+                                delete={(id)=>deleteFeature(id)}
                                 editable = {isAdmin}
                                 key={index}
                                 onChange={(charName,charContent)=>{

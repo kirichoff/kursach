@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MyCarousel from "../components/MyCarousel";
 import Layout from "../components/Layout";
 import '../style/Home.css'
@@ -26,12 +26,50 @@ const data = [
 
 
 function Home(props) {
+    const [images,setImages] = useState([]);
+    const [current,setCurrent] = useState(0);
+
+    const getImages = ()=>{
+      props.GetImages().then(data=>setImages(data));
+    };
+
+    useEffect(()=>{
+        getImages()
+    },[images.length]);
+
     let isAdmin = (props.state.User && props.state.User.rights === 1) ;
+    let addImage = (e)=>{
+        let f = e.target.files[0];
+        let reader = new FileReader();
+        reader.onloadend = () =>{
+                props.SetImages({content: reader.result}).then(()=>getImages());
+        };
+        reader.readAsDataURL(f);
+    };
     return (
         <Layout>
             <div style={{width: '100%'}} >
-            <MyCarousel items ={ array }/>
-            
+            {/*<MyCarousel items ={ array }/>*/}
+                <div className={'carousel'}  >
+                    <MyCarousel
+                        onChange={(e)=>setCurrent(e)}
+                        style={{width: '100%'}}
+                        items={images}
+                    />
+                    <div style={{display: isAdmin?'flex':'none'}} >
+                        <Button
+                            overlay={<input onChange={addImage} type={'file'} />}
+                            style={ {marginLeft: '44%'} }
+                            type={ 'primary' }>
+                            <AddIcon color={'white'} />
+                        </Button>
+                        <Button
+                            onClick={ ()=>props.DeleteImages({imageId: images[current].imageId}).then(()=>getImages())}
+                            type={ 'outline' }>
+                            <ClearIcon color={'blue'} />
+                        </Button>
+                    </div>
+                </div>
                 {data.map((item,index)=>
                     <PostItem
                         key={index}
