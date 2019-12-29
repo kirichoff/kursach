@@ -24,7 +24,9 @@ create table ShopItem
             primary key,
     description varchar(max),
     header      varchar(max),
-    price       float,
+    price       float default 1 not null
+        constraint more_0
+            check ([price] > 0),
     CategoryId  int
         constraint ShopItem_Category_categoryId_fk
             references Category
@@ -67,7 +69,7 @@ create table UserShop
     password    varchar(100),
     phoneNumber int,
     email       varchar(70),
-    rights      int
+    rights      int default 2
 )
 go
 
@@ -119,7 +121,7 @@ create table OrderShop
     userId    int
         constraint OrderShop_UserShop_userId_fk
             references UserShop,
-    status    int,
+    status    int default 1,
     startDate datetime,
     count     int default 1
 )
@@ -131,6 +133,15 @@ go
 
 create unique index UserShop_email_uindex
     on UserShop (email)
+go
+
+create table images
+(
+    content varchar(max),
+    imageId int identity
+        constraint images_pk
+            primary key nonclustered
+)
 go
 
 

@@ -163,12 +163,19 @@ class Menu extends Component {
                     isOpened={this.state.SignUpOpened}
                     backdropColor="blue"
                     okButton={
-                        <Button type="primary" size="small" onClick={()=>this.props.Register(this.state)}>
+                        <Button type="primary" size="small" onClick={ ()=>
+                            this.props.Register(this.state)
+                                .then(res=>
+                                    (res.length && res[0].userId)? this.setState ({
+                                        SignUpOpened: false,
+                                        isFail: false
+                                    }): this.setState({isFail: true}))}>
                             Ок
                         </Button>
                     }
                     cancelButton={
-                        <Button type="flat" size="small" onClick={()=> this.setState({
+                        <Button type="flat" size="small" onClick={()=>
+                            this.setState({
                             SignUpOpened: false,
                             isFail: false
                         })}>
@@ -180,12 +187,13 @@ class Menu extends Component {
                         isFail: false
                     })}>
                     <div style={{width: 400}}>
-                        <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isKey)? 'Неверный ключ' : null}</div>
+                        <div style={{marginBottom: '5%',color: 'red' }} >
+                            {(this.state.isFail)? 'Ошибка: Неверные данные' : null}
+                        </div>
                         <Input
                             style={{marginBottom: 5}}
                             type="email"
                             placeholder={'имя'}
-                            status={(this.state.isFail)? 'error': null}
                             autoFocus
                             value={this.state.login}
                             onChange={this.updateValue('login')}

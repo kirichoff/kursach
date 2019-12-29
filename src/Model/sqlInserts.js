@@ -9,8 +9,7 @@ model.Register = ({login,password,email,phoneNumber}) => {
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});
-            select @@IDENTITY as userId
-           `;
+            select @@IDENTITY as userId`;
     return request(query);
 };
 model.AddShopItem = ({description,header,price,categoryId}) =>{
@@ -27,8 +26,7 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
     return request(query);
 };
 model.AddOrder = ({itemId, userId, status, startDate,count})=>{
-        console.log(itemId, userId, status, startDate,count);
-        count = count || 1;
+    count = count || 1;
     let query = `
     insert       
     into
