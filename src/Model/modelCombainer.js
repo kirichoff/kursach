@@ -9,6 +9,5 @@ module.exports =
             },
         post: {
             ...require('./sqlInserts'),
-
         }
     };

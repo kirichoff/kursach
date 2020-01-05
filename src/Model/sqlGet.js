@@ -43,11 +43,15 @@ WHERE ITEMCONTENT.CONTENTID = (
 };
 
 
-model.GetAllShopItemsFilter = ({category,min,max,searchQuery = ''}) =>{
+model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = ''}) =>{
     // noinspection SqlDialectInspection
     console.log('values',min,max,category);
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
-    if (+category === 3){
+
+    let categories =  await model.getCategory();
+    let currentCategory =  categories.find(k=> k.categoryId === +category);
+    console.log('Find category');
+    if (currentCategory.categoryName === 'Все'){
         q=' ';
     }
     let s ='';

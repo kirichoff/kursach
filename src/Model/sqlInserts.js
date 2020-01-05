@@ -1,4 +1,5 @@
 request = require('./model.config');
+const get = require('./sqlGet');
 const model = {};
 model.Register = ({login,password,email,phoneNumber}) => {
     // Query
@@ -37,6 +38,7 @@ model.AddOrder = ({itemId, userId, status, startDate,count})=>{
     return request(query)
 };
 model.AddItemContent = ({itemId, content}) =>{
+    console.log('itemId',itemId);
     let query = `
     insert       
     into
@@ -101,6 +103,30 @@ model.SetCategory = async ({categoryName}) =>{
   `;
   return request(query)
 };
+
+model.SetCategory2 = async ({categoryName}) =>{
+
+    let categories = await get.getCategory();
+
+    console.log('Category',categoryName);
+
+    let name = categories.find(k=> k.categoryName === categoryName);
+
+    if (name){
+        return name
+    }
+    else {
+        let query = `
+    insert into Category(categoryName) values('${ categoryName }');
+      select @@IDENTITY as categoryId
+         `;
+        let res = await request(query);
+        return res[0];
+    }
+};
+
+
+
 model.SetImages = async ({content}) =>{
     let query =`insert into images(content) values('${content}')`;
     return request(query)

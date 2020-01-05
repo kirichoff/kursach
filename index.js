@@ -6,12 +6,45 @@ const jwt = require('./src/utils/jwt');
 const httpHandler = require('./src/utils/httpHandler');
 const app = express();
 const cors = require('cors');
-
 app.use(bodyParser({limit: '50mb'}));
-console.log(model)
+const fs = require('fs');
+
+fs.readFile('data.json','utf8',async (err,dat) => {
+    let arr = JSON.parse(dat);
+    console.log('parser');
+    for (let data of arr) {
+        let category = await model.post.SetCategory2({
+            categoryName: data.category
+        });
+        let id = await model.post.AddShopItem({
+            description: data.description,
+            header: data.title,
+            price: Math.random() * 10000,
+            categoryId: category.categoryId
+        });
+        for (let fe of data.features){
+            console.log(fe);
+            if(fe.textFeature !== "" && fe.titleFeature !== ""){
+            await model.post.AddChar({
+                itemId: id[0].Id,
+                charName: fe.titleFeature,
+                charContent: fe.textFeature
+                })
+            }
+        }
+        model.post.AddItemContent({
+            itemId: id[0].Id,
+            content: data.image
+        });
+    }
+});
 const exclude = ['get'];
 app.use(cors());
 httpHandler(app,model.post,exclude,'/api/post/','post');
+
+console.log(model.get.getCategory().then(k=> console.log(k)));
+
+
 
 httpHandler(app,model.get,exclude,'/api/get/');
 
