@@ -20,4 +20,11 @@ model.GetItemStatsPrice = ({})=>{
    select price,header from  ShopItem`;
   return request(query)
 };
+model.GetRatingStats = ({}) =>{
+    const query=`
+   select count(ratingId) as 'count' ,ratingValue from  Rating group by ratingValue 
+    `;
+    return request(query)
+};
+
 module.exports = model;

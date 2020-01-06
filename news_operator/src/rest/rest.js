@@ -1,4 +1,4 @@
-const server = 'http://localhost:5000/api';
+const server = '/api';
 const exclude = ['security','get'];
 export const rest = {};
 function reuest (server,api,type){

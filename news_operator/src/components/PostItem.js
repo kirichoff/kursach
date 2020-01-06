@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/Home.css'
 import Button from "rambler-ui/Button";
 import {AddIcon, ClearIcon, TickIcon} from "rambler-ui/icons/forms";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../reducers";
+import {connect} from "react-redux";
 function PostItem(props) {
 
     const [image,setImage] = useState(props.image);
@@ -13,11 +16,12 @@ function PostItem(props) {
         reader.readAsDataURL(f)
     };
     const save = ()=>{
-        if(props.id>0){
 
+        if(props.id<0){
+            props.SetPost({text:node.value,image: image}).then(()=>props.onSave());
         }
         else {
-
+            props.UpdatePost({postId:props.id,text:node.value,imag:image}).then(()=>props.onSave())
         }
     };
 
@@ -67,4 +71,7 @@ function PostItem(props) {
     );
 }
 
-export default PostItem;
+export default connect(
+    state => state,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(PostItem);

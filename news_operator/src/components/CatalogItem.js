@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function CatalogItem(props) {
     return (
-            <Card style={{marginBottom: 10,marginLeft:10 }}>
+            <Card style={{marginBottom: 10,marginLeft:10,minWidth: 210}}>
                 <Card.Img variant="top" src={props.previewImage} />
                 <Card.Body>
                     <Card.Title>{props.header}</Card.Title>

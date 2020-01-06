@@ -26,7 +26,6 @@ model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
     return request(query);
     };
 model.UpdateCountCart = ({itemId,userId,count}) =>{
-    console.log('count',itemId,userId,count)
     let query = `
     update
      MazShop.dbo.Cart
@@ -36,7 +35,15 @@ model.UpdateCountCart = ({itemId,userId,count}) =>{
 
 };
 
-
+model.UpdateRating = ({ratingId,ratingValue})=>{
+    let query = `
+    update
+        Rating
+        set
+        ratingValue = ${ratingValue}
+    where ratingId = ${ratingId}`;
+    return request(query)
+};
 model.UpdateFeature = ({charName,charContent,charId})=>{
     let query = `
     update
@@ -45,6 +52,16 @@ model.UpdateFeature = ({charName,charContent,charId})=>{
        charName = '${charName}',
        charContent = '${charContent}'
         where charId = ${charId}`;
+    return request(query)
+};
+model.UpdatePost = ({postId,text,image})=>{
+    let query = `
+    update
+        MazShop.dbo.Post
+        set
+       text = '${text}',
+       image = '${image}'
+        where postId = ${postId}`;
     return request(query)
 };
 

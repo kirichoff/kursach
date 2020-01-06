@@ -10,7 +10,7 @@ function Price(props) {
                 {props.isAdmin?
                     <input
                         style={{textAlign:'center',border:'none'}}
-                        value={props.price}
+                        value={props.price.toFixed(2)}
                         min={1}
                         onChange={(e,value)=> {
                             props.onChange(e.target.value)}
@@ -18,12 +18,14 @@ function Price(props) {
                         type="number"/>
                 :
                     <h4>
-                        {props.price} BYN
+                        {props.price.toFixed(2)} BYN
                     </h4>
                 }
             </div>
             {!props.isAdmin?
-                <Button type={'primary'}>
+                <Button
+                    onClick={()=>props.addToCart() }
+                    type={'primary'}>
                     Добавить в корзину
                 </Button>
                 :

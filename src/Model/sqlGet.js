@@ -43,26 +43,26 @@ WHERE ITEMCONTENT.CONTENTID = (
 };
 
 
-model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = ''}) =>{
+model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId}) =>{
     // noinspection SqlDialectInspection
-    console.log('values',min,max,category);
+    console.log('values',min,max,category,searchQuery);
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
-
     let categories =  await model.getCategory();
     let currentCategory =  categories.find(k=> k.categoryId === +category);
     console.log('Find category');
-    if (currentCategory.categoryName === 'Все'){
-        q=' ';
-    }
+    if (currentCategory.categoryName === 'Все')
+        q = ' ';
     let s ='';
     if(searchQuery)
         s = `and ShopItem.header like '%${searchQuery}%'`;
-
-    console.log(q);
+    lastId = lastId>0? `and ShopItemId> ${lastId}` : '';
+    console.log(lastId);
     min = min || 1;
     max = max || Number.MAX_VALUE;
     let query = `
-    SELECT ShopItemId
+    SELECT 
+        top 9
+        ShopItemId
      , description
      , header
      , price
@@ -77,11 +77,18 @@ WHERE ITEMCONTENT.CONTENTID = (
     SELECT MIN(ITEMCONTENT.CONTENTID)
     FROM ITEMCONTENT
     WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
-)  ${q} ${s} and ShopItem.price between ${min} and ${max} `;
+)  ${q} ${s} ${lastId} and ShopItem.price between ${min} and ${max} `;
     return  request(query);
 };
-
-
+model.GetRating = ({itemId})=> {
+    console.log('itemID',itemId)
+    let query = `select avg(ratingValue) as ratingValue  from Rating where itemId = ${itemId}`;
+    return  request(query);
+};
+model.GetRatingUser = ({itemId,userId}) =>{
+    let query = `select * from Rating where itemId = ${itemId} and userId = ${userId}`;
+    return  request(query);
+};
 model.GetUser = ({login,password})=> {
     let query = `
         select
@@ -188,7 +195,7 @@ model.GetOrders = async () =>{
 };
 
 model.GetHeadersSearch = async ({value}) => {
-    let query = `select header from MazShop.dbo.ShopItem where ShopItem.header like '%${value}%'`;
+    let query = `select top 7 header from MazShop.dbo.ShopItem where ShopItem.header like '%${value}%'`;
     return request(query);
 };
 
@@ -197,5 +204,8 @@ model.GetImages = async ()=>{
     return request(query);
 };
 
-
+model.GetPosts = ({})=>{
+    let query = `select * from Post `;
+    return request(query);
+}
 module.exports = model;

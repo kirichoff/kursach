@@ -26,6 +26,12 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
            `;
     return request(query);
 };
+
+model.SetRating = ({itemId,userId,ratingValue}) => {
+    let query = `insert into Rating(itemId,userId,ratingValue) values('${itemId}','${userId}','${ratingValue}')`;
+    return request(query);
+};
+
 model.AddOrder = ({itemId, userId, status, startDate,count})=>{
     count = count || 1;
     let query = `
@@ -124,12 +130,14 @@ model.SetCategory2 = async ({categoryName}) =>{
         return res[0];
     }
 };
-
-
-
 model.SetImages = async ({content}) =>{
     let query =`insert into images(content) values('${content}')`;
     return request(query)
 };
+
+model.SetPost = ({text,image}) =>{
+        let query =`insert into Post(text,image) values('${text}','${image}')`;
+        return request(query)
+    };
 
 module.exports = model;

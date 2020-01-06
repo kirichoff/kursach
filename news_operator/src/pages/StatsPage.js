@@ -3,13 +3,16 @@ import Layout from "../components/Layout";
 import MyChart from "../components/MyChart";
 import {rest} from "../rest/rest";
 import MyChart2 from "../components/MyChart2";
+import MyAreaCart from "../components/MyAreaCart";
 
 function StatsPage(props) {
-const [data,setData] = useState([]);
+    const [data,setData] = useState([]);
     const [data2,setData2] = useState([]);
+    const  [data3,setData3] = useState([]);
 useEffect(()=>{
     rest.GetItemStats().then(res=> res.length?setData(res) : null);
-    rest.GetItemStatsPrice().then(res=>res.length?setData2(res) : null)
+    rest.GetItemStatsPrice().then(res=>res.length?setData2(res) : null);
+    rest.GetRatingStats().then(res=>res.length?setData3(res):null)
 },[]);
 
 console.log(data2)
@@ -34,6 +37,8 @@ console.log(data2)
                     name={'цена'}
                     data = {data2} />
             </div>
+
+            <MyAreaCart data ={data3}/>
         </div>
         </Layout>
     );

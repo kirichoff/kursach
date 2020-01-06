@@ -33,6 +33,11 @@ function CartPage(props) {
     };
     let handler = async (name,phone,email)=>{
         if (props.state.cart && props.state.cart.length) {
+            if(typeof(phone) !== typeof (1)){
+                setError({message: 'неверный номер'});
+                setNotification(true);
+                return ;
+            }
             if(email && name && phone && name) {
                 let us = await props.AddCartUser({login: name, phoneNumber: phone, email, password: 'user'});
                 addOrder(us[0].userId);

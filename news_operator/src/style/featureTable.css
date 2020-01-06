@@ -5,6 +5,7 @@
     display: inline-block;
     overflow: hidden;
     width: 30vw;
+    max-height: 26px;
     border: #2d2c2c solid 1px;
 
 }

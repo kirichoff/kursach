@@ -13,6 +13,7 @@ import '../style/ItemPage.css'
  import Price from "../components/Price";
  import CategoryPiker from "../components/CategoryPiker";
  import NotifyError from "../components/NotifyError";
+ import RatingBar from "../components/RatingBar";
 
 
 function ItemPage(props) {
@@ -118,6 +119,7 @@ function ItemPage(props) {
             props.AddItemContent({itemId: id, content:img.content});
         }
     };
+    console.log(shopItem)
     return (
         <Layout>
             <NotifyError notify={notification} close={()=>setNotification(false)} error={error || null} />
@@ -128,6 +130,17 @@ function ItemPage(props) {
                             style={{width: '100%'}}
                             items={images}
                         />
+                        { shopItem && shopItem.ShopItemId?
+                            < RatingBar
+                                user={props.state.User}
+                                itemId={ shopItem.ShopItemId }
+                                setRating={ props.SetRating }
+                                GetRatingUser = { props.GetRatingUser }
+                                GetRating = { props.GetRating }
+                            />
+                            :
+                            null
+                        }
                         <div style={{display: isAdmin?'flex':'none'}} >
                         <Button
                             overlay={<input onChange={addImage} type={'file'} />}
@@ -147,8 +160,12 @@ function ItemPage(props) {
                         </Button>
                             </div>
                     </div>
-                    <div className={'Price'} >
-                        <Price isAdmin={isAdmin} onChange={(value)=>setPrice(value)} price={price}/>
+                    <div className={'Price'}>
+                        <Price
+                            addToCart = {(()=>props.AddToCart({...shopItem,previewImage:images[0].content }))}
+                            isAdmin={isAdmin}
+                            onChange={(value)=>setPrice(value)}
+                            price={price}/>
                     </div>
                     <div className={'desc'}  >
                         <textarea
@@ -198,7 +215,10 @@ function ItemPage(props) {
                                 </div>: null }
                     </div>
                     { isAdmin?  <div className={'save'} >
-                        <CategoryPiker val={'Тягач'} categoryId={category} onChange={(e)=> setCategory(e)} />
+                        <CategoryPiker
+                            categoryId={category}
+                            onChange={(e)=> setCategory(e)}
+                        />
                             <Button
                                 onClick={()=>actionPiker()}
                                 style={{margin: 20}}

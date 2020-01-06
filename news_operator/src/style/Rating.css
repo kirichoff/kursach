@@ -1,0 +1,15 @@
+.Rating{
+    width: 60px;
+    font-weight: bold;
+    color: white;
+    font-size: 30px;
+    padding: 1px 5px;
+    text-align: center;
+    display: inline-block;
+}
+.rt-container{
+    display: inline-block;
+}
+.Rating-container{
+    display: inline-flex;
+}

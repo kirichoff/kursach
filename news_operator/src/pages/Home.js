@@ -8,34 +8,24 @@ import {AddIcon, ClearIcon} from "rambler-ui/icons/forms";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
-const array = [
-    {content: './images/index-bg-1.jpg'},
-    {content: './images/index-bg-2.jpg'},
-    {content: './images/index-bg-3.jpg'}
-];
-
-
-const data = [
-        {image: './images/bus.png',id: 3,text:
-        'Продукция Минского автомобильного завода – это техника, соответствующая экологическим стандартам Евро-2, Евро-3, Евро-4, Евро-5, Е' +
-        'вро-6Под маркой «МАЗ» с конвейера завода сходят седельные тягачи, бортовые автомобили, шасси под установку различного спецоборудования.Всего более 500 моделей и модификаций.'},
-            {image: '',id: 1,text:
-            'Продукция Минского автомобильного завода – это техника, соответствующая экологическим стандартам Евро-2, Евро-3, Евро-4, Евро-5, Е' +
-            'вро-6Под маркой «МАЗ» с конвейера завода сходят седельные тягачи, бортовые автомобили, шасси под установку различного спецоборудования.Всего более 500 моделей и модификаций.'}
-        ];
-
-
+import IconButton from "rambler-ui/IconButton";
+import {Link} from "react-router";
 function Home(props) {
     const [images,setImages] = useState([]);
     const [current,setCurrent] = useState(0);
-
+    const [data,setData] = useState([]);
     const getImages = ()=>{
-      props.GetImages().then(data=>setImages(data));
+      if (props.GetImages)
+          props.GetImages().then(data=>setImages(data));
     };
 
+    const getPosts = ()=> props.GetPosts().then(res=>setData(res));
+
     useEffect(()=>{
+        console.log('effect')
+        getPosts();
         getImages()
-    },[images.length]);
+    },[]);
 
     let isAdmin = (props.state.User && props.state.User.rights === 1) ;
     let addImage = (e)=>{
@@ -64,7 +54,8 @@ function Home(props) {
                             <AddIcon color={'white'} />
                         </Button>
                         <Button
-                            onClick={ ()=>props.DeleteImages({imageId: images[current].imageId}).then(()=>getImages())}
+                            onClick={
+                                ()=>props.DeleteImages({imageId: images[current].imageId}).then(()=>getImages())}
                             type={ 'outline' }>
                             <ClearIcon color={'blue'} />
                         </Button>
@@ -73,11 +64,19 @@ function Home(props) {
                 {data.map((item,index)=>
                     <PostItem
                         key={index}
-                        id={item.id}
+                        id={item.postId}
+                        text={item.text}
+                        onSave={getPosts}
                         isAdmin={isAdmin}
                         image={item.image}
-                        text={item.text}
                     />)}
+                <IconButton
+                    style={{margin: 'auto',width:'45px',display: isAdmin?'block':'none'}}
+                    onClick={ ()=>{
+                        setData([...data,{postId: -1,text:'',image:''}]) }}
+                    type={ 'primary' }>
+                    <AddIcon/>
+                </IconButton>
             </div>
         </Layout>
     );

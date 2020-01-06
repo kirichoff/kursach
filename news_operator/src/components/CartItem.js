@@ -22,7 +22,7 @@ function CartItem(props) {
                                    type={ 'number' } min={ 1 }/>
                         <span>  :колличество</span>
                         </div>
-                        <span className={'price'} >{props.price} :цена</span>
+                        <span className={'price'} >{props.price.toFixed(2)} :цена</span>
                         <div className={'removeIco'}>
                             <RemoveIcon onClick={()=>
                             {

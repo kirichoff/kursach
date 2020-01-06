@@ -6,6 +6,8 @@ import {
 import Cell from "recharts/lib/component/Cell";
 import { scaleOrdinal } from 'd3-scale';
 import {  schemeSet3 } from 'd3-scale-chromatic';
+import Brush from "recharts/lib/cartesian/Brush";
+const randomColor = require('randomcolor');
 
 const colors = scaleOrdinal(schemeSet3).range();
 
@@ -21,10 +23,11 @@ const colors = scaleOrdinal(schemeSet3).range();
                 <YAxis dataKey={props.dataKey} />
                 <Tooltip />
                 <Legend />
+                <Brush dataKey="name" height={30} stroke="#8884d8" />
                 <Bar   dataKey={props.dataKey} name={props.name} barSize={30} fill="#413ea0">
                     {
                         props.data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                            <Cell key={`cell-${index}`} fill={randomColor()} />
                         ))
                     }
                 </Bar>
