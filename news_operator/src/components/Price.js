@@ -10,7 +10,7 @@ function Price(props) {
                 {props.isAdmin?
                     <input
                         style={{textAlign:'center',border:'none'}}
-                        value={props.price.toFixed(2)}
+                        value={props.price}
                         min={1}
                         onChange={(e,value)=> {
                             props.onChange(e.target.value)}

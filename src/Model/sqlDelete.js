@@ -52,6 +52,13 @@ model.DeleteImages =({imageId}) => {
     let query = `delete from MazShop.dbo.images where imageId = ${imageId}`;
     return request(query);
 } ;
+
+model.DeletePost =({postId}) => {
+    let query = `delete from Post where postId = ${postId}`;
+    return request(query);
+} ;
+
+
 model.DeleteFeature = async ({charId}) => {
     let query = `delete from MazShop.dbo.Characteristic where charId = ${charId} `;
     return request(query);

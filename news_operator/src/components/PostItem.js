@@ -52,7 +52,8 @@ function PostItem(props) {
                         </Button>
                         <Button
                             onClick={ ()=>{
-                                setImage('')
+                                if(props.id>0)
+                                props.DeletePost({postId: props.id}).then(()=>props.onSave())
                             }}
                             style={ {} }
                             type={ 'outline' }>

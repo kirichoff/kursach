@@ -24,7 +24,8 @@ function Home(props) {
     useEffect(()=>{
         console.log('effect')
         getPosts();
-        getImages()
+        getImages();
+        console.log(data)
     },[]);
 
     let isAdmin = (props.state.User && props.state.User.rights === 1) ;
@@ -39,7 +40,6 @@ function Home(props) {
     return (
         <Layout>
             <div style={{width: '100%'}} >
-            {/*<MyCarousel items ={ array }/>*/}
                 <div className={'carousel'}  >
                     <MyCarousel
                         onChange={(e)=>setCurrent(e)}
@@ -66,14 +66,17 @@ function Home(props) {
                         key={index}
                         id={item.postId}
                         text={item.text}
-                        onSave={getPosts}
+                        onSave={()=>{ console.log('beforeGetPost',data);  getPosts()}}
                         isAdmin={isAdmin}
                         image={item.image}
                     />)}
                 <IconButton
                     style={{margin: 'auto',width:'45px',display: isAdmin?'block':'none'}}
                     onClick={ ()=>{
-                        setData([...data,{postId: -1,text:'',image:''}]) }}
+                        setData(
+                            [...data,
+                            {postId: -1,text:'',image:''}])
+                    }}
                     type={ 'primary' }>
                     <AddIcon/>
                 </IconButton>
