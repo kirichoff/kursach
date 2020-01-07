@@ -12,7 +12,7 @@ function Bar(props) {
         <div style={ {marginTop: '5px'} }>
             <Link className={ ' point' } to={ '/' } onlyActiveOnIndex>Главная</Link>
             <Link className={ 'point' } to={ '/Catalog' }>Каталог</Link>
-            <Link className={ 'point' } to={ '/About' }>О предприятии</Link>
+            <Link className={ 'point' } to={ '/About' }>Связь</Link>
             {isAdmin?
                 <Link className={ 'point' } to={ '/Stats' }>Статистика</Link>
                 :

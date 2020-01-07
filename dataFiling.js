@@ -33,6 +33,8 @@ const dataFiling ={};
  };
 
  dataFiling.rating = (model)=>{
+     let rate = Math.random() * (5- 1) + 1;
+     // model.SetRating()
  };
 
 module.exports = dataFiling;
