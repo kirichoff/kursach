@@ -148,10 +148,6 @@ create table Rating
 )
 go
 
-create unique index UserShop_login_uindex
-    on UserShop (login)
-go
-
 create unique index UserShop_email_uindex
     on UserShop (email)
 go
