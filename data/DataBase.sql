@@ -7,6 +7,10 @@ create table Category
 )
 go
 
+create unique index Category_categoryName_uindex
+    on Category (categoryName)
+go
+
 create table Post
 (
     image  varchar(max),
@@ -42,8 +46,8 @@ create table Characteristic
         constraint Fk_item_char
             references ShopItem
             on delete cascade,
-    charName    varchar(50),
-    charContent varchar(50)
+    charName    varchar(350),
+    charContent varchar(350)
 )
 go
 
@@ -124,6 +128,23 @@ create table OrderShop
     status    int default 1,
     startDate datetime,
     count     int default 1
+)
+go
+
+create table Rating
+(
+    ratingId    int identity
+        constraint Rating_pk
+            primary key nonclustered,
+    ratingValue float,
+    userId      int
+        constraint Rating_UserShop_userId_fk
+            references UserShop
+            on delete cascade,
+    itemId      int
+        constraint Rating_ShopItem_ShopItemId_fk
+            references ShopItem
+            on delete cascade
 )
 go
 

@@ -207,5 +207,5 @@ model.GetImages = async ()=>{
 model.GetPosts = ({})=>{
     let query = `select * from Post `;
     return request(query);
-}
+};
 module.exports = model;
