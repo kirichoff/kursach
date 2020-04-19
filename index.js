@@ -6,17 +6,21 @@ const jwt = require('./src/utils/jwt');
 const httpHandler = require('./src/utils/httpHandler');
 const app = express();
 const cors = require('cors');
+const dataFiling = require('./dataFiling');
 app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
+
+dataFiling.ShopItems(model);
+
 
 app.use(cors());
 
 httpHandler(app,model.post,exclude,'/api/post/','post');
 
-console.log(model.get.getCategory().then(k=> console.log(k)));
-
 httpHandler(app,model.get,exclude,'/api/get/');
+
+
 
 app.all(`/api/Login`,async (req,res)=>{
     let user = await model.get.Login(req.body);
@@ -45,10 +49,10 @@ app.get(`/api/model/`,async (req,res)=>{
         }))
 });
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, '/news_operator/build/')));
+app.use(express.static(path.join(__dirname, '/client/build/')));
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/news_operator/build/index.html'));
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 const port = process.env.PORT || 5000;
 app.listen(port);

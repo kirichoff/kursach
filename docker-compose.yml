@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  sql:
+    build: .
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "12345678Kiril"
+      MSSQL_AGENT_ENABLED: "true"
+    ports:
+      - "1436:1433"
+    container_name: sql
+    hostname: sql

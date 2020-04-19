@@ -12,7 +12,7 @@ const dataFiling ={};
                 description: data.description,
                 header: data.title,
                 price: Math.random() * 10000,
-                categoryId: category.categoryId
+                categoryId: category.categoryid
             });
             for (let fe of data.features) {
                 console.log(fe);
