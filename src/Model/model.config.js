@@ -23,13 +23,13 @@ module.exports = function request (query){
 };
 
 const pgp = require("pg-promise")(/*options*/);
-const db = pgp("postgres://postgres:postgres@localhost:5433/mazshop");
+const db = pgp("localhost://postgres:postgres@localhost:5433/MazShop");
 
 
 module.exports = function request(query) {
-return db.one(query)
+return db.many(query)
     .then(function (data) {
-        return data.recordset;
+        return data;
     })
     .catch(function (error) {
         console.log("ERROR:", error);

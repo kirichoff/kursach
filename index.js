@@ -11,16 +11,13 @@ app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
 
-dataFiling.ShopItems(model);
-
+// dataFiling.ShopItems(model);
 
 app.use(cors());
 
 httpHandler(app,model.post,exclude,'/api/post/','post');
 
 httpHandler(app,model.get,exclude,'/api/get/');
-
-
 
 app.all(`/api/Login`,async (req,res)=>{
     let user = await model.get.Login(req.body);

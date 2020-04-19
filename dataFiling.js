@@ -14,18 +14,22 @@ const dataFiling ={};
                 price: Math.random() * 10000,
                 categoryId: category.categoryid
             });
-            for (let fe of data.features) {
-                console.log(fe);
-                if (fe.textFeature !== "" && fe.titleFeature !== "") {
-                    await model.post.AddChar({
-                        itemId: id[0].Id,
-                        charName: fe.titleFeature,
-                        charContent: fe.textFeature
-                    })
+
+            console.log(id);
+                for (let fe of data.features) {
+                    console.log('fe',fe);
+
+                    if (fe.textFeature !== "" && fe.titlefeature !== "") {
+                        await model.post.AddChar({
+                            itemId: id[0].id,
+                            charName: fe.titleFeature,
+                            charContent: fe.textFeature
+                        })
+                    }
                 }
-            }
+
             model.post.AddItemContent({
-                itemId: id[0].Id,
+                itemId: id[0].id,
                 content: data.image
             });
         }

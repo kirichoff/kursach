@@ -10,7 +10,7 @@ model.Register = ({login,password,email,phoneNumber}) => {
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});
-            select @@IDENTITY as userId`;
+           select lastval() as userId;`;
     return request(query);
 };
 model.AddShopItem = ({description,header,price,categoryId}) =>{
@@ -22,7 +22,7 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
             (description,header,categoryId,price)           
         values
             ('${description}','${header}',${categoryId},${price});
-            select @@IDENTITY as Id  
+                select lastval() as Id; 
            `;
     return request(query);
 };
@@ -99,44 +99,48 @@ model.AddCartUser = async ({login,password,email,phoneNumber}) => {
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});
-            select @@IDENTITY as userId
+            select lastval() as userId;
            `;
         return request(query);
     };
 model.SetCategory = async ({categoryName}) =>{
   let query =`
-    insert into Category(categoryName) values('${categoryName}');
+    insert into dbo.Category(categoryName) values('${categoryName}');
   `;
   return request(query)
 };
 
 model.SetCategory2 = async ({categoryName}) =>{
 
-    let categories = await get.getCategory();
+    let categories = await get.getCategory() || [];
+    console.log('Category',categoryName,'Categories',categories);
 
-    console.log('Category',categoryName);
-
-    let name = categories.find(k=> k.categoryName === categoryName);
-
+    let name = categories.find(k=> k.categoryname === categoryName);
     if (name){
         return name
     }
     else {
         let query = `
-    insert into Category(categoryName) values('${ categoryName }');
-      select @@IDENTITY as categoryId
-         `;
+        insert into dbo.category(categoryName) values('${ categoryName }');
+        select lastval() as categoryId;
+        `;
         let res = await request(query);
-        return res[0];
+        console.log(res,res)
+        try {
+            return res[0];
+        }
+        catch (e) {
+            return {};
+        }
     }
 };
 model.SetImages = async ({content}) =>{
-    let query =`insert into images(content) values('${content}')`;
+    let query =`insert into dbo.images(content) values('${content}')`;
     return request(query)
 };
 
 model.SetPost = ({text,image}) =>{
-        let query =`insert into Post(text,image) values('${text}','${image}')`;
+        let query =`insert into dbo.Post(text,image) values('${text}','${image}')`;
         return request(query)
     };
 

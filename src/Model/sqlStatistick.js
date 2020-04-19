@@ -2,7 +2,7 @@ request = require('./model.config');
 const model = {};
 
 
-model.GetItemStats = ({}) =>{
+model.GetItemStats = ({}) => {
     const query = `
 select sum(count) as count,
             itemId,
@@ -15,14 +15,14 @@ on itemId=ShopItemId group by itemId
     return request(query);
 };
 
-model.GetItemStatsPrice = ({})=>{
-  const query=`
+model.GetItemStatsPrice = ({}) => {
+    const query = `
    select price,header from  ShopItem`;
-  return request(query)
+    return request(query)
 };
-model.GetRatingStats = ({}) =>{
-    const query=`
-   select count(ratingId) as 'count' ,ratingValue from  Rating group by ratingValue 
+model.GetRatingStats = ({}) => {
+    const query = `
+   select count(ratingId) as count ,ratingValue from  Rating group by ratingValue 
     `;
     return request(query)
 };
