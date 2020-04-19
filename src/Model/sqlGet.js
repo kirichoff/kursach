@@ -6,7 +6,7 @@ model.GetAllUsers = async ()=> {
         select
             * 
         from
-            MazShop.dbo.UserShop`;
+            dbo.UserShop`;
     return request(query);
 };
 model.GetChar = ({id})=>{
@@ -14,7 +14,7 @@ model.GetChar = ({id})=>{
         select
             * 
         from
-              MazShop.dbo.Characteristic
+              dbo.Characteristic
         where itemId = ${id}
               `;
     return request(query);
@@ -27,9 +27,9 @@ model.GetAllShopItems = () =>{
      , header
      , price
      , content AS 'previewImage'
-FROM MAZSHOP.DBO.SHOPITEM
+FROM DBO.SHOPITEM
          LEFT JOIN
-     MAZSHOP.DBO
+     DBO
          .ITEMCONTENT
      ON
          SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
@@ -67,9 +67,9 @@ model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId})
      , header
      , price
      , content AS 'previewImage'
-FROM MAZSHOP.DBO.SHOPITEM
+FROM DBO.SHOPITEM
          LEFT JOIN
-     MAZSHOP.DBO
+     DBO
          .ITEMCONTENT
      ON
          SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
@@ -94,7 +94,7 @@ model.GetUser = ({login,password})=> {
         select
             * 
         from
-            MazShop.dbo.UserShop
+            dbo.UserShop
         where
             login = '${ login }' 
             and password = '${ password }'`;
@@ -106,7 +106,7 @@ model.GetContent = ({id}) =>{
         select
             * 
         from
-              MazShop.dbo.ItemContent
+              dbo.ItemContent
         where itemId = ${id}`;
     return request(query);
 };
@@ -116,7 +116,7 @@ model.GetUserById = ({id})=>{
         select
             * 
         from
-              MazShop.dbo.UserShop
+              dbo.UserShop
         where userId = ${id}
               `;
     return request(query);
@@ -129,33 +129,33 @@ model.GetUserCart =  ({userId})=>{
 	count
 ,	cartId
 ,	userId
-,   MazShop.dbo.ItemContent.itemId
+,   dbo.ItemContent.itemId
 ,	description
 ,	header
 ,	price
 ,	CategoryId
 ,	content	AS 'previewImage'
 FROM
-	MAZSHOP.DBO.CART
+	DBO.CART
 INNER JOIN
-	MAZSHOP.DBO
+	DBO
 .SHOPITEM
 ON
-	CART.ITEMID	=	MAZSHOP.DBO.SHOPITEM.SHOPITEMID
+	CART.ITEMID	=	DBO.SHOPITEM.SHOPITEMID
 INNER JOIN
-	MAZSHOP.DBO
+	DBO
 .ITEMCONTENT
 ON
-	MAZSHOP.DBO.CART.ITEMID	=	MAZSHOP.DBO.ITEMCONTENT.ITEMID
+	DBO.CART.ITEMID	=	DBO.ITEMCONTENT.ITEMID
 WHERE
-	MAZSHOP.DBO.ITEMCONTENT.CONTENTID	=	(
+	DBO.ITEMCONTENT.CONTENTID	=	(
 		SELECT
 			MIN(ITEMCONTENT.CONTENTID)
 		FROM
-			MAZSHOP.DBO.ITEMCONTENT
+			DBO.ITEMCONTENT
 		WHERE
-			MAZSHOP.DBO.ITEMCONTENT.ITEMID	=	MAZSHOP.DBO.SHOPITEM.SHOPITEMID
-	) and MAZSHOP.DBO.CART.USERID	= ${userId}`;
+			DBO.ITEMCONTENT.ITEMID	=	DBO.SHOPITEM.SHOPITEMID
+	) and DBO.CART.USERID	= ${userId}`;
     return request(query);
 };
 model.Login = async ({email,password})=> {
@@ -163,7 +163,7 @@ model.Login = async ({email,password})=> {
         select
             * 
         from
-            MazShop.dbo.UserShop
+            dbo.UserShop
         where
             email = '${ email }' 
             and password = '${ password }'`;
@@ -172,35 +172,35 @@ model.Login = async ({email,password})=> {
 };
 model.getCategory = () => {
     // noinspection SqlDialectInspection
-    let query = 'select * from MazShop.dbo.Category';
+    let query = 'select * from dbo.Category';
     return request(query);
 };
 model.GetShopItem = ({ShopItemId}) =>{
     let query = `
-    select * from MazShop.dbo.ShopItem where ShopItemId = '${ShopItemId}'`;
+    select * from dbo.ShopItem where ShopItemId = '${ShopItemId}'`;
     return request(query);
 };
 model.GetPreviewImage = ({imageId}) =>{
     let query = `
-    select content from MazShop.dbo.ItemContent where contentId = '${imageId}'`;
+    select content from dbo.ItemContent where contentId = '${imageId}'`;
     return request(query);
 };
 model.GetOrders = async () =>{
   let query = `
     select login,orderId, phoneNumber,email,itemId,UserShop.userId as 'userId', 
-        MazShop.dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
+        dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
     on UserShop.userId=OrderShop.userId
   `;
   return request(query);
 };
 
 model.GetHeadersSearch = async ({value}) => {
-    let query = `select top 7 header from MazShop.dbo.ShopItem where ShopItem.header like '%${value}%'`;
+    let query = `select top 7 header from dbo.ShopItem where ShopItem.header like '%${value}%'`;
     return request(query);
 };
 
 model.GetImages = async ()=>{
-    let query = `select * from MazShop.dbo.images `;
+    let query = `select * from dbo.images `;
     return request(query);
 };
 

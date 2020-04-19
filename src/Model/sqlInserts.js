@@ -6,7 +6,7 @@ model.Register = ({login,password,email,phoneNumber}) => {
     let query = `
         Insert         
         into
-             MazShop.dbo.UserShop
+             dbo.UserShop
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});
@@ -18,7 +18,7 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
     let query = `
         Insert         
         into
-             MazShop.dbo.ShopItem
+             dbo.ShopItem
             (description,header,categoryId,price)           
         values
             ('${description}','${header}',${categoryId},${price});
@@ -37,9 +37,9 @@ model.AddOrder = ({itemId, userId, status, startDate,count})=>{
     let query = `
     insert       
     into
-        MazShop.dbo.OrderShop
+        dbo.OrderShop
         (itemId, userId, status, startDate,count) values (${itemId},${userId},${status},'${startDate}',${count});
-        delete from MazShop.dbo.Cart where Cart.ItemId = ${itemId}  
+        delete from dbo.Cart where Cart.ItemId = ${itemId}  
         `;
     return request(query)
 };
@@ -48,7 +48,7 @@ model.AddItemContent = ({itemId, content}) =>{
     let query = `
     insert       
     into
-        MazShop.dbo.ItemContent(itemId, content)
+        dbo.ItemContent(itemId, content)
         values (${itemId},'${content}')
        `;
     return request(query)
@@ -57,7 +57,7 @@ model.AddItemComment = ({itemId, content,userId}) =>{
     let query = `
     insert       
     into
-        MazShop.dbo.ItemComment(itemId, content, userId)
+        dbo.ItemComment(itemId, content, userId)
         values (${itemId},'${content}',${userId})
        `;
     return request(query)
@@ -66,7 +66,7 @@ model.AddChar = ({itemId, charName, charContent}) =>{
     let query = `
     insert       
     into
-        MazShop.dbo.Characteristic(itemId, charName, charContent)
+        dbo.Characteristic(itemId, charName, charContent)
         values (${itemId},'${charName}','${charContent}')
        `;
     return request(query)
@@ -77,7 +77,7 @@ model.AddToCart = ({ItemId,count,userId})=>{
     let query = `
         Insert         
         into
-            MazShop.dbo.Cart
+            dbo.Cart
             (ItemId,count,userId)            
         values
             ('${ItemId}','${count}','${userId}')
@@ -87,7 +87,7 @@ model.AddToCart = ({ItemId,count,userId})=>{
 
 model.AddCartUser = async ({login,password,email,phoneNumber}) => {
         // Query
-        let testing = `select userId from MazShop.dbo.UserShop where email = '${email}' `;
+        let testing = `select userId from dbo.UserShop where email = '${email}' `;
         let user = await request(testing);
         if(user.length > 0){
             return  user
@@ -95,7 +95,7 @@ model.AddCartUser = async ({login,password,email,phoneNumber}) => {
         let query = `
         Insert         
         into
-             MazShop.dbo.UserShop
+             dbo.UserShop
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});

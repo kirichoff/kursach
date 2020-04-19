@@ -5,7 +5,7 @@ model.DeleteItemContent = ({contentId})=>{
     let query = `
         delete
         from
-            MazShop.dbo.ItemContent
+            dbo.ItemContent
             where
             contentId = ${contentId}
            `;
@@ -15,7 +15,7 @@ model.DeleteItem = ({ShopItemId}) =>{
     let query = `
         delete
         from
-            MazShop.dbo.ShopItem
+            dbo.ShopItem
             where
             ShopItemId = ${ShopItemId}
            `;
@@ -26,7 +26,7 @@ model.DeleteCartItem = ({ShopItemId,userId}) =>{
     let query = `
         delete
         from
-            MazShop.dbo.Cart
+            dbo.Cart
             where
             itemId = ${ShopItemId} and userId = ${userId}
            `;
@@ -37,19 +37,19 @@ model.DeleteCategory = ({categoryId}) =>{
     let query = `
         delete
         from
-            MazShop.dbo.Category
+            dbo.Category
             where
             categoryId = ${categoryId}`;
     return request(query);
 };
 model.DeleteOrder =({orderId}) => {
    let query = `
-    delete from MazShop.dbo.OrderShop where orderId=${orderId}`;
+    delete from dbo.OrderShop where orderId=${orderId}`;
     return request(query);
 } ;
 
 model.DeleteImages =({imageId}) => {
-    let query = `delete from MazShop.dbo.images where imageId = ${imageId}`;
+    let query = `delete from dbo.images where imageId = ${imageId}`;
     return request(query);
 } ;
 
@@ -60,7 +60,7 @@ model.DeletePost =({postId}) => {
 
 
 model.DeleteFeature = async ({charId}) => {
-    let query = `delete from MazShop.dbo.Characteristic where charId = ${charId} `;
+    let query = `delete from dbo.Characteristic where charId = ${charId} `;
     return request(query);
 };
 

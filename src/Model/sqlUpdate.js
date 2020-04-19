@@ -5,7 +5,7 @@ model.UpdateShopItem = ({description,header,price,categoryId,ShopItemId})=>{
     console.log('up',description,header,price,categoryId,ShopItemId);
     let query = `
         update         
-            MazShop.dbo.ShopItem
+            dbo.ShopItem
             SET description = '${description}',
              header = '${header}',
              price = ${price},
@@ -17,7 +17,7 @@ model.UpdateShopItem = ({description,header,price,categoryId,ShopItemId})=>{
 model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
     let query = `
     update
-     MazShop.dbo.UserShop
+     dbo.UserShop
              SET login = '${login}',
              password = '${password}',
              phoneNumber = ${phoneNumber} ,
@@ -28,7 +28,7 @@ model.UpdateUser = ({email,phoneNumber,password,login,userId}) => {
 model.UpdateCountCart = ({itemId,userId,count}) =>{
     let query = `
     update
-     MazShop.dbo.Cart
+     dbo.Cart
              SET count = '${count}'         
              where userId = ${userId} and ItemId=${itemId}`;
     return request(query);
@@ -47,7 +47,7 @@ model.UpdateRating = ({ratingId,ratingValue})=>{
 model.UpdateFeature = ({charName,charContent,charId})=>{
     let query = `
     update
-        MazShop.dbo.Characteristic
+        dbo.Characteristic
         set
        charName = '${charName}',
        charContent = '${charContent}'
@@ -57,7 +57,7 @@ model.UpdateFeature = ({charName,charContent,charId})=>{
 model.UpdatePost = ({postId,text,image})=>{
     let query = `
     update
-        MazShop.dbo.Post
+        dbo.Post
         set
        text = '${text}',
        image = '${image}'

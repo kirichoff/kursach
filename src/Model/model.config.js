@@ -22,8 +22,8 @@ module.exports = function request (query){
     });
 };
 
-var pgp = require("pg-promise")(/*options*/);
-var db = pgp("postgres://postgres:1234@localhost:5432/mazshop");
+const pgp = require("pg-promise")(/*options*/);
+const db = pgp("postgres://postgres:postgres@localhost:5433/mazshop");
 
 
 module.exports = function request(query) {
