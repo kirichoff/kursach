@@ -22,7 +22,6 @@ model.DeleteItem = ({ShopItemId}) =>{
     return request(query);
 };
 model.DeleteCartItem = ({ShopItemId,userId}) =>{
-    console.log(ShopItemId,userId);
     let query = `
         delete
         from

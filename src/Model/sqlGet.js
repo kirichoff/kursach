@@ -45,18 +45,18 @@ WHERE ITEMCONTENT.CONTENTID = (
 
 model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId}) =>{
     // noinspection SqlDialectInspection
-    console.log('values',min,max,category,searchQuery);
+
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
     let categories =  await model.getCategory();
     let currentCategory =  categories.find(k=> k.categoryId === +category);
-    console.log('Find category');
+
     if (currentCategory.categoryName === 'Все')
         q = ' ';
     let s ='';
     if(searchQuery)
         s = `and ShopItem.header like '%${searchQuery}%'`;
     lastId = lastId>0? `and ShopItemId> ${lastId}` : '';
-    console.log(lastId);
+
     min = min || 1;
     max = max || Number.MAX_VALUE;
     let query = `
@@ -81,7 +81,6 @@ WHERE ITEMCONTENT.CONTENTID = (
     return  request(query);
 };
 model.GetRating = ({itemId})=> {
-    console.log('itemID',itemId)
     let query = `select avg(ratingValue) as ratingValue  from Rating where itemId = ${itemId}`;
     return  request(query);
 };
@@ -122,7 +121,6 @@ model.GetUserById = ({id})=>{
     return request(query);
 };
 model.GetUserCart =  ({userId})=>{
-    console.log('UserID',userId)
     // Query
     let query = `
      SELECT

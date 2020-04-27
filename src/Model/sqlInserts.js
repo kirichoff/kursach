@@ -14,7 +14,7 @@ model.Register = ({login,password,email,phoneNumber}) => {
     return request(query);
 };
 model.AddShopItem = ({description,header,price,categoryId}) =>{
-    console.log('add',description,header,price,categoryId);
+    
     let query = `
         Insert         
         into
@@ -44,7 +44,7 @@ model.AddOrder = ({itemId, userId, status, startDate,count})=>{
     return request(query)
 };
 model.AddItemContent = ({itemId, content}) =>{
-    console.log('itemId',itemId);
+    
     let query = `
     insert       
     into
@@ -73,7 +73,6 @@ model.AddChar = ({itemId, charName, charContent}) =>{
 };
 model.AddToCart = ({ItemId,count,userId})=>{
     // Query
-    console.log('Add cart',{ItemId,count,userId})
     let query = `
         Insert         
         into
@@ -114,7 +113,7 @@ model.SetCategory2 = async ({categoryName}) =>{
 
     let categories = await get.getCategory();
 
-    console.log('Category',categoryName);
+    
 
     let name = categories.find(k=> k.categoryName === categoryName);
 

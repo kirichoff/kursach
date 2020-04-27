@@ -2,7 +2,6 @@ request = require('./model.config');
 const model = {};
 model.UpdateShopItem = ({description,header,price,categoryId,ShopItemId})=>{
     // Query
-    console.log('up',description,header,price,categoryId,ShopItemId);
     let query = `
         update         
             MazShop.dbo.ShopItem
