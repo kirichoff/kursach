@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -6,13 +7,15 @@ const jwt = require('./src/utils/jwt');
 const httpHandler = require('./src/utils/httpHandler');
 const app = express();
 const cors = require('cors');
+
 const dataFiling = require('./dataFiling');
 app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
 
-dataFiling.ShopItems(model);
+//dataFiling.ShopItems(model);
 
+console.log(process.env.PASSWORD)
 
 app.use(cors());
 
