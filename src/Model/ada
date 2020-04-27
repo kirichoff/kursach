@@ -1,0 +1,70 @@
+
+        Insert
+        into
+             UserShop
+            (login,password,email,phoneNumber)
+        values
+            ('${login}','${password}','${email}',${phoneNumber});
+           select lastval() as userId;
+
+        Insert
+        into
+             ShopItem
+            (description,header,categoryId,price)
+        values
+            ('${description}','${header}',${categoryId},${price});
+                select lastval() as Id;
+
+insert into Rating(itemId,userId,ratingValue) values('
+
+    insert
+    into
+        OrderShop
+        (itemId, userId, status, startDate,count)
+        values (${itemId},${userId},${status},'${startDate}',${count});
+        delete from Cart where Cart.ItemId = ${itemId}
+
+
+    insert
+    into
+        ItemContent(itemId, content)
+        values (${itemId},'${content}')
+
+
+    insert
+    into
+        ItemComment(itemId, content, userId)
+        values (${itemId},'${content}',${userId})
+
+
+    insert
+    into
+        Characteristic(itemId, charName, charContent)
+        values (${itemId},'${charName}','${charContent}')
+
+
+        Insert
+        into
+            Cart
+            (ItemId,count,userId)
+        values
+            ('${ItemId}','${count}','${userId}')
+
+
+        Insert
+        into
+             UserShop
+            (login,password,email,phoneNumber)
+        values
+            ('${login}','${password}','${email}',${phoneNumber});
+            select lastval() as userId;
+
+
+    insert into Category(categoryName) values('${categoryName}');
+
+
+        insert into category(categoryName) values('${ categoryName }');
+        select lastval() as categoryId;
+
+insert into images(content) values('
+insert into Post(text,image) values('

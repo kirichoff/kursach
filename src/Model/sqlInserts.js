@@ -2,12 +2,12 @@ request = require('./model.config');
 const get = require('./sqlGet');
 const model = {};
 model.Register = ({login,password,email,phoneNumber}) => {
-    // Query
+// Query
     let query = `
         Insert         
         into
-             dbo.UserShop
-            (login,password,email,phoneNumber)            
+             UserShop
+            (login,password,email,"phoneNumber")            
         values
             ('${login}','${password}','${email}',${phoneNumber});
            select lastval() as userId;`;
@@ -18,8 +18,8 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
     let query = `
         Insert         
         into
-             dbo.ShopItem
-            (description,header,categoryId,price)           
+             ShopItem
+            (description,"header","categoryId",price)           
         values
             ('${description}','${header}',${categoryId},${price});
                 select lastval() as Id; 
@@ -37,9 +37,10 @@ model.AddOrder = ({itemId, userId, status, startDate,count})=>{
     let query = `
     insert       
     into
-        dbo.OrderShop
-        (itemId, userId, status, startDate,count) values (${itemId},${userId},${status},'${startDate}',${count});
-        delete from dbo.Cart where Cart.ItemId = ${itemId}  
+        OrderShop
+        ("itemId", "userId", status, "startDate",count) 
+        values (${itemId},${userId},${status},'${startDate}',${count});
+        delete from Cart where Cart.ItemId = ${itemId}  
         `;
     return request(query)
 };
@@ -48,7 +49,7 @@ model.AddItemContent = ({itemId, content}) =>{
     let query = `
     insert       
     into
-        dbo.ItemContent(itemId, content)
+        ItemContent("itemId", content)
         values (${itemId},'${content}')
        `;
     return request(query)
@@ -57,7 +58,7 @@ model.AddItemComment = ({itemId, content,userId}) =>{
     let query = `
     insert       
     into
-        dbo.ItemComment(itemId, content, userId)
+        ItemComment("itemId", content, "userId")
         values (${itemId},'${content}',${userId})
        `;
     return request(query)
@@ -66,7 +67,7 @@ model.AddChar = ({itemId, charName, charContent}) =>{
     let query = `
     insert       
     into
-        dbo.Characteristic(itemId, charName, charContent)
+        Characteristic(itemId, charName, charContent)
         values (${itemId},'${charName}','${charContent}')
        `;
     return request(query)
@@ -77,7 +78,7 @@ model.AddToCart = ({ItemId,count,userId})=>{
     let query = `
         Insert         
         into
-            dbo.Cart
+            Cart
             (ItemId,count,userId)            
         values
             ('${ItemId}','${count}','${userId}')
@@ -87,27 +88,27 @@ model.AddToCart = ({ItemId,count,userId})=>{
 
 model.AddCartUser = async ({login,password,email,phoneNumber}) => {
         // Query
-        let testing = `select userId from dbo.UserShop where email = '${email}' `;
+        let testing = `select userId from UserShop where email = '${email}' `;
         let user = await request(testing);
         if(user.length > 0){
             return  user
         }
-        let query = `
+    let query = `
         Insert         
         into
-             dbo.UserShop
+             UserShop
             (login,password,email,phoneNumber)            
         values
             ('${login}','${password}','${email}',${phoneNumber});
             select lastval() as userId;
            `;
-        return request(query);
+    return request(query);
     };
 model.SetCategory = async ({categoryName}) =>{
-  let query =`
-    insert into dbo.Category(categoryName) values('${categoryName}');
+    let query =`
+    insert into Category(categoryName) values('${categoryName}');
   `;
-  return request(query)
+    return request(query)
 };
 
 model.SetCategory2 = async ({categoryName}) =>{
@@ -115,13 +116,13 @@ model.SetCategory2 = async ({categoryName}) =>{
     let categories = await get.getCategory() || [];
     console.log('Category',categoryName,'Categories',categories);
 
-    let name = categories.find(k=> k.categoryname === categoryName);
+    let name = categories.find(k=> k.categoryName === categoryName);
     if (name){
         return name
     }
     else {
         let query = `
-        insert into dbo.category(categoryName) values('${ categoryName }');
+        insert into category(categoryName) values('${ categoryName }');
         select lastval() as categoryId;
         `;
         let res = await request(query);
@@ -135,13 +136,13 @@ model.SetCategory2 = async ({categoryName}) =>{
     }
 };
 model.SetImages = async ({content}) =>{
-    let query =`insert into dbo.images(content) values('${content}')`;
+    let query =`insert into images(content) values('${content}')`;
     return request(query)
 };
 
 model.SetPost = ({text,image}) =>{
-        let query =`insert into dbo.Post(text,image) values('${text}','${image}')`;
-        return request(query)
+    let query =`insert into Post(text,image) values('${text}','${image}')`;
+    return request(query)
     };
 
 module.exports = model;

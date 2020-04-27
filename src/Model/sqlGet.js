@@ -6,7 +6,7 @@ model.GetAllUsers = async () => {
         select
             * 
         from
-            dbo.UserShop`;
+            UserShop`;
     return request(query);
 };
 model.GetChar = ({id}) => {
@@ -14,7 +14,7 @@ model.GetChar = ({id}) => {
         select
             * 
         from
-              dbo.Characteristic
+              Characteristic
         where itemId = ${id}
               `;
     return request(query);
@@ -27,15 +27,15 @@ model.GetAllShopItems = () => {
      , header
      , price
      , content AS previewImage
-FROM DBO.SHOPITEM
+FROM SHOPITEM
          LEFT JOIN
-     DBO.ITEMCONTENT
+     ITEMCONTENT
      ON
-         dbo.SHOPITEM.SHOPITEMID = dbo.ITEMCONTENT.ITEMID
-WHERE dbo.ITEMCONTENT.CONTENTID = (
-    SELECT MIN(dbo.ITEMCONTENT.CONTENTID)
-    FROM dbo.ITEMCONTENT
-    WHERE dbo.ITEMCONTENT.ITEMID = dbo.SHOPITEM.SHOPITEMID
+         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
+WHERE ITEMCONTENT.CONTENTID = (
+    SELECT MIN(ITEMCONTENT.CONTENTID)
+    FROM ITEMCONTENT
+    WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID
 )`;
     return request(query);
 };
@@ -64,17 +64,17 @@ model.GetAllShopItemsFilter = async ({category, min, max, searchQuery = '', last
      , header
      , price
      , content AS previewImage
-FROM DBO.SHOPITEM
+FROM SHOPITEM
          LEFT JOIN
      DBO
          .ITEMCONTENT
      ON
-         dbo.SHOPITEM.SHOPITEMID = dbo.ITEMCONTENT.ITEMID
-WHERE dbo.ITEMCONTENT.CONTENTID = (
-    SELECT MIN(dbo.ITEMCONTENT.CONTENTID)
-    FROM dbo.ITEMCONTENT
-    WHERE dbo.ITEMCONTENT.ITEMID = dbo.SHOPITEM.SHOPITEMID 
-)  ${q} ${s} ${lastId} and dbo.ShopItem.price between ${min} and ${max} `;
+         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
+WHERE ITEMCONTENT.CONTENTID = (
+    SELECT MIN(ITEMCONTENT.CONTENTID)
+    FROM ITEMCONTENT
+    WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
+)  ${q} ${s} ${lastId} and ShopItem.price between ${min} and ${max} `;
     return request(query);
 };
 model.GetRating = ({itemId}) => {
@@ -91,7 +91,7 @@ model.GetUser = ({login, password}) => {
         select
             * 
         from
-            dbo.UserShop
+            UserShop
         where
             login = '${login}' 
             and password = '${password}'`;
@@ -103,7 +103,7 @@ model.GetContent = ({id}) => {
         select
             * 
         from
-              dbo.ItemContent
+              ItemContent
         where itemId = ${id}`;
     return request(query);
 };
@@ -113,7 +113,7 @@ model.GetUserById = ({id}) => {
         select
             * 
         from
-              dbo.UserShop
+              UserShop
         where userId = ${id}
               `;
     return request(query);
@@ -126,33 +126,31 @@ model.GetUserCart = ({userId}) => {
 	count
 ,	cartId
 ,	userId
-,   dbo.ItemContent.itemId
+,   ItemContent.itemId
 ,	description
 ,	header
 ,	price
 ,	CategoryId
 ,	content	AS previewImage
 FROM
-	DBO.CART
+	CART
 INNER JOIN
-	DBO
-.SHOPITEM
+	SHOPITEM
 ON
-	CART.ITEMID	=	DBO.SHOPITEM.SHOPITEMID
+	CART.ITEMID	=	SHOPITEM.SHOPITEMID
 INNER JOIN
-	DBO
-.ITEMCONTENT
+    ITEMCONTENT
 ON
-	DBO.CART.ITEMID	=	DBO.ITEMCONTENT.ITEMID
+	CART.ITEMID	=	ITEMCONTENT.ITEMID
 WHERE
-	DBO.ITEMCONTENT.CONTENTID	=	(
+	ITEMCONTENT.CONTENTID	=	(
 		SELECT
-			MIN(dbo.ITEMCONTENT.CONTENTID)
+			MIN(ITEMCONTENT.CONTENTID)
 		FROM
-			DBO.ITEMCONTENT
+			ITEMCONTENT
 		WHERE
-			DBO.ITEMCONTENT.ITEMID	=	DBO.SHOPITEM.SHOPITEMID
-	) and DBO.CART.USERID	= ${userId}
+			ITEMCONTENT.ITEMID	=	SHOPITEM.SHOPITEMID
+	) and CART.USERID	= ${userId}
 	limit 9;
 	`;
     return request(query);
@@ -162,7 +160,7 @@ model.Login = async ({email, password}) => {
         select
             * 
         from
-            dbo.UserShop
+            UserShop
         where
             email = '${email}' 
             and password = '${password}'`;
@@ -171,35 +169,35 @@ model.Login = async ({email, password}) => {
 };
 model.getCategory = () => {
     // noinspection SqlDialectInspection
-    let query = 'select * from dbo.Category';
+    let query = 'select * from Category';
     return request(query);
 };
 model.GetShopItem = ({ShopItemId}) => {
     let query = `
-    select * from dbo.ShopItem where ShopItemId = '${ShopItemId}'`;
+    select * from ShopItem where ShopItemId = '${ShopItemId}'`;
     return request(query);
 };
 model.GetPreviewImage = ({imageId}) => {
     let query = `
-    select content from dbo.ItemContent where contentId = '${imageId}'`;
+    select content from ItemContent where contentId = '${imageId}'`;
     return request(query);
 };
 model.GetOrders = async () => {
     let query = `
     select login,orderId, phoneNumber,email,itemId,UserShop.userId as userId, 
-        dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
+        OrderShop.count as count , startDate from UserShop INNER join OrderShop 
     on UserShop.userId=OrderShop.userId
   `;
     return request(query);
 };
 
 model.GetHeadersSearch = async ({value}) => {
-    let query = `select  header from dbo.ShopItem where ShopItem.header like '%${value}%' limit 7`;
+    let query = `select  header from ShopItem where ShopItem.header like '%${value}%' limit 7`;
     return request(query);
 };
 
 model.GetImages = async () => {
-    let query = `select * from dbo.images `;
+    let query = `select * from images `;
     return request(query);
 };
 
