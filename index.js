@@ -5,25 +5,19 @@ const bodyParser = require('body-parser');
 const model = require('./src/Model/modelCombainer');
 const jwt = require('./src/utils/jwt');
 const httpHandler = require('./src/utils/httpHandler');
-const app = express();
 const cors = require('cors');
+const app = express();
+require('dotenv').config();
 
-const dataFiling = require('./dataFiling');
+app.use(cors());
+
 app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
 
-//dataFiling.ShopItems(model);
-
-console.log(process.env.PASSWORD)
-
-app.use(cors());
-
 httpHandler(app,model.post,exclude,'/api/post/','post');
 
 httpHandler(app,model.get,exclude,'/api/get/');
-
-
 
 app.all(`/api/Login`,async (req,res)=>{
     let user = await model.get.Login(req.body);
@@ -34,16 +28,6 @@ app.all(`/api/Login`,async (req,res)=>{
         res.status(401);
         res.send({ex: 'invalid user or password'})
     }
-});
-app.all(`/api/security/`,async (req,res,next)=>{
-    next();
-    // if (jwt.verify(req.headers.Authorization)){
-    //     next()
-    // }
-    // else {
-    //     res.status(401);
-    //     res.send({ex: 'invalid token'})
-    // }
 });
 app.get(`/api/model/`,async (req,res)=>{
     res.send( await JSON.stringify( {

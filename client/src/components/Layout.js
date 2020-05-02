@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../style/teststyle.css'
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 import Notification from "rambler-ui/Notification/Notification";
 function Layout(props) {
     return (

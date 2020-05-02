@@ -6,6 +6,6 @@ module.exports = function httpHandler(app,model,exclude,path,type='get') {
             let q = type === 'get'? req.query : req.body;
             let re = await model[name](q);
             res.send(re);
-        })
+            })
     }
 };

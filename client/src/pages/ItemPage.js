@@ -14,6 +14,8 @@ import '../style/ItemPage.css'
  import CategoryPiker from "../components/CategoryPiker";
  import NotifyError from "../components/NotifyError";
  import RatingBar from "../components/RatingBar";
+ import {instanceOf} from "prop-types";
+ import CommentComponent from "../components/Comments/CommentComponent";
 
 
 function ItemPage(props) {
@@ -24,7 +26,7 @@ function ItemPage(props) {
     const [shopItem,setShopItem] = useState({});
     const [price,setPrice] = useState(1);
     const [images,setImages] = useState([]);
-    const [featureItems,setFeatureItems] = useState([] );
+    let [featureItems,setFeatureItems] = useState([] );
     const [current,setCurrent] = useState(0);
     const [deleteImages,setDeleteImages] = useState([]);
     const [category,setCategory] = useState(1);
@@ -102,7 +104,6 @@ function ItemPage(props) {
            {
              ...params
                 });
-        console.log('res',res)
         if(res.error){
             setError(res.error);
             setNotification(true);
@@ -119,7 +120,8 @@ function ItemPage(props) {
             props.AddItemContent({itemId: id, content:img.content});
         }
     };
-    console.log(shopItem)
+    console.log('shopItem',shopItem)
+    featureItems = featureItems instanceof Array? featureItems : []
     return (
         <Layout>
             <NotifyError notify={notification} close={()=>setNotification(false)} error={error || null} />
@@ -184,8 +186,10 @@ function ItemPage(props) {
                             ref={node=>description=node}
                         />
                     </div>
-
                     <div  className={'FeatureContainer'} >
+                        <div><h3>Характеристики</h3></div>
+                        <table>
+                            <tbody>
                         {featureItems.map((k,index)=>
                             <FeatureItem
                                 delete={(id)=>deleteFeature(id)}
@@ -197,6 +201,8 @@ function ItemPage(props) {
                                     }
                                 }
                                 {...k}/> ) }
+                            </tbody>
+                        </table>
                         { isAdmin ?
                                 <div>
                                     <div style={
@@ -213,6 +219,7 @@ function ItemPage(props) {
                                         </IconButton>
                                     </div>
                                 </div>: null }
+
                     </div>
                     { isAdmin?  <div className={'save'} >
                         <CategoryPiker
@@ -230,6 +237,11 @@ function ItemPage(props) {
                             </Button>
                         </div> : null }
                 </form>
+
+            <CommentComponent
+                itemId={shopItem.ShopItemId}
+                {...props}
+            />
         </Layout>
     );
 }

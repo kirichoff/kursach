@@ -45,7 +45,7 @@ WHERE ITEMCONTENT.CONTENTID = (
 
 model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId}) =>{
     // noinspection SqlDialectInspection
-
+    console.log(category,min,max,searchQuery,lastId)
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
     let categories =  await model.getCategory();
     let currentCategory =  categories.find(k=> k.categoryId === +category);
@@ -109,6 +109,17 @@ model.GetContent = ({id}) =>{
         where itemId = ${id}`;
     return request(query);
 };
+
+model.GetComments = ({itemId}) => {
+    let query = `
+        select
+            * 
+        from
+              MazShop.dbo.ItemComment
+        where itemId = ${itemId}`;
+
+    return request(query);
+}
 
 model.GetUserById = ({id})=>{
     let query = `

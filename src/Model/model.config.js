@@ -6,6 +6,7 @@ const config =  {
     port:1433,
     database: 'MazShop',
 };
+
 module.exports = function request (query){
     return sql.connect(config).then(pool => {
         return pool.request()
@@ -13,7 +14,7 @@ module.exports = function request (query){
     }).then(result => {
         return result.recordset;
     }).catch(err => {
-        if (err === 'ECONNCLOSED'){
+        if (err){
             return request(query)
         }
         return {error: err && err.originalError && err.originalError.info}

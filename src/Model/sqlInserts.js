@@ -1,20 +1,30 @@
 request = require('./model.config');
 const get = require('./sqlGet');
+const update = require('./sqlUpdate')
 const model = {};
-model.Register = ({login,password,email,phoneNumber}) => {
+
+model.Register = async ({login, password, email, phoneNumber, adminKey}) => {
     // Query
+    let isAdmin = null;
+    if (adminKey) {
+        let adminKeys = await request('SELECT * from AdminKey');
+        isAdmin = adminKeys.find(i => i.keyString == adminKey)
+    }
+
+    let rights = isAdmin ? 1 : 2;
+
     let query = `
         Insert         
         into
              MazShop.dbo.UserShop
-            (login,password,email,phoneNumber)            
+            (login,password,email,phoneNumber,rights)            
         values
-            ('${login}','${password}','${email}',${phoneNumber});
+            ('${login}','${password}','${email}',${phoneNumber},${rights});
             select @@IDENTITY as userId`;
     return request(query);
 };
-model.AddShopItem = ({description,header,price,categoryId}) =>{
-    
+model.AddShopItem = ({description, header, price, categoryId}) => {
+
     let query = `
         Insert         
         into
@@ -27,12 +37,35 @@ model.AddShopItem = ({description,header,price,categoryId}) =>{
     return request(query);
 };
 
-model.SetRating = ({itemId,userId,ratingValue}) => {
+
+model.AddItemComment = async ({itemId,content,userId}) =>{
+    console.log(itemId,content,userId)
+    let comments = await get.GetComments({itemId: itemId});
+
+    let comment = comments.find(c=> c.userId == userId)
+
+    if(comment) {
+        comment.content = content;
+        return update.UpdateComment(comment);
+    }
+        let query = `
+        Insert         
+        into
+             MazShop.dbo.ItemComment
+            (itemId,content,userId)           
+        values
+            (${itemId},'${JSON.stringify(content)}',${userId});`;
+
+
+    return request(query);
+}
+
+model.SetRating = ({itemId, userId, ratingValue}) => {
     let query = `insert into Rating(itemId,userId,ratingValue) values('${itemId}','${userId}','${ratingValue}')`;
     return request(query);
 };
 
-model.AddOrder = ({itemId, userId, status, startDate,count})=>{
+model.AddOrder = ({itemId, userId, status, startDate, count}) => {
     count = count || 1;
     let query = `
     insert       
@@ -43,8 +76,8 @@ model.AddOrder = ({itemId, userId, status, startDate,count})=>{
         `;
     return request(query)
 };
-model.AddItemContent = ({itemId, content}) =>{
-    
+model.AddItemContent = ({itemId, content}) => {
+
     let query = `
     insert       
     into
@@ -53,16 +86,7 @@ model.AddItemContent = ({itemId, content}) =>{
        `;
     return request(query)
 };
-model.AddItemComment = ({itemId, content,userId}) =>{
-    let query = `
-    insert       
-    into
-        MazShop.dbo.ItemComment(itemId, content, userId)
-        values (${itemId},'${content}',${userId})
-       `;
-    return request(query)
-};
-model.AddChar = ({itemId, charName, charContent}) =>{
+model.AddChar = ({itemId, charName, charContent}) => {
     let query = `
     insert       
     into
@@ -71,7 +95,7 @@ model.AddChar = ({itemId, charName, charContent}) =>{
        `;
     return request(query)
 };
-model.AddToCart = ({ItemId,count,userId})=>{
+model.AddToCart = ({ItemId, count, userId}) => {
     // Query
     let query = `
         Insert         
@@ -84,14 +108,14 @@ model.AddToCart = ({ItemId,count,userId})=>{
     return request(query);
 };
 
-model.AddCartUser = async ({login,password,email,phoneNumber}) => {
-        // Query
-        let testing = `select userId from MazShop.dbo.UserShop where email = '${email}' `;
-        let user = await request(testing);
-        if(user.length > 0){
-            return  user
-        }
-        let query = `
+model.AddCartUser = async ({login, password, email, phoneNumber}) => {
+    // Query
+    let testing = `select userId from MazShop.dbo.UserShop where email = '${email}' `;
+    let user = await request(testing);
+    if (user.length > 0) {
+        return user
+    }
+    let query = `
         Insert         
         into
              MazShop.dbo.UserShop
@@ -100,43 +124,41 @@ model.AddCartUser = async ({login,password,email,phoneNumber}) => {
             ('${login}','${password}','${email}',${phoneNumber});
             select @@IDENTITY as userId
            `;
-        return request(query);
-    };
-model.SetCategory = async ({categoryName}) =>{
-  let query =`
+    return request(query);
+};
+model.SetCategory = async ({categoryName}) => {
+    let query = `
     insert into Category(categoryName) values('${categoryName}');
   `;
-  return request(query)
+    return request(query)
 };
 
-model.SetCategory2 = async ({categoryName}) =>{
+model.SetCategory2 = async ({categoryName}) => {
 
     let categories = await get.getCategory();
 
-    
 
-    let name = categories.find(k=> k.categoryName === categoryName);
+    let name = categories.find(k => k.categoryName === categoryName);
 
-    if (name){
+    if (name) {
         return name
-    }
-    else {
+    } else {
         let query = `
-    insert into Category(categoryName) values('${ categoryName }');
+    insert into Category(categoryName) values('${categoryName}');
       select @@IDENTITY as categoryId
          `;
         let res = await request(query);
         return res[0];
     }
 };
-model.SetImages = async ({content}) =>{
-    let query =`insert into images(content) values('${content}')`;
+model.SetImages = async ({content}) => {
+    let query = `insert into images(content) values('${content}')`;
     return request(query)
 };
 
-model.SetPost = ({text,image}) =>{
-        let query =`insert into Post(text,image) values('${text}','${image}')`;
-        return request(query)
-    };
+model.SetPost = ({text, image}) => {
+    let query = `insert into Post(text,image) values('${text}','${image}')`;
+    return request(query)
+};
 
 module.exports = model;

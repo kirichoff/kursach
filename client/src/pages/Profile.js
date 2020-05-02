@@ -12,19 +12,29 @@ function Profile(props) {
 
     const [password,setPassword] = useState(user.password || '');
     const [email, setEmail] = useState(user.email || '');
-    const [phone, setPhone] = useState(user.phoneNumber || '');
-    const [name, setName] = useState(user.login || '');
+    const [phoneNumber, setPhone] = useState(user.phoneNumber || '');
+    const [login, setLogin] = useState(user.login || '');
     const [loading, setLoading] = useState(false);
 
-    //let loading = false;
+
 
     useEffect(()=>{
         setPhone(user.phoneNumber || '');
         setPassword(user.password || '');
         setEmail(user.email || '');
-        setName(user.login || '');
+        setLogin(user.login || '');
     },[user.userId])
 
+    let exit = () => {
+        props.UserExit();
+        props.router.push('/catalog')
+    }
+
+    let updateUser = () => {
+        props.UpdateUser({email, password, phoneNumber, login, userId: user.userId})
+        setLoading(true)
+        setTimeout(() => setLoading(false), 1000)
+    }
 
     return (
         <Layout>
@@ -37,7 +47,7 @@ function Profile(props) {
                             placeholder={'+3752999999999'}
                                onChange={(e) => setPhone(e.target.value)}
                                type={'tel'}
-                               value={phone}/>
+                               value={phoneNumber}/>
                     </div>
                     <div className={'email'}>
                         <h6>электронная почта</h6>
@@ -49,9 +59,9 @@ function Profile(props) {
                     <div className={'name'}>
                         <h6>Имя</h6>
                         <Input placeholder={'Валера'}
-                               onChange={(e) => setName(e.target.value)}
+                               onChange={(e) => setLogin(e.target.value)}
                                type={'text'}
-                               value={name}/>
+                               value={login}/>
                     </div>
                     <div className={'password'}>
                         <h6>пароль</h6>
@@ -63,18 +73,17 @@ function Profile(props) {
                     <div className={'btn-order'}>
                         <Button
                             loading={loading}
-                            onClick={() => {
-                            props.UpdateUser({
-                                    email,
-                                    password,
-                                    phoneNumber: phone,
-                                    login: name,
-                                    userId: user.userId
-                            })
-                            setLoading(true)
-                            setTimeout(()=>setLoading(false),1000)
-                        }}>
+                            width={"11vw"}
+                            onClick={updateUser}>
                             сохранить
+                        </Button>
+                        <Button
+                            width={"11vw"}
+                            style={{marginLeft: 20}}
+                            type={'outline'}
+                            loading={loading}
+                            onClick={exit}>
+                            выйти
                         </Button>
                     </div>
                 </div>

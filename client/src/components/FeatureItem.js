@@ -6,41 +6,47 @@ import EditIcon from 'rambler-ui/icons/forms/EditIcon'
 import {RemoveIcon} from "rambler-ui/icons/forms";
 
 function FeatureItem(props) {
-    const form = useRef(null);
+    const input1 = useRef(null);
+    const input2 = useRef(null);
+
     const [isEdited, setEdited] = useState(false);
 
     let submit = (e) => {
-        let inputs = form.current.children;
-            props.onChange(inputs[0].children[0].value,inputs[1].children[0].value);
+        let input = input1.current.children[0].value,
+            input2 = input2.current.children[0].value;
+        props.onChange(input1,input2);
         setEdited(!isEdited)
     };
 
     return (
-        <div className={'f-container'} >
+        <tr className={'f-container'} >
             { !isEdited?
-                <div className={'f-row'} >
-                    <div className={'f-cell'}>{props.charName}</div>
-                    <div  className={'f-cell'}>{props.charContent}</div>
+                <>
+                    <td className={'f-cell'}>{props.charName}</td>
+                    <td  className={'f-cell'}>{props.charContent}</td>
                     {props.editable && !isEdited?
-                        <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}><EditIcon/></div>
+                        <td className={'f-cell icon-cell'}>
+                            <span onClick={()=>setEdited(!isEdited)}><EditIcon/></span>
+                            <span onClick={()=>props.delete(props.charId)}><RemoveIcon/></span>
+                        </td>
+
                         :
                         null
                     }
-                    {props.editable && !isEdited?
-                        <div className={'f-cell icon-cell'} onClick={()=>props.delete(props.charId)}><RemoveIcon/></div>
-                        :
-                        null
-                    }
-                </div>
+                </>
                 :
-                <div  className={'f-row'} ref={form} >
-                    <div className={'f-cell'}><input defaultValue={props.charName}  type="text"/></div>
-                    <div className={'f-cell'}><input defaultValue={props.charContent} type="text"/></div>
-                    <div className={'f-cell icon-cell'} onClick={submit}><TickIcon/></div>
-                    <div className={'f-cell icon-cell'} onClick={()=>setEdited(!isEdited)}> <ClearIcon/> </div>
-                </div>
+
+                     <>
+                    <td ref={input1} className={'f-cell'}><input  defaultValue={props.charName}  type="text"/></td>
+                    <td ref={input2}  className={'f-cell'}><input defaultValue={props.charContent} type="text"/></td>
+                    <td className={'f-cell icon-cell'}>
+                    <span  onClick={submit}><TickIcon/></span>
+                    <span  onClick={()=>setEdited(!isEdited)}> <ClearIcon/> </span>
+                    </td>
+                     </>
+
             }
-        </div>
+        </tr>
     );
 }
 

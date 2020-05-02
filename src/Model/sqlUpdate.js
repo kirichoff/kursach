@@ -64,4 +64,16 @@ model.UpdatePost = ({postId,text,image})=>{
     return request(query)
 };
 
+model.UpdateComment = ({content,commentId}) => {
+    let query = `
+        update         
+             MazShop.dbo.ItemComment
+        set
+            content = '${JSON.stringify(content)}'        
+        where commentId = ${commentId}`;
+    return request(query)
+}
+
+
+
 module.exports = model;

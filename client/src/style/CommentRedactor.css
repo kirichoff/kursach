@@ -1,0 +1,16 @@
+.bg{
+    height: 200px;
+    background-color: rgba(160, 160, 160, 0.14);
+    border-radius: 15px;
+    padding: 0px 20px;
+    overflow: hidden;
+}
+
+.btn{
+    max-width: 150px;
+}
+.buttons-container{
+    display: flex;
+    justify-content: space-around;
+
+}

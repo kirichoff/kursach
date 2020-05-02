@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm run dev-server\" \"cd client & npm start\"",
-    "dev-server": "nodemon ./index.js",
-    "start": "node index.js" ,
+    "debug": "node index.js",
+    "dev": "concurrently --kill-others \"npm run server\" \"cd client & npm start\"",
+    "server": "nodemon ./index.js",
+    "client": "cd client && npm start",
+    "start": "cd client & npm install & npm run build & cd .. & node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,7 +32,8 @@
     "pg-promise": "^9.1.0",
     "react-easy-swipe": "0.0.18",
     "react-responsive-carousel": "^3.1.51",
-    "scrape-it": "^5.2.3"
+    "scrape-it": "^5.2.3",
+    "slate": "^0.57.2"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

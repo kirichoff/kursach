@@ -23,24 +23,27 @@ const breakpointColumnsObj = {
 };
 
 function Catalog(props) {
-    const [rendData, setData] = useState(null);
+    const [rendData, setData] = useState([]);
     const [Nav, setNav] = useState({
         min: 1,
         max: 99999999999,
-        category: 3
+        category: 1004
     });
     const [search,setSearch] = useState('');
     const get = (searchQuery = '',lastId) => {
-        props.GetAllShopItemsFilter({
-            ...Nav,
-            searchQuery: searchQuery,
-            lastId: lastId
-        }).then(data => {
-                console.log('data',data);
-                if (lastId)
-                    setData([...rendData,...(data.length) ? data : []]);
-                else
-                    setData((data.length) ? data : []);
+        console.log('get')
+        props.GetAllShopItemsFilter({...Nav, searchQuery: searchQuery, lastId: lastId || null})
+            .then(data => {
+                console.log('datades',data)
+                if (data.length) {
+                    if (lastId)
+                        setData([...rendData, ...(data.length) ? data : []]);
+                    else
+                        setData((data.length) ? data : []);
+                }
+                else{
+                    get()
+                }
             }
         )
     };

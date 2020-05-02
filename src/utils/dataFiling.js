@@ -1,6 +1,6 @@
 const fs = require('fs');
 const dataFiling ={};
- dataFiling.ShopItems= (model)=> {
+ dataFiling.ShopItems =(model)=> {
     fs.readFile('data.json', 'utf8', async (err, dat) => {
         let arr = JSON.parse(dat);
         console.log('parser');
@@ -12,7 +12,7 @@ const dataFiling ={};
                 description: data.description,
                 header: data.title,
                 price: Math.random() * 10000,
-                categoryId: category.categoryid
+                categoryId: category.categoryId
             });
             for (let fe of data.features) {
                 console.log(fe);

@@ -9,16 +9,16 @@ import {bindActionCreators} from "redux";
 import {connect} from 'react-redux'
 
 function OrderPage(props) {
-    const [data,setData] = useState([]);
-    const getOrders = ()=> {
-        props.GetOrders().then(res=>{
+    const [data, setData] = useState([]);
+    const getOrders = () => {
+        props.GetOrders().then(res => {
             console.log(res);
             setData(res)
         });
     }
-    useEffect(()=>{
+    useEffect(() => {
         getOrders();
-        },[data.orderId]);
+    }, [data.orderId]);
 
     return (
         <Layout>
@@ -39,18 +39,23 @@ function OrderPage(props) {
                 </tr>
                 </thead>
                 <tbody>
-                {data.map((k,index)=>
+                {data.map((k, index) =>
                     <tr key={index}>
-                        <td>{index+1}</td>
+                        <td>{index + 1}</td>
                         <td>{k.login}</td>
                         <td>{k.email}</td>
                         <td>{k.phoneNumber}</td>
-                        <td>{ new Date(k.startDate).toLocaleDateString()}</td>
+                        <td>{new Date(k.startDate).toLocaleDateString()}</td>
                         <td>{k.count}</td>
                         <td>{k.orderId}</td>
                         <td>{k.itemId}</td>
-                        <td><Link to={`/Item/${k.itemId}`} >перейти</Link></td>
-                        <td><span className={'point'} onClick={()=>props.DeleteOrder({orderId: k.orderId}).then(()=>getOrders())} >завершить</span></td>
+                        <td><Link to={`/Item/${k.itemId}`} onlyActiveOnIndex>перейти</Link></td>
+                        <td><span className={'point'} onClick={
+                            () => props.DeleteOrder({orderId: k.orderId})
+                                .then(() => getOrders())}>
+                            завершить
+                        </span>
+                        </td>
                     </tr>
                 )}
                 </tbody>
@@ -59,6 +64,7 @@ function OrderPage(props) {
         </Layout>
     );
 }
+
 export default connect(
     state => state,
     dispatch => bindActionCreators(actionCreators, dispatch)

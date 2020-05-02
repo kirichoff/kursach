@@ -1,14 +1,23 @@
 .f-row{
     height: 25px;
+    max-height: 50px;
 }
 .f-cell{
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: inline-block;
     overflow: hidden;
     width: 30vw;
-    max-height: 26px;
-    border: #2d2c2c solid 1px;
-
+    max-height: 60px;
 }
+
+.f-cell:nth-child(even){
+    padding-left: 15px;
+}
+.f-container{
+    border-bottom: rgba(128, 128, 128, 0.2) solid 1px;
+}
+
 .f-container  input{
     border: none;
     height: 23px;
@@ -16,5 +25,6 @@
     background: none;
 }
 .icon-cell{
-    width: 23px;
+    width: 50px;
+    display: table-cell;
 }

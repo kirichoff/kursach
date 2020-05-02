@@ -1,7 +1,16 @@
+
+use master
+
+create DATABASE MazShop
+collate Cyrillic_General_CI_AS
+;
+go
+use MazShop
+go
 create table Category
 (
     categoryName varchar(59),
-    categoryId   int identity
+    categoryId   int identity(1000,1)
         constraint Category_pk
             primary key nonclustered
 )
@@ -14,7 +23,7 @@ go
 create table Post
 (
     image  varchar(max),
-    postId int identity
+    postId int identity(1000,1)
         constraint Post_pk
             primary key nonclustered,
     text   varchar(300)
@@ -23,7 +32,7 @@ go
 
 create table ShopItem
 (
-    ShopItemId  int identity
+    ShopItemId  int identity(1000,1)
         constraint PK_ShopItemId
             primary key,
     description varchar(max),
@@ -39,7 +48,7 @@ go
 
 create table Characteristic
 (
-    charId      int identity
+    charId      int identity(1000,1)
         constraint PK_Characteristic
             primary key,
     itemId      int
@@ -53,7 +62,7 @@ go
 
 create table ItemContent
 (
-    contentId int identity
+    contentId int identity(1000,1)
         constraint PK_ItemContent
             primary key,
     itemId    int
@@ -66,7 +75,7 @@ go
 
 create table UserShop
 (
-    userId      int identity
+    userId      int identity(1000,1)
         constraint PK_User
             primary key,
     login       varchar(50),
@@ -79,7 +88,7 @@ go
 
 create table Cart
 (
-    cartId int identity
+    cartId int identity(1000,1)
         constraint PK_cart
             primary key,
     ItemId int
@@ -99,7 +108,7 @@ go
 
 create table ItemComment
 (
-    commentId int identity
+    commentId int identity(1000,1)
         constraint PK_ItemComment
             primary key,
     itemId    int
@@ -115,7 +124,7 @@ go
 
 create table OrderShop
 (
-    orderId   int identity
+    orderId   int identity(1000,1)
         constraint PK_ItemComment_order
             primary key,
     itemId    int
@@ -133,7 +142,7 @@ go
 
 create table Rating
 (
-    ratingId    int identity
+    ratingId    int identity(1000,1)
         constraint Rating_pk
             primary key nonclustered,
     ratingValue float,
@@ -155,7 +164,7 @@ go
 create table images
 (
     content varchar(max),
-    imageId int identity
+    imageId int identity(1000,1)
         constraint images_pk
             primary key nonclustered
 )

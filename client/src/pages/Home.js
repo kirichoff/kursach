@@ -13,15 +13,24 @@ import {Link} from "react-router";
 function Home(props) {
     const [images,setImages] = useState([]);
     const [current,setCurrent] = useState(0);
-    const [data,setData] = useState([]);
-    const getImages = ()=>{
-      if (props.GetImages)
-          props.GetImages().then(data=>setImages(data));
+    const [data, setData] = useState([]);
+    const getImages = () => {
+        props.GetImages().then(data => {
+            if (data.length)
+                setImages(data)
+            else getImages();
+        })
     };
 
-    const getPosts = ()=> props.GetPosts().then(res=>setData(res));
+    const getPosts = ()=>
+        props.GetPosts()
+        .then(res=> {
+            if(res.length)
+            setData(res)
+            else getPosts()
+        });
 
-    useEffect(()=>{
+    useEffect( ()=>{
         console.log('effect')
         getPosts();
         getImages();

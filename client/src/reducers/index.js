@@ -1,17 +1,22 @@
 import {rest} from '../rest/rest'
 
-const initialState = {};
+const initialState = {User:JSON.parse(localStorage.getItem('User') || '{}')};
 
 export const actionCreators = {
     Login: ({email,password}) => async (dispatch, getState) => {
         const token = await rest.Login({email,password});
         dispatch({ type: "LOGIN",User: token[0] });
+        localStorage.setItem("User",JSON.stringify(token[0]))
         return token[0];
     },
     Register: ({login,password,email,phoneNumber}
     ) => async (dispatch, getState) =>{
           let res = await rest.Register({login, password, email, phoneNumber});
           return  res;
+    },
+    UserExit: ()=> (dispatch, getState)=>{
+        dispatch({type: 'LOGIN',User: {}})
+        localStorage.clear()
     },
     DeleteCartItem: (itemId) => async (dispatch,getState)=> {
         let state = getState().state;
@@ -59,7 +64,6 @@ export const actionCreators = {
             }
         }
         else {
-            console.log('add2')
             if (!exist) {
                 dispatch({type: 'CART', cart:  [...state.cart, Item]})
             }
@@ -96,7 +100,7 @@ export const loadActions = ()=>{
 };
 
 
-export const reducer = (state = {data: [],cart:[]}, action) => {
+export const reducer = (state = {User:JSON.parse(localStorage.getItem('User')),data: [],cart:[]}, action) => {
     state = state || initialState;
     switch (action.type) {
         case "LOGIN":
