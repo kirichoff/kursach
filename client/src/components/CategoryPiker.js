@@ -20,7 +20,7 @@ function CategoryPiker(props) {
             if (res.length>0) {
                 setData([...res]);
             }})
-    },[props.categoryId]);
+    },[]);
     return (
             <Select
                 placeholder="Выберите категорию"

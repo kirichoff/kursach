@@ -47,7 +47,7 @@ function ItemPage(props) {
     useEffect(  ()=>{
             fetchData();
         }
-    ,[id]);
+    ,[]);
 
     const deleteFeature = (charId) =>{
         props.DeleteFeature({charId:charId}).then(r=>props.GetChar({id}).then(Features => setFeatureItems(Features)));

@@ -113,10 +113,17 @@ model.GetContent = ({id}) =>{
 model.GetComments = ({itemId}) => {
     let query = `
         select
-            * 
+            ItemComment.content,
+            ItemComment.userId,
+            ItemComment.itemId,
+            Rating.ratingId,
+           Rating.ratingValue,
+            UserShop.login
         from
               MazShop.dbo.ItemComment
-        where itemId = ${itemId}`;
+              inner join Rating on Rating.userId = ItemComment.userId
+              inner JOIN UserShop on UserShop.userId = ItemComment.userId
+        where ItemComment.itemId = ${itemId}`;
 
     return request(query);
 }

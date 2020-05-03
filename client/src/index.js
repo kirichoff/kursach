@@ -28,7 +28,7 @@ createRest().then(()=>{
             <Router history={history}>
                 <Route exact path="/" component={ Home }/>
                 <Route path="/About" component={ About }/>
-                <Route path={'/Catalog'} component={Catalog}/>
+                <Route exact path={'/Catalog'} component={Catalog}/>
                 <Route path={'/Profile'} component={Profile} />
                 <Route exdct path={'/Cart'} component={CartPage}/>
                 <Route path={'/Item/:id'} component={ItemPage}/>

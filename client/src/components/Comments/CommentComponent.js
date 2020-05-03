@@ -8,35 +8,39 @@ function CommentComponent(props) {
     let [comments, setComment] = useState([]);
     let user = props.state.User
     useEffect(() => {
+        console.log('evv')
         props.GetComments({itemId: props.itemId}).then(
             response => {
-                    if (user && user.userId) {
-                        let index  = response.findIndex(i => i.itemId === user.userId);
-                        let comm;
-                        let comments;
-                        console.log('index',index)
-                        if(index >= 0) {
-                            comm = {...response[index]}
-                            comments = response.length>1? response.splice(index,1) : [];
-                            console.log(comments)
-                        }
-                        setUserComment(comm || {})
-                        setComment(comments)
+                console.log('response',response)
+                if (user && user.userId && !response.error) {
+                    let index = response.findIndex(i => i.itemId === user.userId);
+                    let comm;
+                    let comment;
+                    console.log('index', index)
+                    if (index >= 0) {
+                        comm = {...response[index]}
+                        comment = response.length > 1 ? response.splice(index, 1) : [];
                     }
-                    else {
-                        setComment(response);
-                        setUserComment({})
-                    }
+                    setComment(comment)
+                    setUserComment(comm || {})
+                } else {
+                    setComment(response)
+                    setUserComment({})
+                }
             }
         )
     }, [props.itemId])
 
+
+
     return (
         <div>
             <h3 style={{borderBottom: '1px solid grey'}}>Отзывы</h3>
-            {comments && comments.length ? comments.map(item => {
-                    return (<div      key={item.commentId}>
-                            <h5>От {user.login}</h5>
+            {comments && comments.length ? comments.map((item,index) => {
+                console.log('item',item)
+                    return (<div
+                            key={index}>
+                            <h5>От {item.login}</h5>
                             <CommentRedactor
                                 readOnly={true}
                                 contentState={item.content}

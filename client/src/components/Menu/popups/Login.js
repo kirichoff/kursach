@@ -33,9 +33,7 @@ class Login extends Component {
         this.props.cancel('LoginPopUp');
     }
     render() {
-        let {
-            isFail
-        } = this.state
+        let isFail = this.state.isFail
         return (
             <Popup
                 title="Войдите"

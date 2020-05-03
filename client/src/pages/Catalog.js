@@ -8,13 +8,14 @@ import CatalogNavbar from "../components/CatalogNavbar";
 import '../style/Catalog.css'
 import Masonry from "react-masonry-css";
 import {Link} from 'react-router'
-import {useEffect } from 'react'
+import {useEffect} from 'react'
 import IconButton from "rambler-ui/IconButton";
 import {AddIcon} from "rambler-ui/icons/forms";
 import Spinner from "rambler-ui/Spinner";
 import NotifyError from "../components/NotifyError";
 import Serch from "../components/Serch";
 import Button from "rambler-ui/Button";
+
 const breakpointColumnsObj = {
     default: 3,
     1100: 2,
@@ -29,95 +30,100 @@ function Catalog(props) {
         max: 99999999999,
         category: 1004
     });
-    const [search,setSearch] = useState('');
-    const get = (searchQuery = '',lastId) => {
+    const [search, setSearch] = useState('');
+    const get = (searchQuery = '', lastId) => {
         console.log('get')
         props.GetAllShopItemsFilter({...Nav, searchQuery: searchQuery, lastId: lastId || null})
             .then(data => {
-                console.log('datades',data)
-                if (data.length) {
-                    if (lastId)
-                        setData([...rendData, ...(data.length) ? data : []]);
-                    else
-                        setData((data.length) ? data : []);
+                    console.log('datades', data)
+                    if (data.length) {
+                        if (lastId)
+                            setData([...rendData, ...(data.length) ? data : []]);
+                        else
+                            setData((data.length) ? data : []);
+                    } else {
+                        get()
+                    }
                 }
-                else{
-                    get()
-                }
-            }
-        )
+            )
     };
-    useEffect( ()=>{
+    useEffect(() => {
         get()
-    },[]);
-
-    let isAdmin = (props.state.User && props.state.User.rights === 1) ;
-    console.log('Catalog',Nav)
+    }, [rendData.length]);
+    let isAdmin = (props.state.User && props.state.User.rights === 1);
+    console.log('Catalog', Nav)
     return (
-        <Layout >
-            <div><Serch find={(value)=> get(value)} /></div>
-            <div className={ 'catalog-container' }>
-                <CatalogNavbar  isAdmin={isAdmin} onClick={ () => get() } Nav={Nav} onChange={ setNav }/>
-                <div style={ {marginTop: 25} }>
-                        <Masonry
-                            breakpointCols={ breakpointColumnsObj }
-                            className="my-masonry-grid"
-                            columnClassName="my-masonry-grid_column">
-                            { rendData? rendData.map((k, index) =>
-                                    <CatalogItem link={
-                                        <Link className={ 'Link-style' } to={ `/Item/${ k.ShopItemId }` }>
-                                            подробнее
-                                        </Link>
-                                    }
-                                                 cart={
-                                                     <span
-                                                     style={ {
+        <Layout>
+            <div>
+                <Serch find={(value) => get(value)}/>
+            </div>
+            <div className={'catalog-container'}>
+                <CatalogNavbar
+                    isAdmin={isAdmin}
+                    onClick={() => get()}
+                    Nav={Nav}
+                    onChange={(val) => setNav(val)}/>
+                <div style={{marginTop: 25}}>
+                    <Masonry
+                        breakpointCols={breakpointColumnsObj}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column">
+                        {rendData ? rendData.map((k, index) =>
+                                <CatalogItem link={
+                                    <Link className={'Link-style'} to={`/Item/${k.ShopItemId}`}>
+                                        подробнее
+                                    </Link>
+                                }
+                                             cart={
+                                                 <span
+                                                     style={{
                                                          marginLeft: '0.8vw'
-                                                     } }
-                                                     className={ 'Link-style' }
-                                                     onClick={ () => {
+                                                     }}
+                                                     className={'Link-style'}
+                                                     onClick={() => {
                                                          props.AddToCart({...k})
-                                                     } }>
+                                                     }}>
                                              в корзину
-                                         </span> }
-                                                 delete={
-                                                isAdmin?     <span
-                                                         style={ {
+                                         </span>}
+                                             delete={
+                                                 isAdmin ? <span
+                                                         style={{
                                                              marginLeft: '30%'
-                                                         } }
-                                                         className={ 'Link-style' }
-                                                         onClick={ () => {
+                                                         }}
+                                                         className={'Link-style'}
+                                                         onClick={() => {
                                                              props.DeleteItem({ShopItemId: k.ShopItemId}).then(get())
-                                                         } }>
+                                                         }}>
                                                  удалить
 
                                          </span>
-                                                    :
-                                                    <span>
+                                                     :
+                                                     <span>
 
                                                     </span>
-                                                 }
+                                             }
 
-                                                 key={ index } { ...k }/>
-                                )
-                                :
-                                <div style={ {
-                                    position: 'absolute',
-                                    top: ' 53vh',
-                                    left: '56%'
-                                } }><Spinner size={ 30 }/></div>
-                            }
+                                             key={index} {...k}/>
+                            )
+                            :
+                            <div style={{
+                                position: 'absolute',
+                                top: ' 53vh',
+                                left: '56%'
+                            }}><Spinner size={30}/></div>
+                        }
 
-                        </Masonry>
+                    </Masonry>
 
-                    { isAdmin ?
-                        <div style={{margin: 'auto',width:'47px',display: 'block'}} >
+                    {isAdmin ?
+                        <div style={{margin: 'auto', width: '47px', display: 'block'}}>
                             <Link
                                 className={'Link-style'}
-                                  to={ '/Item/editor' }>
+                                to={'/Item/editor'}>
                                 <IconButton
-                                    onClick={ ()=>{} }
-                                    type={ 'primary' }>
+                                    onClick={() => {
+                                    }}
+                                    type={'primary'}>
                                     <AddIcon/>
                                 </IconButton>
                             </Link>
@@ -128,16 +134,17 @@ function Catalog(props) {
                 </div>
             </div>
             <Button
-                    style={{marginLeft: '64%',marginTop: 5,width:'100px'}}
-                    type={'outline'}
-                    onClick={
-                        ()=>get('',rendData?rendData[rendData.length-1].ShopItemId : null)}
+                style={{marginLeft: '64%', marginTop: 5, width: '100px'}}
+                type={'outline'}
+                onClick={
+                    () => get('', rendData ? rendData[rendData.length - 1].ShopItemId : null)}
             >
                 Еще
             </Button>
         </Layout>
     );
 }
+
 export default connect(
     state => state,
     dispatch => bindActionCreators(actionCreators, dispatch)
