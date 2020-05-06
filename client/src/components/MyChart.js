@@ -4,12 +4,8 @@ import {
     Legend, BarChart,
 } from 'recharts';
 import Cell from "recharts/lib/component/Cell";
-import { scaleOrdinal } from 'd3-scale';
-import {  schemeSet3 } from 'd3-scale-chromatic';
 import Brush from "recharts/lib/cartesian/Brush";
 const randomColor = require('randomcolor');
-
-const colors = scaleOrdinal(schemeSet3).range();
 
  function MyChart (props) {
         return (

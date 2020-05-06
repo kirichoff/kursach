@@ -89,13 +89,22 @@ p{
     background-color: #61dafb;
 }
 
+.Logo{
+    background-image: url("/maz-logo.png") ;
+    width: 100px;
+    height: 60px;
+    background-size: cover;
+}
 
+.footer div{
+    margin-right: 50px;
+    display: inline-block;
+}
 .footer{
     margin-top: 55vh;
     position: relative;
     background-color: rgb(45, 44, 44);
     font-family: "Roboto Condensed", sans-serif;
-    font-size: 5vh;
     color: white;
     padding-top: 4vh;
     padding-bottom: 4vh;

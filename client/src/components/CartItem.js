@@ -11,7 +11,7 @@ function CartItem(props) {
             <Card key={props.key}>
                 <Card.Body>
                     <div className={'cardbody'}  >
-                        <Card.Img className={'imgg'} style={{width: '100px'}}  variant="left" src={props.previewImage} />
+                        <Card.Img className={'imgg'} style={{width: '180px'}}  variant="left" src={props.previewImage} />
                         <div  style={{display:'inline-block'}} className={'p-header'}>
                             <h4>{props.header}</h4>
                             <div>{props.description}</div>
@@ -20,9 +20,9 @@ function CartItem(props) {
                             <input defaultValue={ props.count || 1 }
                                    onChange={ (e) => props.setCount && props.setCount(e.target.value) || 1 }
                                    type={ 'number' } min={ 1 }/>
-                        <span>  :колличество</span>
+                        <span>  :количество</span>
                         </div>
-                        <span className={'price'} >{props.price.toFixed(2)} :цена</span>
+                        <span className={'price'} >{props.price.toFixed(2)}</span>
                         <div className={'removeIco'}>
                             <RemoveIcon onClick={()=>
                             {

@@ -14,28 +14,71 @@ class Registration extends Component {
             phoneNumber: '',
             adminKey: '',
             email:'',
-            isFail: false
+            isFail: false,
+            emailStatus: '',
+            phoneNumberStatus: '',
+            passwordStatus: '',
         }
     }
 
     register = () => {
-            this.props.Register(this.state).then(res=>
-                    (res.length && res[0].userId)? this.cancel() : this.setState({isFail: true}))
+        let s = this.state;
+        if(s.emailStatus == 'success' && s.phoneNumberStatus == 'success' && s.passwordStatus == 'success') {
+            this.props.Register(this.state).then(res => {
+                if (res.length && res[0].userId) {
+                    this.cancel();
+                    this.setState({
+                        login: '',
+                        password: '',
+                        phoneNumber: '',
+                        adminKey: '',
+                        email:'',
+                        isFail: false,
+                        emailStatus: '',
+                        phoneNumberStatus: '',
+                        passwordStatus: '',
+                    })
+                }
+                else {
+                    this.setState({isFail: true})
+                }
+            })
+        }
     }
     updateValue = type => e=> {
         this.setState({
             [`${type}`]: e.target.value
         })
+        this.checkData(type,e.target.value)
     };
-
     cancel = () => {
-        this.props.cancel('RegistrationPopUp');
+        this.props.cancel('RegisterPopUp');
     }
+
+
+    checkData(field,value){
+        console.log(field,value)
+        let regex = {
+            'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
+            'phoneNumber':'^\\+?[0-9]{3}-?[0-9]{6,12}$',
+            'password':'^(?=.*\\d).{8,15}$'
+        }
+
+        let reg = new RegExp(regex[field])
+
+        let status = reg.test(value)? 'success' : 'error';
+            console.log('status',status)
+        this.setState({
+            [`${field}Status`] : status
+        })
+    }
+
     render() {
+        console.log(this.state)
         return (
             <Popup
                 title="Регистрация"
-                showClose={false}
+                showClose={true}
                 isOpened={this.props.isOpen}
                 backdropColor="blue"
                 okButton={
@@ -51,7 +94,7 @@ class Registration extends Component {
                 onRequestClose={this.cancel}>
                 <div style={{width: 400}}>
                     <div style={{marginBottom: '5%',color: 'red' }} >
-                        {(this.state.isFail)? 'Ошибка: Неверные данные' : null}
+                        {(this.state.isFail)? 'Ошибка: пользователь с таким email уже есть' : null}
                     </div>
                     <Input
                         style={{marginBottom: 5}}
@@ -66,6 +109,7 @@ class Registration extends Component {
                         style={{marginBottom: 5}}
                         autoFocus
                         placeholder={'email'}
+                        status={this.state.emailStatus}
                         value={this.state.email}
                         onChange={this.updateValue('email')}
                     />
@@ -73,6 +117,7 @@ class Registration extends Component {
                         type="password"
                         style={{marginBottom: 5}}
                         autoFocus
+                        status={this.state.passwordStatus}
                         placeholder={'пароль'}
                         value={this.state.password}
                         onChange={this.updateValue('password')}
@@ -82,6 +127,7 @@ class Registration extends Component {
                         style={{marginBottom: 5}}
                         autoFocus
                         placeholder={'телефон'}
+                        status={this.state.phoneNumberStatus}
                         value={this.state.phoneNumber}
                         onChange={this.updateValue('phoneNumber')}
                     />

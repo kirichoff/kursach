@@ -6,15 +6,13 @@ function RatingBar(props) {
     let ar = [1,2,3,4,5];
     const [starsCount,setStart] =useState(-1);
     const [userRating,setUserRating] = useState(false);
-    const [rating,setRating] = useState(0);
-
     const set =()=>{
-        props.GetRating({itemId: props.itemId})
-            .then(data=>setRating(data[0].ratingValue));
+        console.log('set',props)
         if(props.user)
             props.GetRatingUser({userId: props.user.userId, itemId: props.itemId})
                 .then(data=>
                     {
+                        console.log('data',data)
                         setUserRating(!!(data.length && data[0].ratingValue) );
                         setStart(data.length && data[0].ratingValue)
                     }
@@ -23,32 +21,20 @@ function RatingBar(props) {
 
     useEffect(()=>{
         set()
-    },[props.user]);
-    let color = ()=> {
-        let b = rating/10*10;
-        switch (b) {
-            case 0:  return 'red';
-            case 1:  return 'red';
-            case 2:  return 'red';
-            case 4:  return '#1c7430';
-            case 3:  return 'yellow';
-            case 5:  return '#1c7430';
-        }};
+    },[]);
+    console.log('RATING',props)
+    console.log(starsCount,userRating)
     return (
         <div style={{margin: '10px 0px'}} >
             <div className={'Rating-container'} >
-            <div className={'Rating'}
-                 style={ {backgroundColor: color()}}>
-                {rating? rating.toFixed(1) : 0 }
-            </div>
             <div className={'rt-container'} >
             { props.user ?
                     ar.map((item, index) =>
                         <RamblerHoroscopesIcon
-                            onMouseOver={ () => !userRating?setStart(index+1) : null }
-                            onMouseOut={ () =>!userRating?setStart(-1) : null  }
+                            onMouseOver={ () => !userRating && props.isRedactor?setStart(index+1) : null }
+                            onMouseOut={ () =>!userRating && props.isRedactor?setStart(-1) : null  }
                             onClick={ () =>
-                                props.setRating && !userRating ?
+                                props.setRating && props.isRedactor && !userRating ?
                                     props.setRating({
                                         itemId: props.itemId,
                                         ratingValue: index+1,

@@ -30,7 +30,7 @@ function CategoryEdit(props) {
             {data.map((item, i) => {
                     return (
                         <div key={i} className={'category-Container'}>
-                            <div style={{width: 100}}>{item.categoryName}</div>
+                            <div style={{width: 250}}>{item.categoryName}</div>
                             {item.categoryName !== 'Все' ? <div>
                                     <ClearIcon onClick={() =>
                                         props.DeleteCategory({categoryId: item.categoryId})

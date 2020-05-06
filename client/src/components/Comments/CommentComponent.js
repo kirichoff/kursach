@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import CommentRedactor from "./CommentRedactor";
 import Button from "rambler-ui/Button";
+import RatingBar from "../RatingBar";
 
 function CommentComponent(props) {
 
     const [userComment, setUserComment] = useState('');
     let [comments, setComment] = useState([]);
     let user = props.state.User
+
     useEffect(() => {
         console.log('evv')
         props.GetComments({itemId: props.itemId}).then(
@@ -31,16 +33,20 @@ function CommentComponent(props) {
         )
     }, [props.itemId])
 
-
-
     return (
         <div>
-            <h3 style={{borderBottom: '1px solid grey'}}>Отзывы</h3>
+            <h3 style={{borderBottom: '1px solid grey',marginTop: '20px'}}>Отзывы</h3>
             {comments && comments.length ? comments.map((item,index) => {
                 console.log('item',item)
                     return (<div
                             key={index}>
-                            <h5>От {item.login}</h5>
+                            <h5>От {item.login}({item.email})</h5>
+                            <RatingBar
+                                user={{userId: item.userId}}
+                                itemId={props.itemId }
+                                GetRatingUser = { props.GetRatingUser }
+                                setRating={ props.SetRating }
+                            />
                             <CommentRedactor
                                 readOnly={true}
                                 contentState={item.content}
@@ -51,9 +57,20 @@ function CommentComponent(props) {
                 null
             }
             <div style={{marginTop: '100px'}}>
-                {user && userComment ?
+                {user && userComment && userComment.content ?
                     <>
                         <h3>Ваш отзыв</h3>
+                        { props.itemId?
+                            < RatingBar
+                                user={props.state.User}
+                                itemId={props.itemId }
+                                isRedactor={true}
+                                setRating={ props.SetRating }
+                                GetRatingUser = { props.GetRatingUser }
+                            />
+                            :
+                            null
+                        }
                         <CommentRedactor
                             userId={user.userId}
                             itemId={props.itemId}

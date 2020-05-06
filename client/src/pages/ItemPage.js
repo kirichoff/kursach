@@ -32,6 +32,18 @@ function ItemPage(props) {
     const [category,setCategory] = useState(1);
     const [notification,setNotification] = useState(false);
     const [error,setError] = useState({});
+    const [rating,setRating] = useState(0);
+
+    let color = ()=> {
+        switch (+rating) {
+            case 0:  return 'red';
+            case 1:  return 'red';
+            case 2:  return 'red';
+            case 4:  return '#1c7430';
+            case 3:  return 'yellow';
+            case 5:  return '#1c7430';
+        }};
+
     let fetchData = async () => {
         if(id !== 'editor'){
             let ShopItem =  await props.GetShopItem({ShopItemId:+id});
@@ -42,6 +54,10 @@ function ItemPage(props) {
             let content = await props.GetContent({id}) || [];
             setImages(content);
             setPrice(ShopItem[0] && ShopItem[0].price || 221);
+            let  rate = await  props.GetRating({itemId: ShopItem[0].ShopItemId})
+            console.log('rate',rate,ShopItem)
+            setRating(rate[0] ? rate[0].ratingValue : '')
+
         }
     };
     useEffect(  ()=>{
@@ -129,20 +145,14 @@ function ItemPage(props) {
                     <div className={'carousel'}  >
                         <MyCarousel
                             onChange={(e)=>setCurrent(e)}
-                            style={{width: '100%'}}
+                            style={{width: '37vw',height: '30vh'}}
                             items={images}
                         />
-                        { shopItem && shopItem.ShopItemId?
-                            < RatingBar
-                                user={props.state.User}
-                                itemId={ shopItem.ShopItemId }
-                                setRating={ props.SetRating }
-                                GetRatingUser = { props.GetRatingUser }
-                                GetRating = { props.GetRating }
-                            />
-                            :
-                            null
-                        }
+
+                        <div className={'Rating'}
+                             style={ {backgroundColor: color()}}>
+                            {rating? rating.toFixed(1) : 0 }
+                        </div>
                         <div style={{display: isAdmin?'flex':'none'}} >
                         <Button
                             overlay={<input onChange={addImage} type={'file'} />}

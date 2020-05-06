@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../reducers";
 import IconButton from "rambler-ui/IconButton";
-import {Link} from "react-router";
+
 function Home(props) {
     const [images,setImages] = useState([]);
     const [current,setCurrent] = useState(0);
@@ -18,7 +18,6 @@ function Home(props) {
         props.GetImages().then(data => {
             if (data.length)
                 setImages(data)
-            else getImages();
         })
     };
 
@@ -27,7 +26,6 @@ function Home(props) {
         .then(res=> {
             if(res.length)
             setData(res)
-            else getPosts()
         });
 
     useEffect( ()=>{
@@ -47,14 +45,16 @@ function Home(props) {
         reader.readAsDataURL(f);
     };
     return (
-        <Layout>
+        <Layout className={'full'}>
             <div style={{width: '100%'}} >
                 <div className={'carousel'}  >
+                <div className={'car-container'} >
                     <MyCarousel
                         onChange={(e)=>setCurrent(e)}
-                        style={{width: '100%'}}
+                        style={{width: '100%',height: '80vh'}}
                         items={images}
                     />
+                </div>
                     <div style={{display: isAdmin?'flex':'none'}} >
                         <Button
                             overlay={<input onChange={addImage} type={'file'} />}
@@ -70,6 +70,11 @@ function Home(props) {
                         </Button>
                     </div>
                 </div>
+
+                <div>
+                    <h2 className={'news-header'}>
+                        Новости
+                    </h2>
                 {data.map((item,index)=>
                     <PostItem
                         key={index}
@@ -79,6 +84,7 @@ function Home(props) {
                         isAdmin={isAdmin}
                         image={item.image}
                     />)}
+                </div>
                 <IconButton
                     style={{margin: 'auto',width:'45px',display: isAdmin?'block':'none'}}
                     onClick={ ()=>{

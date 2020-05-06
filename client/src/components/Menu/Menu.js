@@ -59,9 +59,12 @@ class Menu extends Component {
         return (
             <div id="navbar"
                  style={{...this.state.navBar,...this.props.style}}>
-                <img style={{width:'2em'}}
+                <div style={{width:'2em'}}>
+                <img
+                    style={{position: 'absolute',width: '3em'}}
                      src="../logo.png" alt=""
                 />
+                </div>
                     <Bar/>
                     <div style={{  marginTop: 10, marginBottom:5,   float: 'right'}}>
                         {

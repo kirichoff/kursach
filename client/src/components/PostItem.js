@@ -26,15 +26,18 @@ function PostItem(props) {
     };
 
     return (
-            <div style={{margin:'70px'}} >
+            <div style={{margin:'70px',marginTop: '10px'}} >
                 <div className={'item-home'} >
                     <div style={{display: 'flex'}} >
                         <div
-                            style={{background:`url(${image})`,
+                            style={{
+                                background:`url(${image})`,
                                 backgroundSize: 'cover'
-                            }}
+                                }}
                             className={'no-image'}
-                        >{image? '' : 'Изображение 360 x 280' }</div>
+                        >
+                            {image? '' : 'Изображение 360 x 280' }
+                        </div>
                     <textarea
                         readOnly={!props.isAdmin}
                         maxLength={580}

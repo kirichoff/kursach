@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import { Router,Route,browserHistory} from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './Store'
-import About from "./pages/About";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import ItemPage from "./pages/ItemPage";
@@ -19,7 +18,7 @@ import OrderPage from "./pages/OrderPage";
 import CategoryEdit from "./pages/CategoryEdit";
 const  store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
-
+serviceWorker.register();
 createRest().then(()=>{
     loadActions();
     ReactDOM.render(
@@ -27,7 +26,6 @@ createRest().then(()=>{
     <Provider store={store}>
             <Router history={history}>
                 <Route exact path="/" component={ Home }/>
-                <Route path="/About" component={ About }/>
                 <Route exact path={'/Catalog'} component={Catalog}/>
                 <Route path={'/Profile'} component={Profile} />
                 <Route exdct path={'/Cart'} component={CartPage}/>

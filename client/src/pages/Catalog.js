@@ -42,18 +42,18 @@ function Catalog(props) {
                         else
                             setData((data.length) ? data : []);
                     } else {
-                        get()
+                        // get()
                     }
                 }
             )
     };
     useEffect(() => {
         get()
-    }, [rendData.length]);
+    }, []);
     let isAdmin = (props.state.User && props.state.User.rights === 1);
     console.log('Catalog', Nav)
     return (
-        <Layout>
+        <Layout className={'marginCatalog'}>
             <div>
                 <Serch find={(value) => get(value)}/>
             </div>
@@ -114,7 +114,6 @@ function Catalog(props) {
                         }
 
                     </Masonry>
-
                     {isAdmin ?
                         <div style={{margin: 'auto', width: '47px', display: 'block'}}>
                             <Link

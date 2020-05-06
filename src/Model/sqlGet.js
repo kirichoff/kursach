@@ -116,9 +116,11 @@ model.GetComments = ({itemId}) => {
             ItemComment.content,
             ItemComment.userId,
             ItemComment.itemId,
+            ItemComment.commentId,
             Rating.ratingId,
-           Rating.ratingValue,
-            UserShop.login
+            Rating.ratingValue,
+            UserShop.login,           
+            UserShop.email
         from
               MazShop.dbo.ItemComment
               inner join Rating on Rating.userId = ItemComment.userId

@@ -45,8 +45,7 @@ model.AddItemComment = async ({itemId,content,userId}) =>{
     let comment = comments.find(c=> c.userId == userId)
 
     if(comment) {
-        comment.content = content;
-        return update.UpdateComment(comment);
+        return update.UpdateComment({...comment,content: content});
     }
         let query = `
         Insert         
