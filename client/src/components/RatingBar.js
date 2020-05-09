@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {RamblerHoroscopesIcon} from "rambler-ui/icons/services";
 import '../style/Rating.css'
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../reducers";
+import {connect} from 'react-redux'
 function RatingBar(props) {
 
     let ar = [1,2,3,4,5];
@@ -34,8 +37,8 @@ function RatingBar(props) {
                             onMouseOver={ () => !userRating && props.isRedactor?setStart(index+1) : null }
                             onMouseOut={ () =>!userRating && props.isRedactor?setStart(-1) : null  }
                             onClick={ () =>
-                                props.setRating && props.isRedactor && !userRating ?
-                                    props.setRating({
+                                props.SetRating && props.isRedactor && !userRating ?
+                                    props.SetRating({
                                         itemId: props.itemId,
                                         ratingValue: index+1,
                                         userId: props.user.userId
@@ -62,4 +65,8 @@ function RatingBar(props) {
     );
 }
 
-export default RatingBar;
+export default connect(
+    state => state,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(RatingBar);
+

@@ -144,6 +144,7 @@ function ItemPage(props) {
                 <form>
                     <div className={'carousel'}  >
                         <MyCarousel
+                            itemStyle={{backgroundSize: 'contain',backgroundColor: 'white',backgroundPosition: 'center'}}
                             onChange={(e)=>setCurrent(e)}
                             style={{width: '37vw',height: '30vh'}}
                             items={images}

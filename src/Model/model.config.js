@@ -14,7 +14,7 @@ module.exports = function request (query){
     }).then(result => {
         return result.recordset;
     }).catch(err => {
-        console.log(err)
+        console.log(err, {query})
         if (err.code == 'ECONNCLOSED'){
             return request(query)
         }

@@ -20,9 +20,9 @@ function MyCarousel(props) {
                 <div style={{
                     backgroundImage: `url(${k.content})`,
                     backgroundRepeat:'no-repeat',
-                    backgroundSize: 'cover',
                     height: props.style.height,
                     width: props.style.width,
+                    ...props.itemStyle
                 }} key={ index }>
                 </div>) }
         </Carousel>

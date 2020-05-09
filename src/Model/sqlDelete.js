@@ -63,11 +63,17 @@ model.DeleteFeature = async ({charId}) => {
     return request(query);
 };
 
-model.DeleteComment = ({commentId}) => {
+model.DeleteComment = async ({commentId,ratingId}) => {
+
+
+    request(`delete from  MazShop.dbo.Rating where ratingId = ${ratingId}`)
     let query = `
         delete from         
              MazShop.dbo.ItemComment       
         where commentId = ${commentId}`;
+
+
+
     return request(query)
 }
 

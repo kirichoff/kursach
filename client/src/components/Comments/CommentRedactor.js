@@ -5,21 +5,26 @@ import '../../style/CommentRedactor.css';
 import '../../style/EditorStyle.css';
 import Button from "rambler-ui/Button";
 import {element} from "prop-types";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../../reducers";
 
 function CommentRedactor(props) {
         let readonly = props.readOnly;
         const [content,setContent] = useState()
-
+        const [loading,setLoading] = useState(false)
         let sendComment = () =>{
              console.log('send')
+            setLoading(true);
             props.AddItemComment({itemId:props.itemId,content,userId: props.userId})
+            setTimeout(()=>{setLoading(false)},1500)
         }
-        let deleteComment = () =>{
-            props.DeleteComment({commentId: props.commentId});
+        let deleteComment = async () =>{
+            let rate = await props.GetRatingUser({userId: props.userId, itemId: props.itemId});
+            props.DeleteComment({commentId: props.commentId,ratingId: rate[0].ratingId}).then(r=>props.refresh());
         }
 
         let contentInitial = props.contentState? JSON.parse(props.contentState) : null
-
         return (
             <div className="rdw-storybook-root">
                 <Editor
@@ -57,11 +62,14 @@ function CommentRedactor(props) {
                         null
                         :
                         <div className={'buttons-container'}>
-                            <Button onClick={()=>sendComment() } className={'btn'}>отправить</Button>
+                            <Button loading={loading} onClick={()=>sendComment()} className={'btn'}>отправить</Button>
                             <Button onClick={()=>deleteComment()} className={'btn'}>удалить</Button>
                         </div>
                 }
 
             </div>);
 }
-export default CommentRedactor;
+export default connect(
+    state => state,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(CommentRedactor);

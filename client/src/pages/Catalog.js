@@ -30,20 +30,22 @@ function Catalog(props) {
         max: 99999999999,
         category: 1004
     });
+    const [status, setStatus] = useState(false)
     const [search, setSearch] = useState('');
     const get = (searchQuery = '', lastId) => {
         console.log('get')
         props.GetAllShopItemsFilter({...Nav, searchQuery: searchQuery, lastId: lastId || null})
             .then(data => {
-                    console.log('datades', data)
-                    if (data.length) {
+                    if (!data.error) {
                         if (lastId)
                             setData([...rendData, ...(data.length) ? data : []]);
                         else
                             setData((data.length) ? data : []);
+
                     } else {
                         // get()
                     }
+                    setStatus(true)
                 }
             )
     };
@@ -64,6 +66,7 @@ function Catalog(props) {
                     Nav={Nav}
                     onChange={(val) => setNav(val)}/>
                 <div style={{marginTop: 25}}>
+                    <h3>{rendData.length == 0 && status ? 'Товары не найдены' : ''}</h3>
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
                         className="my-masonry-grid"

@@ -52,6 +52,7 @@ function Home(props) {
                     <MyCarousel
                         onChange={(e)=>setCurrent(e)}
                         style={{width: '100%',height: '80vh'}}
+                        itemStyle={{backgroundSize: 'cover'}}
                         items={images}
                     />
                 </div>

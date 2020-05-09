@@ -18,6 +18,7 @@ class Registration extends Component {
             emailStatus: '',
             phoneNumberStatus: '',
             passwordStatus: '',
+            success:false
         }
     }
 
@@ -26,7 +27,6 @@ class Registration extends Component {
         if(s.emailStatus == 'success' && s.phoneNumberStatus == 'success' && s.passwordStatus == 'success') {
             this.props.Register(this.state).then(res => {
                 if (res.length && res[0].userId) {
-                    this.cancel();
                     this.setState({
                         login: '',
                         password: '',
@@ -37,6 +37,7 @@ class Registration extends Component {
                         emailStatus: '',
                         phoneNumberStatus: '',
                         passwordStatus: '',
+                        success:true
                     })
                 }
                 else {
@@ -52,6 +53,7 @@ class Registration extends Component {
         this.checkData(type,e.target.value)
     };
     cancel = () => {
+        this.setState({success: false})
         this.props.cancel('RegisterPopUp');
     }
 
@@ -92,54 +94,65 @@ class Registration extends Component {
                     </Button>
                 }
                 onRequestClose={this.cancel}>
-                <div style={{width: 400}}>
-                    <div style={{marginBottom: '5%',color: 'red' }} >
-                        {(this.state.isFail)? 'Ошибка: пользователь с таким email уже есть' : null}
+
+                {this.state.success?
+
+                    <h3>
+                        Вы успешно за   регистрировались! 😁
+                    </h3>
+
+                    :
+
+                    <div style={{width: 400}}>
+                        <div style={{marginBottom: '5%',color: 'red' }} >
+                            {(this.state.isFail)? 'Ошибка: пользователь с таким email уже есть' : null}
+                        </div>
+                        <Input
+                            style={{marginBottom: 5}}
+                            type="email"
+                            placeholder={'имя'}
+                            autoFocus
+                            value={this.state.login}
+                            onChange={this.updateValue('login')}
+                        />
+                        <Input
+                            type="email"
+                            style={{marginBottom: 5}}
+                            autoFocus
+                            placeholder={'email'}
+                            status={this.state.emailStatus}
+                            value={this.state.email}
+                            onChange={this.updateValue('email')}
+                        />
+                        <Input
+                            type="password"
+                            style={{marginBottom: 5}}
+                            autoFocus
+                            status={this.state.passwordStatus}
+                            placeholder={'пароль'}
+                            value={this.state.password}
+                            onChange={this.updateValue('password')}
+                        />
+                        <Input
+                            type="tel"
+                            style={{marginBottom: 5}}
+                            autoFocus
+                            placeholder={'телефон'}
+                            status={this.state.phoneNumberStatus}
+                            value={this.state.phoneNumber}
+                            onChange={this.updateValue('phoneNumber')}
+                        />
+                        <Input
+                            type="text"
+                            style={{marginBottom: 5}}
+                            autoFocus
+                            placeholder={'ключ администратора(необязтельно)'}
+                            value={this.state.adminKey}
+                            onChange={this.updateValue('adminKey')}
+                        />
                     </div>
-                    <Input
-                        style={{marginBottom: 5}}
-                        type="email"
-                        placeholder={'имя'}
-                        autoFocus
-                        value={this.state.login}
-                        onChange={this.updateValue('login')}
-                    />
-                    <Input
-                        type="email"
-                        style={{marginBottom: 5}}
-                        autoFocus
-                        placeholder={'email'}
-                        status={this.state.emailStatus}
-                        value={this.state.email}
-                        onChange={this.updateValue('email')}
-                    />
-                    <Input
-                        type="password"
-                        style={{marginBottom: 5}}
-                        autoFocus
-                        status={this.state.passwordStatus}
-                        placeholder={'пароль'}
-                        value={this.state.password}
-                        onChange={this.updateValue('password')}
-                    />
-                    <Input
-                        type="tel"
-                        style={{marginBottom: 5}}
-                        autoFocus
-                        placeholder={'телефон'}
-                        status={this.state.phoneNumberStatus}
-                        value={this.state.phoneNumber}
-                        onChange={this.updateValue('phoneNumber')}
-                    />
-                    <Input
-                        type="text"
-                        style={{marginBottom: 5}}
-                        autoFocus
-                        placeholder={'ключ администратора(необязтельно)'}
-                        value={this.state.adminKey}
-                        onChange={this.updateValue('adminKey')}
-                    />
-                </div>
+                }
+
             </Popup>
         );
     }

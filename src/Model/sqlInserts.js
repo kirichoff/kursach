@@ -42,7 +42,7 @@ model.AddItemComment = async ({itemId,content,userId}) =>{
     console.log(itemId,content,userId)
     let comments = await get.GetComments({itemId: itemId});
 
-    let comment = comments.find(c=> c.userId == userId)
+    let comment = comments.find(c=> c.userId == userId && c.itemId == itemId)
 
     if(comment) {
         return update.UpdateComment({...comment,content: content});

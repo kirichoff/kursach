@@ -2,35 +2,42 @@ import React, {useEffect, useState} from 'react';
 import CommentRedactor from "./CommentRedactor";
 import Button from "rambler-ui/Button";
 import RatingBar from "../RatingBar";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../../reducers";
 
 function CommentComponent(props) {
 
     const [userComment, setUserComment] = useState('');
     let [comments, setComment] = useState([]);
     let user = props.state.User
-
-    useEffect(() => {
-        console.log('evv')
-        props.GetComments({itemId: props.itemId}).then(
-            response => {
-                console.log('response',response)
-                if (user && user.userId && !response.error) {
-                    let index = response.findIndex(i => i.itemId === user.userId);
-                    let comm;
-                    let comment;
-                    console.log('index', index)
-                    if (index >= 0) {
-                        comm = {...response[index]}
-                        comment = response.length > 1 ? response.splice(index, 1) : [];
+    let getComments = ()=> {
+        if( props.itemId) {
+            props.GetComments({itemId: props.itemId}).then(
+                response => {
+                    if (user && user.userId && !response.error) {
+                        let index = response.findIndex(i => i.userId === user.userId);
+                        let comm ;
+                        if (index >= 0) {
+                            comm = {...response[index]}
+                            if(response.length > 1)
+                                response.splice(index, 1)
+                            else {
+                                response=[];
+                            }
+                        }
+                        setComment({ ...response })
+                        setUserComment(comm || {})
+                    } else {
+                        setComment(response)
+                        setUserComment({})
                     }
-                    setComment(comment)
-                    setUserComment(comm || {})
-                } else {
-                    setComment(response)
-                    setUserComment({})
                 }
-            }
-        )
+            )
+        }
+    }
+    useEffect(() => {
+        getComments();
     }, [props.itemId])
 
     return (
@@ -57,7 +64,7 @@ function CommentComponent(props) {
                 null
             }
             <div style={{marginTop: '100px'}}>
-                {user && userComment && userComment.content ?
+                {user &&  typeof userComment == 'object'?
                     <>
                         <h3>Ваш отзыв</h3>
                         { props.itemId?
@@ -65,17 +72,16 @@ function CommentComponent(props) {
                                 user={props.state.User}
                                 itemId={props.itemId }
                                 isRedactor={true}
-                                setRating={ props.SetRating }
-                                GetRatingUser = { props.GetRatingUser }
+
                             />
                             :
                             null
                         }
                         <CommentRedactor
+                            refresh={getComments}
                             userId={user.userId}
                             itemId={props.itemId}
                             commentId={userComment.commentId}
-                            {...props}
                             contentState={userComment.content || ''}
                             readOnly={false}
                         />
@@ -86,6 +92,9 @@ function CommentComponent(props) {
             </div>
         </div>
     );
-}
 
-export default CommentComponent;
+}
+export default connect(
+    state => state,
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)(CommentComponent);
