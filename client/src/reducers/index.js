@@ -15,7 +15,7 @@ export const actionCreators = {
           return  res;
     },
     UserExit: ()=> (dispatch, getState)=>{
-        dispatch({type: 'LOGIN',User: {}})
+        dispatch({type: 'LOGIN',User: null})
         localStorage.clear()
     },
     DeleteCartItem: (itemId) => async (dispatch,getState)=> {
