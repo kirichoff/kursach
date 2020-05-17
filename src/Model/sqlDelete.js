@@ -43,7 +43,7 @@ model.DeleteCategory = ({categoryId}) =>{
 };
 model.DeleteOrder =({orderId}) => {
    let query = `
-    delete from MazShop.dbo.OrderShop where orderId=${orderId}`;
+    update MazShop.dbo.OrderShop set status = 1  where orderId=${orderId}`;
     return request(query);
 } ;
 

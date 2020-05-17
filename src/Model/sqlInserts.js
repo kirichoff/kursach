@@ -114,6 +114,7 @@ model.AddCartUser = async ({login, password, email, phoneNumber}) => {
     if (user.length > 0) {
         return user
     }
+
     let query = `
         Insert         
         into

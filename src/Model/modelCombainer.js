@@ -4,10 +4,10 @@ module.exports =
             {
                 ...require('./sqlGet'),
                 ...require('./sqlDelete'),
-                ...require('./sqlUpdate'),
                 ...require('./sqlStatistick')
             },
         post: {
+            ...require('./sqlUpdate'),
             ...require('./sqlInserts'),
         }
     };

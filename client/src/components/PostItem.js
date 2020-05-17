@@ -16,12 +16,12 @@ function PostItem(props) {
         reader.readAsDataURL(f)
     };
     const save = ()=>{
-
+        console.log('save')
         if(props.id<0){
             props.SetPost({text:node.value,image: image}).then(()=>props.onSave());
         }
         else {
-            props.UpdatePost({postId:props.id,text:node.value,imag:image}).then(()=>props.onSave())
+            props.UpdatePost({postId:props.id,text:node.value,image:image}).then(()=>props.onSave())
         }
     };
 
@@ -31,8 +31,8 @@ function PostItem(props) {
                     <div style={{display: 'flex'}} >
                         <div
                             style={{
-                                background:`url(${image})`,
-                                backgroundSize: 'cover'
+                                backgroundSize: 'cover',
+                                background:`url(${image})`
                                 }}
                             className={'no-image'}
                         >
@@ -63,9 +63,10 @@ function PostItem(props) {
                             <ClearIcon color={'blue'} />
                         </Button>
                         <Button
-                            onClick={save}
+                            onClick={()=>save()}
                             style={ {} }
-                            type={ 'outline' }>
+                            type={ 'outline' }
+                        >
                             <TickIcon color={'blue'} />
                         </Button>
                     </div>

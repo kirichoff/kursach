@@ -33,12 +33,22 @@ function CartPage(props) {
     };
     let handler = async (name,phone,email)=>{
         if (props.state.cart && props.state.cart.length) {
-            if(typeof(phone) !== typeof (1)){
-                setError({message: 'неверный номер'});
-                setNotification(true);
-                return ;
+            let regex = {
+                'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
+                'phone':'^\\+?[0-9]{3}-?[0-9]{6,12}$',
             }
-            if(email && name && phone && name) {
+            if(email && phone && name) {
+                if(!new RegExp(regex['phone']).test(phone)){
+                    setError({message: 'неверный телефон'});
+                    setNotification(true)
+                    return ;
+                }
+                let emailReg = new RegExp(regex['email']).test(email);
+                if(!emailReg){
+                    setError({message: 'неверный email'});
+                    setNotification(true)
+                    return ;
+                }
                 let us = await props.AddCartUser({login: name, phoneNumber: phone, email, password: 'user'});
                 addOrder(us[0].userId);
             }

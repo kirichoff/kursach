@@ -15,9 +15,9 @@ class Registration extends Component {
             adminKey: '',
             email:'',
             isFail: false,
-            emailStatus: '',
-            phoneNumberStatus: '',
-            passwordStatus: '',
+            emailStatus: null,
+            phoneNumberStatus: null,
+            passwordStatus: null,
             success:false
         }
     }
@@ -34,9 +34,9 @@ class Registration extends Component {
                         adminKey: '',
                         email:'',
                         isFail: false,
-                        emailStatus: '',
-                        phoneNumberStatus: '',
-                        passwordStatus: '',
+                        emailStatus: null,
+                        phoneNumberStatus: null,
+                        passwordStatus: null,
                         success:true
                     })
                 }
@@ -69,14 +69,12 @@ class Registration extends Component {
         let reg = new RegExp(regex[field])
 
         let status = reg.test(value)? 'success' : 'error';
-            console.log('status',status)
         this.setState({
             [`${field}Status`] : status
         })
     }
 
     render() {
-        console.log(this.state)
         return (
             <Popup
                 title="Регистрация"

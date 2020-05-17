@@ -202,7 +202,7 @@ model.GetPreviewImage = ({imageId}) =>{
 };
 model.GetOrders = async () =>{
   let query = `
-    select login,orderId, phoneNumber,email,itemId,UserShop.userId as 'userId', 
+    select login,orderId, phoneNumber,email,itemId,status,UserShop.userId as 'userId', 
         MazShop.dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
     on UserShop.userId=OrderShop.userId
   `;

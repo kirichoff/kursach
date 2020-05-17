@@ -58,8 +58,8 @@ model.UpdatePost = ({postId,text,image})=>{
     update
         MazShop.dbo.Post
         set
-       text = '${text}',
-       image = '${image}'
+       text = '${text}'
+       ${image? `, image = '${image}'` : ''}
         where postId = ${postId}`;
     return request(query)
 };
@@ -73,7 +73,5 @@ model.UpdateComment = ({content,commentId}) => {
         where commentId = ${commentId}`;
     return request(query)
 }
-
-
 
 module.exports = model;

@@ -19,7 +19,6 @@ function OrderPage(props) {
     useEffect(() => {
         getOrders();
     }, [data.orderId]);
-
     return (
         <Layout>
             <h1>Заказы</h1>
@@ -50,10 +49,13 @@ function OrderPage(props) {
                         <td>{k.orderId}</td>
                         <td>{k.itemId}</td>
                         <td><Link to={`/Item/${k.itemId}`} onlyActiveOnIndex>перейти</Link></td>
-                        <td><span className={'point'} onClick={
-                            () => props.DeleteOrder({orderId: k.orderId})
-                                .then(() => getOrders())}>
-                            завершить
+                        <td>
+                            <span style={{ color: k.status == 1? "green":""  }}
+                                  className={'point'} onClick={
+                            () => k.status != 1? props.DeleteOrder({orderId: k.orderId})
+                                .then(() => getOrders()) : null
+                                  }>
+                           {k.status == 1? 'завершен' : "завершить" }
                         </span>
                         </td>
                     </tr>
