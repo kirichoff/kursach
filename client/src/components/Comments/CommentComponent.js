@@ -26,7 +26,7 @@ function CommentComponent(props) {
                                 response=[];
                             }
                         }
-                        setComment({ ...response })
+                        setComment([ ...response ])
                         setUserComment(comm || {})
                     } else {
                         setComment(response)
@@ -43,7 +43,7 @@ function CommentComponent(props) {
     return (
         <div>
             <h3 style={{borderBottom: '1px solid grey',marginTop: '20px'}}>Отзывы</h3>
-            {comments && comments.length ? comments.map((item,index) => {
+            {comments? comments.map((item,index) => {
                 console.log('item',item)
                     return (<div
                             key={index}>

@@ -5,27 +5,27 @@ import {rest} from '../rest/rest'
 
 
 function CategoryPiker(props) {
-    const findId =(value)=>  data.find(k=>k.categoryName == value);
+    const findId = (value) =>  categories.find(k=>k.categoryName == value);
+    const [categories,setCategories] = useState([]);
     const [value,setValue] = useState( '');
-    const [data,setData] =useState([]);
     useEffect(()=>{
         rest.getCategory().then(res=>
             {
-                console.log('Category',res);
-                setValue(
-                    res.length &&
-                    res.find(k=>k.categoryId === props.categoryId)
-                    && res.find(k=>k.categoryId === props.categoryId).categoryName
-                    || '' );
             if (res.length>0) {
-                setData([...res]);
+                setCategories([...res])
             }})
     },[]);
+
+    let categoryName = categories.length &&
+        categories.find(k=>k.categoryId === props.categoryId)
+        && categories.find(k=>k.categoryId === props.categoryId).categoryName
+        || ''
+
     return (
             <Select
                 placeholder="Выберите категорию"
                 lightPlaceholderColor={true}
-                value={value}
+                value={categoryName}
                 onChange={(e)=>{
                     console.log(e);
                     setValue(e);
@@ -33,7 +33,7 @@ function CategoryPiker(props) {
                 }}
               // onSearch={filterData}
             >
-                {data.map(item =>
+                {categories.map(item =>
                     <MenuItem
                         value={item.categoryName}
                         key={item.categoryId}>

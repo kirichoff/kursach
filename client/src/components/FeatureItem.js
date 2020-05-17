@@ -12,9 +12,10 @@ function FeatureItem(props) {
     const [isEdited, setEdited] = useState(false);
 
     let submit = (e) => {
-        let input = input1.current.children[0].value,
-            input2 = input2.current.children[0].value;
-        props.onChange(input1,input2);
+        let val1 =  input1.current.value,
+            val2 = input2.current.value;
+
+        props.onChange(val1,val2);
         setEdited(!isEdited)
     };
 
@@ -37,8 +38,8 @@ function FeatureItem(props) {
                 :
 
                      <>
-                    <td ref={input1} className={'f-cell'}><input  defaultValue={props.charName}  type="text"/></td>
-                    <td ref={input2}  className={'f-cell'}><input defaultValue={props.charContent} type="text"/></td>
+                    <td  className={'f-cell'}><input ref={input1}  defaultValue={props.charName}  type="text"/></td>
+                    <td  className={'f-cell'}><input ref={input2} defaultValue={props.charContent} type="text"/></td>
                     <td className={'f-cell icon-cell'}>
                     <span  onClick={submit}><TickIcon/></span>
                     <span  onClick={()=>setEdited(!isEdited)}> <ClearIcon/> </span>
