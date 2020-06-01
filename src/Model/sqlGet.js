@@ -19,31 +19,19 @@ model.GetChar = ({id})=>{
               `;
     return request(query);
 };
-model.GetAllShopItems = () =>{
+model.GetShopItemsReport = () =>{
     // noinspection SqlDialectInspection
     let query = `
-    SELECT ShopItemId
-     , description
-     , header
-     , price
-     , content AS 'previewImage'
-FROM MAZSHOP.DBO.SHOPITEM
-         LEFT JOIN
-     MAZSHOP.DBO
-         .ITEMCONTENT
-     ON
-         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
-WHERE ITEMCONTENT.CONTENTID = (
-    SELECT MIN(ITEMCONTENT.CONTENTID)
-    FROM ITEMCONTENT
-    WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID
-)
+    SELECT    
+     header
+     , price     
+FROM ShopItem;
 `;
     return request(query);
 };
 
 
-model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId}) =>{
+model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId,minRating,maxRating}) =>{
     // noinspection SqlDialectInspection
     console.log(category,min,max,searchQuery,lastId)
     let q = category && `and ShopItem.CategoryId=${category}` || ' ';
@@ -72,12 +60,14 @@ FROM MAZSHOP.DBO.SHOPITEM
      MAZSHOP.DBO
          .ITEMCONTENT
      ON
-         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID
+         SHOPITEM.SHOPITEMID = ITEMCONTENT.ITEMID          
 WHERE ITEMCONTENT.CONTENTID = (
     SELECT MIN(ITEMCONTENT.CONTENTID)
     FROM ITEMCONTENT
     WHERE ITEMCONTENT.ITEMID = SHOPITEM.SHOPITEMID 
-)  ${q} ${s} ${lastId} and ShopItem.price between ${min} and ${max} `;
+) 
+${q} ${s} ${lastId} and ShopItem.price between ${min} and ${max}
+and ISNULL((select sum(ratingValue)/count(ratingId) from Rating where itemId = ShopItem.ShopItemId),0) between ${minRating || 0} and ${maxRating || 5}`;
     return  request(query);
 };
 model.GetRating = ({itemId})=> {
@@ -207,6 +197,54 @@ model.GetOrders = async () =>{
     on UserShop.userId=OrderShop.userId
   `;
   return request(query);
+};
+
+model.OrdersCountByCategory = async () =>{
+    let query = `
+  select *,
+       (select sum(count) from OrderShop
+           inner join ShopItem
+               on OrderShop.itemId =ShopItem.ShopItemId
+       where ShopItem.CategoryId = Category.categoryId) as count
+from Category;
+  `;
+    return request(query);
+};
+
+
+model.MostPopular = async () =>{
+    let query = `
+select sum(count) as count,
+       (select header from ShopItem where ShopItem.ShopItemId = OrderShop.itemId) as header,
+        (select  sum(ratingValue)/count(ratingId) from Rating where itemId = OrderShop.itemId) as rating
+from OrderShop
+group by itemId`;
+    return request(query);
+};
+
+model.InfoCustomers = async () =>{
+    let query = `select sum(count) as count,
+    (select login from UserShop where UserShop.userId = OrderShop.userId) as name,
+    (select email from UserShop where UserShop.userId = OrderShop.userId) as email,
+    (select phoneNumber from UserShop where UserShop.userId = OrderShop.userId) as phone
+from OrderShop
+group by userId
+`;
+    return request(query);
+};
+
+
+
+model.GetOrdersByItem = async () =>{
+    let query = `
+  select *,
+       (select sum(count) from OrderShop
+           inner join ShopItem
+               on OrderShop.itemId =ShopItem.ShopItemId
+       where ShopItem.CategoryId = Category.categoryId) as count
+from Category;
+  `;
+    return request(query);
 };
 
 model.GetHeadersSearch = async ({value}) => {

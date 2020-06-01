@@ -1,0 +1,30 @@
+.section{
+    border-bottom: solid 1px;
+    width: 83%;
+    padding-bottom: 15px;
+}
+
+.repContainer{
+    background-color: rgba(179, 179, 179, 0.1);
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 83%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.repContainer span{
+
+    display: inline-block;
+}
+.repButton{
+
+}
+.repText{
+    font-size: 25px;
+    /*width: 60vw;*/
+}
+
+.rep-btn{
+    background-color: #0053E6;
+}

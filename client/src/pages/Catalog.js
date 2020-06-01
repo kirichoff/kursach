@@ -15,6 +15,7 @@ import Spinner from "rambler-ui/Spinner";
 import NotifyError from "../components/NotifyError";
 import Serch from "../components/Serch";
 import Button from "rambler-ui/Button";
+import * as Slider from "rc-slider";
 
 const breakpointColumnsObj = {
     default: 3,
@@ -22,14 +23,19 @@ const breakpointColumnsObj = {
     770: 1
 
 };
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const Range = createSliderWithTooltip(Slider.Range);
 
 function Catalog(props) {
     const [rendData, setData] = useState([]);
     const [Nav, setNav] = useState({
         min: 1,
-        max: 99999999999,
+        max: 99999,
+        minRating: 0,
+        maxRating: 5,
         category: 1004
     });
+
     const [status, setStatus] = useState(false)
     const [search, setSearch] = useState('');
     const get = (searchQuery = '', lastId) => {
@@ -61,6 +67,7 @@ function Catalog(props) {
             </div>
             <div className={'catalog-container'}>
                 <CatalogNavbar
+                    slider={Range}
                     isAdmin={isAdmin}
                     onClick={() => get()}
                     Nav={Nav}

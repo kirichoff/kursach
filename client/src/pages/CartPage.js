@@ -7,6 +7,7 @@ import {actionCreators} from "../reducers";
 import OrderForm from "../components/OrderForm";
 import Button from "rambler-ui/Button";
 import NotifyError from "../components/NotifyError";
+import CartPopupFragment from "../components/CartPopupFragment";
 
 function CartPage(props) {
     let cartItems = props.state.cart;
@@ -15,21 +16,25 @@ function CartPage(props) {
     },[]);
     const [notification,setNotification] = useState(false);
     const [error,setError] = useState({message: ''});
+    const [popup,setPopup] = useState(false)
 
     let user = props.state.User;
     user = user && user.userId  ||  null;
     let addOrder = (userId)=> {
-        if(userId)
-            for (let item of props.state.cart || [])
-            {
-                props.AddOrder({
-                startDate: new Date().toISOString(),
-                itemId: item.ShopItemId || item.itemId ,
-                userId: userId,
-                status: 0,
-                    count:item.count
-            })}
-        props.ClearCart();
+        if(cartItems.length) {
+            if (userId)
+                for (let item of props.state.cart || []) {
+                    props.AddOrder({
+                        startDate: new Date().toISOString(),
+                        itemId: item.ShopItemId || item.itemId,
+                        userId: userId,
+                        status: 0,
+                        count: item.count
+                    })
+                }
+            setPopup(true);
+            props.ClearCart();
+        }
     };
     let handler = async (name,phone,email)=>{
         if (props.state.cart && props.state.cart.length) {
@@ -61,6 +66,10 @@ function CartPage(props) {
 
     return (
         <Layout>
+            <CartPopupFragment
+            isOpen={popup}
+            cancel ={()=>setPopup(!popup)}
+            />
             <div>
                 <NotifyError notify={notification} close={()=>setNotification(false)} error={error || null} />
                  {cartItems.map((item,index)=>

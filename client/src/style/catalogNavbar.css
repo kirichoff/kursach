@@ -9,3 +9,33 @@
     width: 100px;
 }
 
+.horizontal-slider{
+    width: 100%;
+    height: 25px;
+    background-color: rgba(146, 146, 146, 0.47);
+}
+.example-thumb{
+    margin-top: 30px;
+    background-color: #0a66b7;
+    color: white;
+    padding: 2px;
+    border-radius: 30%;
+}
+.rc-slider-track{
+background-color: #0a66b7 !important;
+}
+.rc-slider-handle{
+    border-color: #0a66b7 !important;
+}
+.rc-slider-tooltip-hidden{
+    display: block !important;
+}
+.rc-slider-tooltip{
+    display: block !important;
+}
+.rc-slider-tooltip-inner {
+    min-width: 70px !important;
+}
+.rc-slider-with-marks.rc-slider-tooltip-hidden{
+    display: none !important;
+}

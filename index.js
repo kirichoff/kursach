@@ -7,10 +7,12 @@ const jwt = require('./src/utils/jwt');
 const httpHandler = require('./src/utils/httpHandler');
 const cors = require('cors');
 const app = express();
+const doc = require('./src/report/docxGenerator')
 require('dotenv').config();
+const {docReports} = require('./src/report/reports')
 
 app.use(cors());
-
+app.use(require('compression')());
 app.use(bodyParser({limit: '50mb'}));
 
 const exclude = ['get'];
@@ -35,6 +37,14 @@ app.get(`/api/model/`,async (req,res)=>{
         "get":  Object.keys(model.get)
         }))
 });
+
+for(let item in docReports) {
+    app.get(`/docx/${item}`, async (req, res) => {
+        res.setHeader('Content-Disposition', `attachment; filename=${item}.docx`);
+        res.send(Buffer.from(await docReports[item](), 'base64'));
+    })
+}
+
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, '/client/build/')));
 // Handles any requests that don't match the ones above

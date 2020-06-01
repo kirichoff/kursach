@@ -13,7 +13,7 @@ function Bar(props) {
             <Link className={ ' point' } to={ '/' } onlyActiveOnIndex>Главная</Link>
             <Link className={ 'point' } to={ '/Catalog' }>Каталог</Link>
             {isAdmin?
-                <Link className={ 'point' } to={ '/Stats' }>Статистика</Link>
+                <Link className={ 'point' } to={ '/Stats' }>Отчеты</Link>
                 :
                 null
             }

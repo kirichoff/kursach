@@ -10,7 +10,7 @@ const randomColor = require('randomcolor');
  function MyChart (props) {
         return (
             <BarChart
-                width={500}
+                width={600}
                 height={400}
                 data={props.data}
             >
