@@ -10,7 +10,24 @@ function CommentComponent(props) {
 
     const [userComment, setUserComment] = useState('');
     let [comments, setComment] = useState([]);
+    const [starsCount,setStart] =useState(-1);
+    const [userRating,setUserRating] = useState(false);
     let user = props.state.User
+
+    const set =(us)=>{
+        console.log('set',props)
+        if(us)
+            props.GetRatingUser({userId: us.userId, itemId: props.itemId})
+                .then(data=>
+                    {
+                        console.log('data',data)
+                        setUserRating(!!(data.length && data[0].ratingValue) );
+                        setStart(data.length && data[0].ratingValue)
+                    }
+                );
+    } ;
+
+
     let getComments = ()=> {
         if( props.itemId) {
             props.GetComments({itemId: props.itemId}).then(
@@ -32,12 +49,14 @@ function CommentComponent(props) {
                         setComment(response)
                         setUserComment({})
                     }
+                    set(user);
                 }
             )
         }
     }
     useEffect(() => {
         getComments();
+        set()
     }, [props.itemId])
 
     return (
@@ -49,10 +68,16 @@ function CommentComponent(props) {
                             key={index}>
                             <h5>От {item.login}({item.email})</h5>
                             <RatingBar
+                                userRating={userRating}
+                                starsCount={starsCount}
+                                setUserRating={(val)=> setUserRating(val)}
+                                setStart={val=> setStart(val)}
                                 user={{userId: item.userId}}
                                 itemId={props.itemId }
+                                set={(us)=>set(us)}
                                 GetRatingUser = { props.GetRatingUser }
-                                setRating={ props.SetRating }
+                                SetRating={ props.SetRating }
+                                isRedactor={false}
                             />
                             <CommentRedactor
                                 readOnly={true}
@@ -68,11 +93,17 @@ function CommentComponent(props) {
                     <>
                         <h3>Ваш отзыв</h3>
                         { props.itemId?
-                            < RatingBar
+                            <RatingBar
                                 user={props.state.User}
+                                userRating={userRating}
+                                starsCount={starsCount}
+                                setUserRating={(val)=> setUserRating(val)}
+                                setStart={val=> setStart(val)}
                                 itemId={props.itemId }
+                                set={(us)=>set(us)}
+                                GetRatingUser = { props.GetRatingUser }
+                                SetRating={ props.SetRating }
                                 isRedactor={true}
-
                             />
                             :
                             null

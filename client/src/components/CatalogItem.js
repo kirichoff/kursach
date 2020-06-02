@@ -10,11 +10,14 @@ function CatalogItem(props) {
                 <Card.Img variant="top" src={props.previewImage} />
                 <Card.Body>
                     <Card.Title>{props.header}</Card.Title>
-                    <Card.Text style={{height: '1.2em',
-                        overflow: 'hidden',
-                        width: '13vw'}}>
-                        {props.description}
-                    </Card.Text>
+
+                        <div style={{color: '#0053E6' }} >{props.price.toFixed(1)} у.е.</div>
+                        <div style={{height: '1.2em',
+                            overflow: 'hidden',
+                            width: '13vw'}}>
+                            {props.description}
+                        </div>
+
                     <div>
                         {props.link}
                         {props.cart}

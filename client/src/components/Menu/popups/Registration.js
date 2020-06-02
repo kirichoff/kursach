@@ -59,7 +59,6 @@ class Registration extends Component {
 
 
     checkData(field,value){
-        console.log(field,value)
         let regex = {
             'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
             'phoneNumber':'^\\+?[0-9]{3}-?[0-9]{6,12}$',

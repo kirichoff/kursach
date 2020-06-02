@@ -7,26 +7,9 @@ import {connect} from 'react-redux'
 function RatingBar(props) {
 
     let ar = [1,2,3,4,5];
-    const [starsCount,setStart] =useState(-1);
-    const [userRating,setUserRating] = useState(false);
-    const set =()=>{
-        console.log('set',props)
-        if(props.user)
-            props.GetRatingUser({userId: props.user.userId, itemId: props.itemId})
-                .then(data=>
-                    {
-                        console.log('data',data)
-                        setUserRating(!!(data.length && data[0].ratingValue) );
-                        setStart(data.length && data[0].ratingValue)
-                    }
-                );
-    } ;
-
     useEffect(()=>{
-        set()
+        props.set()
     },[]);
-    console.log('RATING',props)
-    console.log(starsCount,userRating)
     return (
         <div style={{margin: '10px 0px'}} >
             <div className={'Rating-container'} >
@@ -34,23 +17,25 @@ function RatingBar(props) {
             { props.user ?
                     ar.map((item, index) =>
                         <RamblerHoroscopesIcon
-                            onMouseOver={ () => !userRating && props.isRedactor?setStart(index+1) : null }
-                            onMouseOut={ () =>!userRating && props.isRedactor?setStart(-1) : null  }
+                            onMouseOver={ () => !props.userRating && props.isRedactor?props.setStart(index+1) : null }
+                            onMouseOut={ () =>!props.userRating && props.isRedactor?props.setStart(-1) : null  }
                             onClick={ () =>
-                                props.SetRating && props.isRedactor && !userRating ?
+                                props.SetRating && props.isRedactor && !props.userRating ?
                                     props.SetRating({
                                         itemId: props.itemId,
                                         ratingValue: index+1,
                                         userId: props.user.userId
                                     })
-                                        .then(set())
+                                        .then(
+                                            props.set(props.user)
+                                        )
                                     :
                                     null }
                             key={ index }
                             style={ {
                                 width: '50px',
                                 height: '50px',
-                                fill: starsCount > index ? 'yellow' : "#E4E4E4"
+                                fill: props.starsCount > index ? 'yellow' : "#E4E4E4"
                             } }
                             viewBox={ '0 0 20 20' }
                         />
