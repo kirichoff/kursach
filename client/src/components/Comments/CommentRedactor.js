@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import '../../style/CommentRedactor.css';
@@ -12,29 +12,25 @@ import {actionCreators} from "../../reducers";
 function CommentRedactor(props) {
         let readonly = props.readOnly;
         const [content,setContent] = useState()
-        const [editorState,setEditorState] = useState()
         const [loading,setLoading] = useState(false)
         let sendComment = () =>{
-             console.log('send')
+            console.log('send')
             setLoading(true);
             props.AddItemComment({itemId:props.itemId,content,userId: props.userId})
             setTimeout(()=>{setLoading(false)},1500)
         }
         let deleteComment = async () =>{
             let rate = await props.GetRatingUser({userId: props.userId, itemId: props.itemId});
-            if(rate.length){
-                props.DeleteComment({commentId: props.commentId,ratingId: rate[0].ratingId})
-                        .then(
-                        r=> {
-                            props.refresh()
-                            setContent(null)
-                            setEditorState(null)
-                        }
-                    );
-            }
+            props.DeleteComment({commentId: props.commentId,ratingId: rate[0].ratingId})
+                .then(r=>{
+                    document.location.reload()
+                    props.refresh()
+                }
+            );
         }
 
-        let contentInitial = props.contentState? JSON.parse(props.contentState) : null
+        let contentInitial = props.contentState && props.contentState !== 'undefined'? JSON.parse(props.contentState) : null
+
         return (
             <div className="rdw-storybook-root">
                 <Editor
@@ -42,8 +38,6 @@ function CommentRedactor(props) {
                     wrapperClassName="rdw-storybook-wrapper"
                     editorClassName="bg"
                     onContentStateChange={(val)=>setContent(val)}
-                    onEditorStateChange = {val=> setEditorState(val)}
-                    editorState={editorState}
                     readOnly = {readonly}
                     defaultContentState = {contentInitial}
                     toolbarHidden = {readonly}

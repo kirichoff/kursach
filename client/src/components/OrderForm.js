@@ -12,10 +12,12 @@ function OrderForm(props) {
             <h3>Ваши данные</h3>
             <div className={ 'phone' }>
                 <h6>телефон</h6>
-                <Input placeholder={ '+3752999999999' }
-                       onChange={ (e) => setPhone(e.target.value) }
+                <Input
+                        placeholder={ '+3752999999999' }
+                        status={new RegExp('^\\+?[0-9]{3}-?[0-9]{6,12}$').test(phone)? "success": 'error'}
+                       onChange={ (e) => setPhone(e.target.value.slice(5,e.target.value.length)) }
                        type={ 'tel' }
-                       value={ phone }/>
+                       value={ "+" + 375 + " " +phone }/>
             </div>
             <div className={ 'email' }>
                 <h6>электронная почта</h6>

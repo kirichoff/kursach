@@ -8,8 +8,6 @@ import {Link} from "react-router";
 import Slider,{Range} from 'rc-slider';
 import 'rc-slider/assets/index.css'
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const Range2 = createSliderWithTooltip(Slider.Range);
 
 export default class CatalogNavbar extends Component {
     render() {
@@ -20,22 +18,14 @@ export default class CatalogNavbar extends Component {
             <div className={'catalogNavbar'}>
                 <div style={{width: '14vw', marginBottom: 15}}>
                     <h3>Категории {isAdmin ? <Link to={'/Category'}><EditIcon/></Link> : null} </h3>
-                    <CategoryPiker onChange={(id) => this.props.onChange({...nav,category: id})}
+                    <CategoryPiker categoryId={nav.category} onChange={(id) => this.props.onChange({...nav,category: id})}
                     />
-                    {/*<h5>Цена от</h5>*/}
-                    {/*<Input*/}
-                    {/*    value={nav.min}*/}
-                    {/*    onChange={(value) =>  this.props.onChange({...nav,min: value.target.value})}*/}
-                    {/*    type={'number'}/>*/}
-                    {/*<h5>До</h5>*/}
-                    {/*<Input value={nav.max}*/}
-                    {/*       onChange={(value) => this.props.onChange({...nav,max: value.target.value})}*/}
-                    {/*       type={'number'}/>*/}
+
                     <div style={{padding: '10% 21%'}}>
                         <Button onClick={() => this.props.onClick()}>подобрать</Button>
                     </div>
                     <h5>Цена</h5>
-                    <Range2
+                    <Range
                         min={0} max={99999}
                         defaultValue={[nav.min,nav.max]}
                         tipFormatter={value => `${value} у.е`}
@@ -48,8 +38,20 @@ export default class CatalogNavbar extends Component {
                             })
                         }
                     />
-                    <h5 style={{marginTop: 20}}>Рейтинг</h5>
 
+                    <div >
+                        <h5>от</h5>
+                        <Input
+                            value={nav.min}
+                            onChange={(value) =>  this.props.onChange({...nav,min: value.target.value})}
+                            type={'number'}/>
+                        <h5>До</h5>
+                        <Input value={nav.max}
+                               onChange={(value) => this.props.onChange({...nav,max: value.target.value})}
+                               type={'number'}/>
+                    </div>
+
+                    <h5 style={{marginTop: 20}}>Рейтинг</h5>
                     <Range
                         min={0} max={5}
                         defaultValue={[nav.minRating,nav.maxRating]}

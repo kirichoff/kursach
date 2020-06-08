@@ -16,6 +16,9 @@ import StatsPage from "./pages/StatsPage";
 import Profile from "./pages/Profile";
 import OrderPage from "./pages/OrderPage";
 import CategoryEdit from "./pages/CategoryEdit";
+import Report from "./pages/Report/Report";
+import './style/Mobile.css'
+
 const  store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 serviceWorker.register();
@@ -26,6 +29,7 @@ createRest().then(()=>{
     <Provider store={store}>
             <Router history={history}>
                 <Route exact path="/" component={ Home }/>
+                <Route exact path="/Report" component={ Report }/>
                 <Route exact path={'/Catalog'} component={Catalog}/>
                 <Route path={'/Profile'} component={Profile} />
                 <Route exdct path={'/Cart'} component={CartPage}/>

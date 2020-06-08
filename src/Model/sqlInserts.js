@@ -37,6 +37,16 @@ model.AddShopItem = ({description, header, price, categoryId}) => {
     return request(query);
 };
 
+model.AddReport = async ({login,email,message}) =>{
+    let query = `
+        Insert         
+        into
+             MazShop.dbo.Reports
+            (login,email,message)           
+        values
+            ('${login}','${email}','${message}');`;
+    return request(query);
+}
 
 model.AddItemComment = async ({itemId,content,userId}) =>{
     console.log(itemId,content,userId)

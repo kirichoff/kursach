@@ -11,7 +11,7 @@ function CatalogItem(props) {
                 <Card.Body>
                     <Card.Title>{props.header}</Card.Title>
 
-                        <div style={{color: '#0053E6' }} >{props.price.toFixed(1)} у.е.</div>
+                        <div style={{color: '#0053E6' }} >{props.price.toFixed(1)} BYN</div>
                         <div style={{height: '1.2em',
                             overflow: 'hidden',
                             width: '13vw'}}>

@@ -1,0 +1,108 @@
+
+.openClose{
+    display: none;
+}
+.menu-icon{
+    display: none;
+}
+.menu-icon svg{
+    width: 36px !important;
+    height: 39px!important;
+    display: inline-block !important;
+    fill: #0053e6!important;
+}
+
+@media screen and (min-width: 690px) {
+
+        .bar{
+            display: block!important;
+        }
+}
+
+@media screen and (max-width: 690px) {
+    #root{
+        overflow-x: hidden;
+    }
+    .openClose{
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+    }
+    .openClose svg{
+        fill: white!important;
+    }
+    .openClose input{
+        width: 23px;
+        height: 22px;
+        position: absolute;
+        right: 0px;
+        opacity: 0;
+    }
+
+    .menu-icon{
+        display: block;
+    }
+    .item-home-container{
+        flex-direction: column;
+    }
+    .no-image{
+        width: 100%!important;
+    }
+    .bar{
+        margin-top: 0!important;
+        position: fixed!important;
+        width: 100%;
+        height: 100%;
+        z-index: 500!important;
+        padding-top: 142px;
+        background-color: #0053e6;
+        display: flex;
+        flex-direction: column;
+    }
+    .bar a{
+        color: white;
+        font-size: 30px;
+    }
+    .bar a:active{
+        color: white;
+        font-size: 30px;
+    }
+    .catalog-container{
+     flex-direction: column;
+    }
+    .catalogNavbar div:nth-child(1){
+        width: 100%!important;
+    }
+    .catalogNavbar {
+        width: 90%!important;
+    }
+    #navbar{
+        padding: 0;
+        padding-right: 10px;
+        width: 100vw;
+    }
+    .main{
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+    .order-container {
+    width: 95%;
+    }
+    .btn-order button:nth-child(1){
+        width: 53vw!important;
+    }
+    .cardbody{
+        grid-template-areas: "img" "headers" "price" "count" "removeIco";
+    }
+    .btn-order button:nth-child(2){
+        width: 47vw!important;
+    }
+    .price{
+        width: 80vw;
+    }
+    .item-home-margin{
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+}

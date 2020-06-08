@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import '../../style/menu.css'
 import Bar from "../Bar";
 import '../logo.png'
@@ -8,6 +8,7 @@ import {actionCreators} from "../../reducers";
 import {Link} from "react-router";
 import Registration from "./popups/Registration";
 import Login from "./popups/Login";
+import {RamblerNewsIcon} from "rambler-ui/icons/services";
 
 const values = ['Home', 'About', 'Contact'];
 class Menu extends Component {
@@ -19,6 +20,7 @@ class Menu extends Component {
             LoginPopUp: false,
             prevS: window.pageYOffset,
             navBar:{position: 'relative',top: '0px'},
+            show: false,
             LogIn: {isLogin: false,isAdmin: false,name:'' }
         };
     }
@@ -55,17 +57,21 @@ class Menu extends Component {
         this.setState({[`${popup}`]: true})
     }
 
+    setShow = (v)=> this.setState({show: v})
+
     render() {
         return (
             <div id="navbar"
                  style={{...this.state.navBar,...this.props.style}}>
                 <div style={{width:'2em'}}>
+                    <Link to={'/'}>
                 <img
                     style={{position: 'absolute',width: '3em'}}
                      src="../logo.png" alt=""
                 />
+                    </Link>
                 </div>
-                    <Bar/>
+                    <Bar setShow={(v)=> this.setShow(v)} show={this.state.show}/>
                     <div style={{  marginTop: 10, marginBottom:5,   float: 'right'}}>
                         {
                             (this.props.state.User && this.props.state.User.userId)?
@@ -91,6 +97,9 @@ class Menu extends Component {
                             </div>
                         }
                     </div>
+                <div onClick={()=>this.setShow(!this.state.show)} className={'menu-icon'}>
+                    <RamblerNewsIcon/>
+                </div>
                 {/*//popups*/}
                 <Login cancel={this.closePopup} isOpen ={this.state.LoginPopUp} {...this.props} />
               <Registration cancel={this.closePopup}  isOpen ={this.state.RegisterPopUp}  {...this.props} />

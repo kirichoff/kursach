@@ -46,10 +46,18 @@ class Registration extends Component {
             })
         }
     }
-    updateValue = type => e=> {
-        this.setState({
-            [`${type}`]: e.target.value
-        })
+    updateValue = type => e => {
+        console.log('val',e.target.value)
+        if (type == 'phoneNumber'){
+            this.setState({
+                [`${type}`]: e.target.value.slice(5,e.target.value.length)
+            })
+        }else{
+            this.setState({
+                [`${type}`]: e.target.value
+            })
+        }
+
         this.checkData(type,e.target.value)
     };
     cancel = () => {
@@ -61,7 +69,7 @@ class Registration extends Component {
     checkData(field,value){
         let regex = {
             'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
-            'phoneNumber':'^\\+?[0-9]{3}-?[0-9]{6,12}$',
+            'phoneNumber':'^\\+?[0-9]{3} -?[0-9]{6,12}$',
             'password':'^(?=.*\\d).{8,15}$'
         }
 
@@ -136,7 +144,7 @@ class Registration extends Component {
                             autoFocus
                             placeholder={'телефон'}
                             status={this.state.phoneNumberStatus}
-                            value={this.state.phoneNumber}
+                            value={"+"+375 + ' ' + this.state.phoneNumber}
                             onChange={this.updateValue('phoneNumber')}
                         />
                         <Input

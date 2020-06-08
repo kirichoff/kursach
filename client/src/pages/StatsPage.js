@@ -10,7 +10,7 @@ import {Button} from "rambler-ui";
 let reports = [
     ["количестве заказанной продукции",'ordersCount'],
     ["Топ самой продаваемой продукции",'mostPopular'],
-    ["Зазкачики",'Customers'],
+    ["Зазказчики",'Customers'],
     ["Прайс лист",'priceList']
 ]
 function StatsPage(props) {
@@ -58,7 +58,7 @@ function StatsPage(props) {
                         dataKey={'count'}
                         xAxis={'header'}
                         yAxis={'count'}
-                        name={'количесвто'}
+                        name={'количество'}
                         data={data}/>
                 </div>
                 <div style={{display: 'inline-block'}}>

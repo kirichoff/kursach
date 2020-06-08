@@ -5,7 +5,7 @@ import Menu from "./Menu/Menu";
 import Notification from "rambler-ui/Notification/Notification";
 function Layout(props) {
     return (
-        <div >
+        <div>
             <Menu/>
             <div className={`main ` + props.className} >
                 {props.children}

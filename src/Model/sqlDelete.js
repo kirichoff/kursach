@@ -21,6 +21,16 @@ model.DeleteItem = ({ShopItemId}) =>{
            `;
     return request(query);
 };
+model.DeleteReport = ({reportId}) =>{
+    let query = `
+        delete
+        from
+            MazShop.dbo.Reports
+            where
+            reportId = ${reportId}
+           `;
+    return request(query);
+};
 model.DeleteCartItem = ({ShopItemId,userId}) =>{
     let query = `
         delete

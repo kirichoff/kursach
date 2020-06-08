@@ -18,7 +18,7 @@ function Price(props) {
                         type="number"/>
                 :
                     <h4>
-                        {props.price.toFixed(1)} у.е.
+                        {props.price.toFixed(1)} BYN
                     </h4>
                 }
             </div>

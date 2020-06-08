@@ -142,14 +142,18 @@ function Catalog(props) {
                     }
                 </div>
             </div>
-            <Button
-                style={{marginLeft: '64%', marginTop: 5, width: '100px'}}
-                type={'outline'}
-                onClick={
-                    () => get('', rendData ? rendData[rendData.length - 1].ShopItemId : null)}
-            >
-                Еще
-            </Button>
+            { rendData.length<9?
+                null
+                :
+                <Button
+                    style={{marginLeft: '64%', marginTop: 5, width: '100px'}}
+                    type={'outline'}
+                    onClick={
+                        () => get('', rendData ? rendData[rendData.length - 1].ShopItemId : null)}
+                >
+                    Еще
+                </Button>
+            }
         </Layout>
     );
 }

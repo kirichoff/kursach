@@ -30,6 +30,20 @@ FROM ShopItem;
     return request(query);
 };
 
+model.GetReports = async () => {
+
+    let query = 'select * from Reports'
+
+    return request(query)
+}
+
+
+model.GetCategoryCount = async ({categoryId})=>{
+
+    let query = `select count(ShopItemId) as 'count' from ShopItem where CategoryId = ${categoryId}`
+
+    return request(query)
+}
 
 model.GetAllShopItemsFilter = async ({category,min,max,searchQuery = '',lastId,minRating,maxRating}) =>{
     // noinspection SqlDialectInspection
@@ -192,9 +206,9 @@ model.GetPreviewImage = ({imageId}) =>{
 };
 model.GetOrders = async () =>{
   let query = `
-    select login,orderId, phoneNumber,email,itemId,status,UserShop.userId as 'userId', 
+    select login,orderId, phoneNumber,email,itemId,status,ShopItem.header,UserShop.userId as 'userId', 
         MazShop.dbo.OrderShop.count as count , startDate from UserShop INNER join OrderShop 
-    on UserShop.userId=OrderShop.userId
+    on UserShop.userId=OrderShop.userId inner join ShopItem on ShopItemId = itemId; 
   `;
   return request(query);
 };

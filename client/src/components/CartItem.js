@@ -22,7 +22,7 @@ function CartItem(props) {
                                    type={ 'number' } min={ 1 }/>
                         <span>  :количество</span>
                         </div>
-                        <span className={'price'} >{props.price.toFixed(2)}</span>
+                        <span className={'price'} >{props.price.toFixed(2) * (props.count || 1)}</span>
                         <div className={'removeIco'}>
                             <RemoveIcon onClick={()=>
                             {

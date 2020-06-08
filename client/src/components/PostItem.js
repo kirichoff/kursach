@@ -26,9 +26,9 @@ function PostItem(props) {
     };
 
     return (
-            <div style={{margin:'70px',marginTop: '10px'}} >
+            <div className={'item-home-margin'} style={{margin:'70px',marginTop: '10px'}} >
                 <div className={'item-home'} >
-                    <div style={{display: 'flex'}} >
+                    <div className={'item-home-container'} style={{display: 'flex'}} >
                         <div
                             style={{
                                 backgroundSize: 'cover',
