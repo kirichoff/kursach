@@ -57,7 +57,7 @@ function CommentComponent(props) {
 
                 console.log('item',item)
                 let content  = item.content !== 'undefined' ? JSON.parse(item.content) : 'undefined'
-                content = content === "undefined"? "undefined" : isNulContent(content) === 0? content : "undefined"
+                content = content === "undefined"? "undefined" : isNulContent(content.bloks) === 0? content : "undefined"
 
                     return (<div
                             key={index}>
