@@ -56,7 +56,7 @@ function CommentComponent(props) {
             {comments && comments.length ? comments.map((item,index) => {
 
                 console.log('item',item)
-                let content  = item.content !== 'undefined' ? JSON.parse(props.contentState) : 'undefined'
+                let content  = item.content !== 'undefined' ? JSON.parse(item.content) : 'undefined'
                 content = content === "undefined"? "undefined" : isNulContent(content) === 0? content : "undefined"
 
                     return (<div
