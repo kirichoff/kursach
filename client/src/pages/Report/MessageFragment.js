@@ -45,7 +45,7 @@ function MessageFragment(props) {
                 variation="regular"
                 value={message}
                 onChange={(val)=> setMessage(val.target.value)}
-                placeholder="Имя"
+                placeholder="Текст"
                 style={{width: '500px'}}
                 textareaStyle={{minHeight: '100px'}}
                 iconRight={<RamblerMailIcon />}

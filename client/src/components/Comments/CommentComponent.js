@@ -40,11 +40,25 @@ function CommentComponent(props) {
         getComments();
     }, [props.itemId])
 
+    let isNulContent = (con) => {
+        let count = con.length
+        for (let item of con){
+            if(item.text != ""){
+                count--;
+            }
+        }
+        return count
+    }
+
     return (
         <div>
             <h3 style={{borderBottom: '1px solid grey',marginTop: '20px'}}>Отзывы</h3>
             {comments && comments.length ? comments.map((item,index) => {
+
                 console.log('item',item)
+                let content  = item.content !== 'undefined' ? JSON.parse(props.contentState) : 'undefined'
+                content = content === "undefined"? "undefined" : isNulContent(content) === 0? content : "undefined"
+
                     return (<div
                             key={index}>
                             <h5>От {item.login}({item.email})</h5>
@@ -54,7 +68,8 @@ function CommentComponent(props) {
                                 GetRatingUser = { props.GetRatingUser }
                                 setRating={ props.SetRating }
                             />
-                            {item.content !== 'undefined'?
+                            {
+                                content !== 'undefined'?
                                 <CommentRedactor
                                     readOnly={true}
                                     contentState={item.content}
