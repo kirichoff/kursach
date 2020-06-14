@@ -40,7 +40,9 @@ function CommentComponent(props) {
         getComments();
     }, [props.itemId])
 
-    let isNulContent = (con) => {
+    let isNulContent =
+        (con) =>
+        {
         let count = con.length
         for (let item of con){
             if(item.text != ""){
@@ -57,7 +59,7 @@ function CommentComponent(props) {
 
                 console.log('item',item)
                 let content  = item.content !== 'undefined' ? JSON.parse(item.content) : 'undefined'
-                content = content === "undefined"? "undefined" : isNulContent(content.bloks) === 0? content : "undefined"
+                content = content === "undefined"? "undefined" : isNulContent(content.blocks) === 0? content : "undefined"
 
                     return (<div
                             key={index}>
