@@ -59,6 +59,7 @@ module.exports.getDoc = async function({title,headers,body,description})
         let tableHeader = header.map(head=>
             new TableCell({
             children: [new Paragraph({
+                alignment: AlignmentType.CENTER,
                 heading: HeadingLevel.HEADING_2,
                 children: [
                     new TextRun(head),

@@ -4,8 +4,8 @@ let model = require('../Model/modelCombainer')
 module.exports.docReports = {
     priceList: async () => {
         let items = await model.get.GetShopItemsReport()
-        let body = items.map(k => [k.header, k.price]);
-        return doc.getDoc({title: 'Прайс лист', headers: ["Товар","Цена"], body,description:
+        let body = items.map(k => [k.header, k.price.toFixed(2)]);
+        return doc.getDoc({title: 'Прайс-лист', headers: ["Товар","Цена"], body,description:
                 'Цена указана в BYN и может отличаться от реальной, реальную цену вы можете уточнить у оператора.'
         })
     },
@@ -31,7 +31,7 @@ module.exports.docReports = {
         let items = await model.get.InfoCustomers();
         let body = items.map(k => [k.name,k.email,k.phone, k.count || 0])
         return doc.getDoc({
-            title: 'Отчет о заказчиках',
+            title: 'Отчет по заказчикам',
             headers: ['ФИО', 'Email', 'Телефон','Количество заказов'],
             body
         })
