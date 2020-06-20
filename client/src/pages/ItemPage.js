@@ -186,7 +186,7 @@ function ItemPage(props) {
                             maxLength={60}
                             className={'header'}
                             defaultValue={shopItem.header}
-                            placeholder={'header'}
+                            placeholder={'Заголовок'}
                             ref={node=>header=node}
                         />
                         <textarea

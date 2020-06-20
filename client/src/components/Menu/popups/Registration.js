@@ -70,7 +70,7 @@ class Registration extends Component {
         let regex = {
             'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
             'phoneNumber':'^\\+?[0-9]{3} -?[0-9]{6,12}$',
-            'password':'^(?=.*\\d).{8,15}$'
+            'password':'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'
         }
 
         let reg = new RegExp(regex[field])
