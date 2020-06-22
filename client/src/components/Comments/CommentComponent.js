@@ -13,7 +13,7 @@ function CommentComponent(props) {
     let user = props.state.User
     let getComments = ()=> {
         if( props.itemId) {
-            props.GetComments({itemId: props.itemId}).then(
+            props.GetComments({itemId: +props.itemId}).then(
                 response => {
                     if (user && user.userId && !response.error) {
                         let index = response.findIndex(i => i.userId === user.userId);
@@ -26,7 +26,7 @@ function CommentComponent(props) {
                                 response=[];
                             }
                         }
-                        setComment({ ...response })
+                        setComment(response)
                         setUserComment(comm || {})
                     } else {
                         setComment(response)
@@ -38,7 +38,7 @@ function CommentComponent(props) {
     }
     useEffect(() => {
         getComments();
-    }, [props.itemId])
+    }, [])
 
     let isNulContent =
         (con) =>

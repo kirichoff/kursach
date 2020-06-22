@@ -35,7 +35,7 @@ function ItemPage(props) {
     const [rating,setRating] = useState(0);
 
     let color = ()=> {
-        switch (+rating) {
+        switch (rating? +(rating).toFixed(0):0) {
             case 0:  return 'red';
             case 1:  return 'red';
             case 2:  return 'red';
@@ -136,7 +136,6 @@ function ItemPage(props) {
             props.AddItemContent({itemId: id, content:img.content});
         }
     };
-    console.log('shopItem',shopItem)
     featureItems = featureItems instanceof Array? featureItems : []
     return (
         <Layout>
@@ -152,7 +151,7 @@ function ItemPage(props) {
 
                         <div className={'Rating'}
                              style={ {backgroundColor: color()}}>
-                            {rating? rating.toFixed(1) : 0 }
+                            {rating? rating.toFixed(0) : 0 }
                         </div>
                         <div style={{display: isAdmin?'flex':'none'}} >
                         <Button
@@ -178,7 +177,7 @@ function ItemPage(props) {
                             addToCart = {(()=>props.AddToCart({...shopItem,previewImage:images[0].content }))}
                             isAdmin={isAdmin}
                             onChange={(value)=>setPrice(value)}
-                            price={price}/>
+                            price={(+price).toFixed(1)}/>
                     </div>
                     <div className={'desc'}  >
                         <textarea
@@ -250,7 +249,7 @@ function ItemPage(props) {
                 </form>
 
             <CommentComponent
-                itemId={shopItem.ShopItemId}
+                itemId={id}
                 {...props}
             />
         </Layout>

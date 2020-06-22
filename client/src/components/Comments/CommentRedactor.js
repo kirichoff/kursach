@@ -23,7 +23,7 @@ function CommentRedactor(props) {
             let rate = await props.GetRatingUser({userId: props.userId, itemId: props.itemId});
             props.DeleteComment({commentId: props.commentId,ratingId: rate[0].ratingId})
                 .then(r=>{
-                    document.location.reload()
+                   // document.location.reload()
                     props.refresh()
                 }
             );
