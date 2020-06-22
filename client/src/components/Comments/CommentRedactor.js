@@ -16,14 +16,19 @@ function CommentRedactor(props) {
         let sendComment = () =>{
             console.log('send')
             setLoading(true);
+            props.SetRating({
+                itemId: props.itemId,
+                ratingValue: props.rating,
+                userId: props.userId
+            });
             props.AddItemComment({itemId:props.itemId,content,userId: props.userId})
             setTimeout(()=>{setLoading(false)},1500)
         }
         let deleteComment = async () =>{
             let rate = await props.GetRatingUser({userId: props.userId, itemId: props.itemId});
-            props.DeleteComment({commentId: props.commentId,ratingId: rate[0].ratingId})
+            props.DeleteComment({commentId: props.commentId,ratingId: rate && rate[0].ratingId || null})
                 .then(r=>{
-                   // document.location.reload()
+                    document.location.reload()
                     props.refresh()
                 }
             );

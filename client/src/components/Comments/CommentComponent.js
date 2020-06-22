@@ -10,6 +10,7 @@ function CommentComponent(props) {
 
     const [userComment, setUserComment] = useState('');
     let [comments, setComment] = useState([]);
+    let [rating, setRating] = useState(0);
     let user = props.state.User
     let getComments = ()=> {
         if( props.itemId) {
@@ -68,7 +69,7 @@ function CommentComponent(props) {
                                 user={{userId: item.userId}}
                                 itemId={props.itemId }
                                 GetRatingUser = { props.GetRatingUser }
-                                setRating={ props.SetRating }
+                                isRedactor={false}
                             />
                             {
                                 content !== 'undefined'?
@@ -93,12 +94,14 @@ function CommentComponent(props) {
                                 user={props.state.User}
                                 itemId={props.itemId }
                                 isRedactor={true}
-
+                                rating={rating}
+                                setRating={(val)=>setRating(val)}
                             />
                             :
                             null
                         }
                         <CommentRedactor
+                            rating={rating}
                             refresh={getComments}
                             userId={user.userId}
                             itemId={props.itemId}
