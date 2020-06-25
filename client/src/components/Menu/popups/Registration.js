@@ -69,7 +69,7 @@ class Registration extends Component {
     checkData(field,value){
         let regex = {
             'email':'^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$',
-            'phoneNumber':'^\\+?[0-9]{3} -?[0-9]{6,12}$',
+            'phoneNumber':'^[+]375 [0-9]{9}$',
             'password':'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'
         }
 

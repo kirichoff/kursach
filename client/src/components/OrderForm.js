@@ -14,7 +14,7 @@ function OrderForm(props) {
                 <h6>телефон</h6>
                 <Input
                         placeholder={ '+3752999999999' }
-                        status={new RegExp('^\\+?[0-9]{3}-?[0-9]{6,12}$').test(phone)? "success": 'error'}
+                        status={new RegExp('^[+]375 [0-9]{9}$').test(phone)? "success": 'error'}
                        onChange={ (e) => setPhone(e.target.value.slice(5,e.target.value.length)) }
                        type={ 'tel' }
                        value={ "+" + 375 + " " +phone }/>
